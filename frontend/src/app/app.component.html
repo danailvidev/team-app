@@ -1,0 +1,4 @@
+<h1>Package Version</h1>
+<h2>{{features | json}}</h2>
+<button *ngFor="let item of navigation" [routerLink]="[item.link]" routerLinkActive="active">{{item.label}}</button>
+<router-outlet></router-outlet>
