@@ -5,7 +5,7 @@ var posts = [{
         message: 'hello'
     },
     {
-        message: 'hi'
+        message: 'hi2'
     }
 ]
 
