@@ -1,4 +1,8 @@
-<h1>Package Version2</h1>
-<h2>{{features | json}}</h2>
-<button *ngFor="let item of navigation" [routerLink]="[item.link]" routerLinkActive="active">{{item.label}}</button>
+<mat-toolbar>
+    <span>Title</span>
+    <span style="flex: 1 1 auto"></span>
+    <button mat-button color={{item.color}} *ngFor="let item of navigation" [routerLink]="[item.link]" routerLinkActive="active">
+        {{item.label}}
+      </button>
+</mat-toolbar>
 <router-outlet></router-outlet>

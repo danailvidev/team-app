@@ -1,17 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { environment } from '../environments/environment';
+import { ApiService } from './core/api.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
   navigation = [
-    { link: 'about', label: 'About' }
+    { link: 'about', label: 'About' , color: ''},
+    { link: 'login', label: 'Login', color: '' },
+    { link: 'register', label: 'Register', color: 'primary' }
   ];
-  private features: any;
+  messages$: any;
+
+  constructor(private apiService: ApiService) {
+
+  }
   ngOnInit() {
-    this.features = environment.versions;
+    this.messages$ = this.apiService.getMessages();
   }
 }
