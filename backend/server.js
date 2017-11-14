@@ -2,6 +2,7 @@ var express = require('express')
 var cors = require('cors')
 var bodyParser = require('body-parser')
 var mongoose = require('mongoose')
+var jwt = require('jwt-simple')
 var app = express()
 
 var User = require('./models/User.js')
@@ -28,12 +29,43 @@ app.post('/register', (req, res) => {
     console.log(userData)
     var user = new User(userData)
     console.log(user)
-    user.save( (err, results) => {
-        if(err) {
+    user.save((err, results) => {
+        if (err) {
             console.log('error')
         } else {
-            res.sendStatus(200);
+            res.sendStatus(200)
         }
+    })
+})
+
+app.post('/login', async(req, res) => {
+    var userData = req.body;
+
+    // search db for the user email
+    var user = await User.findOne({
+        email: userData.email
+    })
+
+    // validations
+    if (!user) {
+        return res.status(401).send({
+            message: 'Email or Password Invalid'
+        })
+    }
+
+    if (userData.password != user.password) {
+        return res.status(401).send({
+            message: 'Email or Password Invalid'
+        })
+    }
+
+    // token generate
+    var payload = {}
+
+    var token = jwt.encode(payload, '123') // 123 -> secret
+
+    res.status(200).send({
+        token
     })
 })
 

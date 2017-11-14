@@ -1,20 +1,19 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { UserComponent } from '../user.component';
-import { ApiService } from '../../core/api.service';
+import { AuthService } from '../../core/auth.service';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
   public user = new UserComponent('', '');
-  constructor(private apiService: ApiService) { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
   }
   register() {
-    this.apiService.registerUser(this.user);
+    this.authService.registerUser(this.user);
   }
 }

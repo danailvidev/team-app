@@ -7,7 +7,7 @@
     <form role="form" (submit)="login()">
       <br>
       <mat-input-container>
-        <input matInput type="text" required [(ngModel)]="user.username" id="username" name="username">
+        <input matInput type="text" required [(ngModel)]="loginUserData.email" id="email" name="email">
         <mat-placeholder>
           <i class="material-icons app-input-icon">face</i>Username
         </mat-placeholder>
@@ -15,7 +15,7 @@
       <br>
       <br>
       <mat-input-container>
-        <input matInput type="password" required [(ngModel)]="user.password" id="password" name="password">
+        <input matInput type="password" required [(ngModel)]="loginUserData.password" id="password" name="password">
         <mat-placeholder>
           <i class="material-icons app-input-icon">lock_open</i>Password
         </mat-placeholder>

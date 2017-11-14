@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserComponent } from '../user.component';
+import { AuthService } from '../../core/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -7,15 +8,16 @@ import { UserComponent } from '../user.component';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  public user = new UserComponent('', '');
+  public loginUserData = new UserComponent('', '');
   public errorMsg = '';
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
   }
   login() {
-    console.log(this.user);
-    this.errorMsg = 'Failed to login! try again ...';
+    // console.log(this.user);
+    // this.errorMsg = 'Failed to login! try again ...';
+    this.authService.loginUser(this.loginUserData);
   }
 }

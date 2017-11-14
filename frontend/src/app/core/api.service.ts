@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http,Headers, Response, RequestOptions } from '@angular/http';
+import { Http, Headers, Response, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { map, catchError } from 'rxjs/operators';
 
@@ -16,15 +16,6 @@ export class ApiService {
       }),
       catchError(this.handleError)
     );
-  }
-
-  registerUser(userData): any {
-    const body = JSON.stringify(userData);
-    const headers = new Headers({ 'Content-Type': 'application/json' });
-    const options = new RequestOptions({ headers: headers });
-    return this.http.post('http://localhost:3000/register', body, options).subscribe(res => {
-      return res.ok;
-    });
   }
 
   private handleError(error: any) {

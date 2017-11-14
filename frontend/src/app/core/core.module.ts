@@ -4,14 +4,14 @@ import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 
 // Service
-import { AuthService } from '../auth/auth.service';
+import { AuthService } from './auth.service';
+import { ApiService } from './api.service';
 
 // Guards
 import { AuthGuard } from '../auth/auth.guard';
 
 // system
 import { EnsureModuleLoadedOnceGuard } from '../shared/module-import-guard';
-import { ApiService } from './api.service';
 
 @NgModule({
   imports: [
