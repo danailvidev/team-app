@@ -8,13 +8,13 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
-import { FeatureModule } from './feature/feature.module';
-
+import { AboutModule } from './features/about/about.module';
+import { UsersModule } from './features/users/users.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AppRoutingModule.components
+    AppRoutingModule.components,
   ],
   imports: [
     BrowserModule,
@@ -22,7 +22,8 @@ import { FeatureModule } from './feature/feature.module';
     AppRoutingModule,
     CoreModule,
     SharedModule,
-    FeatureModule
+    AboutModule,
+    UsersModule
   ],
   providers: [],
   bootstrap: [AppComponent]

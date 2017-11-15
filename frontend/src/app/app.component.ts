@@ -8,6 +8,7 @@ import { ApiService } from './core/api.service';
 })
 export class AppComponent implements OnInit {
   navigation = [
+    { link: 'users', label: 'Users' , color: ''},
     { link: 'about', label: 'About' , color: ''},
     { link: 'login', label: 'Login', color: '' },
     { link: 'register', label: 'Register', color: 'primary' }

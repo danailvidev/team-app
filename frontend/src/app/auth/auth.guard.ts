@@ -11,7 +11,7 @@ export class AuthGuard implements CanActivate {
         private router: Router) { }
 
     canActivate(): Observable<boolean> {
-         this.router.navigate([`/login`]);
-         return Observable.of(false);
+         //this.router.navigate([`/login`]);
+         return Observable.of(true);
     }
 }

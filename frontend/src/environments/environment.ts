@@ -6,6 +6,7 @@ const packageJson = require('../../package.json');
 
 export const environment = {
   production: false,
+  baseUrl: 'http://localhost:3000',
   versions: {
     app: packageJson.version,
     angular: packageJson.dependencies['@angular/core'],
