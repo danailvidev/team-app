@@ -13,7 +13,7 @@ export class AppComponent implements OnInit {
     { link: 'about', label: 'About', color: '' }
   ];
 
-  constructor(private auth: AuthService,private router: Router) {
+  constructor(public auth: AuthService, private router: Router) {
 
   }
   ngOnInit() {

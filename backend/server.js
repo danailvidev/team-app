@@ -78,4 +78,4 @@ mongoose.connect('mongodb://dbadmin:restPass@ds159845.mlab.com:59845/restaurant'
 })
 
 app.use('/auth', auth.router)
-app.listen(3000)
+app.listen(process.env.PORT || 3000)

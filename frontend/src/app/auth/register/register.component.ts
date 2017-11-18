@@ -9,6 +9,7 @@ import { AuthService } from '../../core/auth.service';
 })
 export class RegisterComponent implements OnInit {
   public user = new User();
+  errorMsg = 'error';
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
