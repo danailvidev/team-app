@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserComponent } from '../user.component';
+import { User } from '../user.model';
 import { AuthService } from '../../core/auth.service';
 
 @Component({
@@ -8,7 +8,7 @@ import { AuthService } from '../../core/auth.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  public loginUserData = new UserComponent('', '');
+  public loginUserData = new User();
   public errorMsg = '';
 
   constructor(private authService: AuthService) { }

@@ -1,0 +1,24 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      <h2>Post</h2>
+    </mat-card-title>
+  </mat-card-header>
+  <form role="form" (submit)="post()">
+
+    <mat-input-container>
+      <input matInput type="text" required [(ngModel)]="postMsg" id="postMsg" name="postMsg">
+      <mat-placeholder>
+        Post Message
+      </mat-placeholder>
+    </mat-input-container>
+    <br>
+    <br>
+    <button mat-raised-button color="warn" type="submit" name="action">Post</button>
+    <br>
+    <br>
+    <span id="err">
+      <small>{{errorMsg}}</small>
+    </span>
+  </form>
+</mat-card>

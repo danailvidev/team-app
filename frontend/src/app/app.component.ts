@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from './core/api.service';
+import { AuthService } from './core/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,17 +9,20 @@ import { ApiService } from './core/api.service';
 })
 export class AppComponent implements OnInit {
   navigation = [
-    { link: 'users', label: 'Users' , color: ''},
-    { link: 'about', label: 'About' , color: ''},
-    { link: 'login', label: 'Login', color: '' },
-    { link: 'register', label: 'Register', color: 'primary' }
+    { link: 'users', label: 'Users', color: '' },
+    { link: 'about', label: 'About', color: '' }
   ];
-  messages$: any;
 
-  constructor(private apiService: ApiService) {
+  constructor(private auth: AuthService,private router: Router) {
 
   }
   ngOnInit() {
-    this.messages$ = this.apiService.getMessages();
+  }
+
+  logout() {
+    const isLoggedOut = this.auth.logout();
+    if (isLoggedOut) {
+      this.router.navigate([`/`]);
+    }
   }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { UserComponent } from '../user.component';
+import { User } from '../user.model';
 import { AuthService } from '../../core/auth.service';
 
 @Component({
@@ -8,7 +8,7 @@ import { AuthService } from '../../core/auth.service';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  public user = new UserComponent('', '');
+  public user = new User();
   constructor(private authService: AuthService) { }
 
   ngOnInit() {

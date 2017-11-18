@@ -6,7 +6,7 @@ import { ApiService } from '../../core/api.service';
   templateUrl: './users.component.html'
 })
 export class UsersComponent implements OnInit {
-  users:any;
+  users: any;
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {

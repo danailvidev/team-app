@@ -1,11 +1,11 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpModule } from '@angular/http';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 // Service
 import { AuthService } from './auth.service';
 import { ApiService } from './api.service';
+import { AuthInterceptor } from './auth.interceptor';
 
 // Guards
 import { AuthGuard } from '../auth/auth.guard';
@@ -16,7 +16,6 @@ import { EnsureModuleLoadedOnceGuard } from '../shared/module-import-guard';
 @NgModule({
   imports: [
     CommonModule,
-    HttpModule,
     HttpClientModule
   ],
   declarations: [],
@@ -24,6 +23,11 @@ import { EnsureModuleLoadedOnceGuard } from '../shared/module-import-guard';
     ApiService,
     AuthService,
     AuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
   ]
 })
 export class CoreModule extends EnsureModuleLoadedOnceGuard {

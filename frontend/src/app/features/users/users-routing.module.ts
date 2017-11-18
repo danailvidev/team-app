@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { UsersComponent } from './users.component';
-import { EditComponent } from './edit/edit.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
     { path: '', component: UsersComponent },
-    { path: 'edit/:id', component: EditComponent }
+    { path: 'profile/:id', component: ProfileComponent }
 ];
 
 @NgModule({
@@ -15,6 +15,6 @@ const routes: Routes = [
 export class UsersRoutingModule {
     static components = [
         UsersComponent,
-        EditComponent
+        ProfileComponent
     ];
 }
