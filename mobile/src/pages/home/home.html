@@ -1,0 +1,11 @@
+<ion-content padding>
+  <ion-list>
+    <ion-item *ngFor="let u of users">
+      <ion-avatar item-left>
+        <span>Email: {{u.email}}"></span>
+      </ion-avatar>
+      <h2>Name: {{u.name}}</h2>
+      <p>Description: {{u.description}}</p>
+    </ion-item>
+  </ion-list>
+</ion-content>
