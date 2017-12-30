@@ -11,6 +11,7 @@ export class ProfileComponent implements OnInit {
   isNewContact: boolean;
   user: any = {};
   messages$: Observable<any>;
+  errorMsg: string = null;
 
   constructor(private activatedRoute: ActivatedRoute,
     private apiService: ApiService) { }
@@ -22,7 +23,11 @@ export class ProfileComponent implements OnInit {
       this.apiService.getUser(userId).subscribe(res => {
         this.user = res;
       });
-      this.messages$ = this.apiService.getMessages(userId);
+      this.apiService.getMessages(userId).subscribe(res => {
+        this.messages$ = res;
+      }, (err) => {
+        this.errorMsg = err;
+      });
     }
   }
 }

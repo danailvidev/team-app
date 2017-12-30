@@ -17,7 +17,7 @@
     <button mat-raised-button color="warn" type="submit" name="action">Post</button>
     <br>
     <br>
-    <span id="err">
+    <span *ngIf="errorMsg">
       <small>{{errorMsg}}</small>
     </span>
   </form>

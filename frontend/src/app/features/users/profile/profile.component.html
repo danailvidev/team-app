@@ -18,7 +18,7 @@
 
 </mat-card>
 <h3>Messages</h3>
-<div *ngFor="let msg of messages$ | async">
+<div *ngFor="let msg of messages$">
   <mat-card>
       <mat-card-header>
           <mat-card-title>Title</mat-card-title>
@@ -39,4 +39,6 @@
   
 </div>
 
-
+<mat-toolbar color="warn" *ngIf="errorMsg">
+  <span>{{errorMsg}}</span>
+</mat-toolbar>

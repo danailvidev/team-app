@@ -6,11 +6,20 @@ import { ApiService } from '../../core/api.service';
   templateUrl: './users.component.html'
 })
 export class UsersComponent implements OnInit {
-  users: any;
+  users$: any;
+  pageError?: string =null;
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {
-    this.users = this.apiService.getUsers();
+    this.getUsers();
+  }
+
+  private getUsers(): any {
+    this.apiService.getUsers().subscribe(res => {
+      this.users$ = res;
+    }, (err) => {
+      this.pageError = err;
+    });
   }
 
 }

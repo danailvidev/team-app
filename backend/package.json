@@ -1,6 +1,6 @@
 {
   "name": "backend",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -17,6 +17,6 @@
     "mongoose": "^4.13.1"
   },
   "engines": {
-    "node":"8.1.2"
+    "node": "9.3.0"
   }
 }

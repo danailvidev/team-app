@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { map, catchError } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
-import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpResponse, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import 'rxjs/add/observable/throw';
 
 @Injectable()
 export class ApiService {
@@ -16,7 +17,7 @@ export class ApiService {
         console.log(res);
         return res;
       }),
-      catchError(this.handleError)
+      catchError(this.handleError('getMessages'))
     );
   }
 
@@ -25,7 +26,7 @@ export class ApiService {
       map((res: HttpResponse<any>) => {
         return res;
       }),
-      catchError(this.handleError)
+      catchError(this.handleError('getUser'))
     );
   }
 
@@ -34,7 +35,7 @@ export class ApiService {
       map((res: HttpResponse<any>) => {
         return res;
       }),
-      catchError(this.handleError)
+      catchError(this.handleError('getUsers'))
     );
   }
 
@@ -49,22 +50,20 @@ export class ApiService {
         }
         return false;
       }),
-      catchError(this.handleError)
+      catchError(this.handleError('postMsg'))
     );
   }
 
-  private handleError(error: any) {
-    console.error('server error:', error);
-    if (error instanceof HttpResponse) {
-      let errMessage = '';
-      try {
-        errMessage = error.body;
-      } catch (err) {
-        errMessage = error.statusText;
+  private handleError(operation: String) {
+    return (err: any) => {
+      const errMsg = `error in ${operation} retrieving ${this.baseUrl}`;
+      console.log(`${errMsg}:`, err);
+      if (err instanceof HttpErrorResponse) {
+        // you could extract more info about the error if you want, e.g.:
+        console.log(`status: ${err.status}, ${err.statusText}`);
       }
-      return Observable.throw(errMessage);
-    }
-    return Observable.throw(error || 'json server error');
+      return Observable.throw(errMsg);
+    };
   }
 
 }

@@ -9,7 +9,7 @@ import { ApiService } from '../../core/api.service';
 })
 export class PostsComponent implements OnInit {
   postMsg: string;
-  errorMsg = 'error';
+  errorMsg?: any = null;
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {
@@ -20,8 +20,10 @@ export class PostsComponent implements OnInit {
       if (res) {
         this.postMsg = '';
       } else {
-        console.log('bug', res)
+        this.errorMsg = res;
       }
+    }, (err) => {
+      this.errorMsg = err;
     });
   }
 }
