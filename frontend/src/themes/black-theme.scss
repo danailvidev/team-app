@@ -1,0 +1,54 @@
+$dv-black-primary: mat-palette($mat-grey, 900, 500, 900);
+$dv-black-accent: mat-palette($mat-green, A200);
+$dv-black-warn: mat-palette($mat-red, A200);
+$dv-black-theme: mat-dark-theme( $dv-black-primary, $dv-black-accent, $dv-black-warn);
+.black-theme {
+  mat-toolbar {
+    button {
+      &.active {
+        color: mat-color($dv-black-accent, default-contrast);
+        background-color: mat-color($dv-black-accent);
+      }
+    }
+  }
+}
+
+.black-theme {
+  snack-bar-container {
+    background: mat-color($dv-black-primary, 300)!important;
+    .mat-simple-snackbar {
+      font-weight: bold;
+      text-transform: uppercase;
+      color: #000!important;
+      button.mat-simple-snackbar-action {
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+    }
+  }
+  snack-bar-container.snack-delete {
+    .mat-simple-snackbar-action {
+      color: mat-color($dv-black-warn)!important;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+  }
+  snack-bar-container.snack-denied {
+    .mat-simple-snackbar {
+      text-align: center;
+      display: block;
+      color: mat-color($dv-black-warn)!important;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+  }
+  snack-bar-container.snack-success {
+    .mat-simple-snackbar {
+      text-align: center;
+      display: block;
+      //color: mat-color($dv-black-accent)!important;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+  }
+}

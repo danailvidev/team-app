@@ -48,9 +48,14 @@ function createSendToken(res, user) {
     }
 
     var token = jwt.encode(payload, '123') // 123 -> secret
+    const userData = {
+        email: user.email,
+        name: user.name
+    }
 
     res.status(200).send({
-        token
+        token: token,
+        userData: userData
     })
 }
 

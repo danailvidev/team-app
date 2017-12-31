@@ -1,4 +1,4 @@
-<mat-card>
+<mat-card *ngIf="auth.isAuthenticated">
   <mat-card-header>
     <mat-card-title>
       <h2>Post</h2>
@@ -17,8 +17,5 @@
     <button mat-raised-button color="warn" type="submit" name="action">Post</button>
     <br>
     <br>
-    <span *ngIf="errorMsg">
-      <small>{{errorMsg}}</small>
-    </span>
   </form>
 </mat-card>

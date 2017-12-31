@@ -26,6 +26,16 @@ app.get('/posts/:id', async(req, res) => {
     res.send(posts)
 })
 
+app.delete('/post/:id', auth.checkAuthenticated, async(req, res) => {
+    try {
+        let id = req.params.id
+        var post = await Post.findByIdAndRemove(id)
+        res.sendStatus(200)
+    } catch (error) {
+        res.sendStatus(500)
+    }
+})
+
 app.post('/post', auth.checkAuthenticated, (req, res) => {
     var postData = req.body
     postData.author = req.userId
@@ -40,7 +50,10 @@ app.post('/post', auth.checkAuthenticated, (req, res) => {
                 message: 'saving post error'
             })
         } else {
-            res.status(200).send(true)
+            res.status(200).send({
+                result: true,
+                id: results._id
+            })
         }
     })
 })

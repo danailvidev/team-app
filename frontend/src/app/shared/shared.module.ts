@@ -20,6 +20,7 @@ import {
   MatTooltipModule,
   MatSlideToggleModule
 } from '@angular/material';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 import 'hammerjs';
 
@@ -43,7 +44,8 @@ import 'hammerjs';
     MatListModule,
     MatIconModule,
     MatTooltipModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatSnackBarModule
   ],
   exports: [
     CommonModule,

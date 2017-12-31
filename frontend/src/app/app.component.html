@@ -1,12 +1,19 @@
-<mat-toolbar>
-    <button mat-button routerLink="/">Social Platform</button>
-    <span>Hello </span>
+<mat-sidenav-container fullscreen>
+  <mat-toolbar>
+    <button mat-button routerLink="/">
+      <i class="material-icons">public</i>
+    </button>
+    <span>Hello {{auth.userInfo?.email}} </span>
+    <mat-slide-toggle matTooltip="Change theme" matdTooltipPosition="before" (change)="switchTheme($event)">
+      Theme
+    </mat-slide-toggle>
     <span style="flex: 1 1 auto"></span>
     <button mat-button color={{item.color}} *ngFor="let item of navigation" [routerLink]="[item.link]" routerLinkActive="active">
-        {{item.label}}
-      </button>
-      <button *ngIf="!auth.isAuthenticated" [routerLink]="['login']" routerLinkActive="active" mat-button color="primary">Login</button>
-      <button *ngIf="!auth.isAuthenticated" [routerLink]="['register']" routerLinkActive="active" mat-button color="primary">Register</button>
-      <button *ngIf="auth.isAuthenticated" (click)="logout()" routerLinkActive="active" mat-button color="primary">Logout</button>
-</mat-toolbar>
-<router-outlet></router-outlet>
+      {{item.label}}
+    </button>
+    <button *ngIf="!auth.isAuthenticated" [routerLink]="['login']" routerLinkActive="active" mat-button color="accent">Login</button>
+    <button *ngIf="!auth.isAuthenticated" [routerLink]="['register']" routerLinkActive="active" mat-button color="accent">Register</button>
+    <button *ngIf="auth.isAuthenticated" (click)="logout()" routerLinkActive="active" mat-button color="accent">Logout</button>
+  </mat-toolbar>
+  <router-outlet></router-outlet>
+</mat-sidenav-container>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../user.model';
 import { AuthService } from '../../core/auth.service';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -11,13 +12,15 @@ export class LoginComponent implements OnInit {
   public loginUserData = new User();
   public errorMsg = '';
 
-  constructor(private authService: AuthService) { }
+  constructor(
+    private authService: AuthService) { }
 
   ngOnInit() {
+
   }
   login() {
-    // console.log(this.user);
-    // this.errorMsg = 'Failed to login! try again ...';
     this.authService.loginUser(this.loginUserData);
+    
   }
+
 }

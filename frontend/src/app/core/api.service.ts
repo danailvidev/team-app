@@ -39,19 +39,31 @@ export class ApiService {
     );
   }
 
-  postMsg(postMsg): Observable<boolean> {
+  /**
+   * Post a message
+   * @param postMsg msg body
+   * @returns res object {result:boolean,id:string}
+   */
+  postMsg(postMsg): Observable<any> {
     const body = JSON.stringify(postMsg);
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const options = new HttpResponse({ headers: headers });
     return this.http.post<any>(this.baseUrl + '/post', body, options).pipe(
       map((res) => {
-        if (res) {
-          return true;
+        if (res.result) {
+          console.log(res);
+          return res;
         }
         return false;
       }),
       catchError(this.handleError('postMsg'))
     );
+  }
+
+  deleteMsg(id): any {
+    this.http.delete(this.baseUrl + `/post/${id}`).subscribe(res => {
+      console.log('es', res);
+    }, err => console.log(err));
   }
 
   private handleError(operation: String) {

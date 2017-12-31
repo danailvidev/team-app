@@ -1,0 +1,44 @@
+$dv-light-primary: mat-palette($mat-grey, 200, 500, 300);
+$dv-light-accent: mat-palette($mat-brown, 200);
+$dv-light-warn: mat-palette($mat-deep-orange, 200);
+$dv-light-theme: mat-light-theme( $dv-light-primary, $dv-light-accent, $dv-light-warn);
+.light-theme {
+  snack-bar-container {
+    background: mat-color($dv-light-warn)!important;
+    .mat-simple-snackbar {
+      font-weight: bold;
+      text-transform: uppercase;
+      color: #000!important;
+      button.mat-simple-snackbar-action {
+        font-weight: bold;
+        text-transform: uppercase;
+        color: #fff;
+      }
+    }
+  }
+  snack-bar-container.snack-delete {
+    .mat-simple-snackbar-action {
+      color: mat-color($dv-light-warn)!important;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+  }
+  snack-bar-container.snack-denied {
+    .mat-simple-snackbar {
+      text-align: center;
+      display: block;
+      color: mat-color($dv-light-warn)!important;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+  }
+  snack-bar-container.snack-success {
+    .mat-simple-snackbar {
+      text-align: center;
+      display: block;
+      color: mat-color($dv-light-accent)!important;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+  }
+}

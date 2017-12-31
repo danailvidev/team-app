@@ -6,6 +6,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthService } from './auth.service';
 import { ApiService } from './api.service';
 import { AuthInterceptor } from './auth.interceptor';
+import { NotifyService } from './notify.service';
 
 // Guards
 import { AuthGuard } from '../auth/auth.guard';
@@ -16,18 +17,19 @@ import { EnsureModuleLoadedOnceGuard } from '../shared/module-import-guard';
 @NgModule({
   imports: [
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   declarations: [],
   providers: [
     ApiService,
     AuthService,
+    NotifyService,
     AuthGuard,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true
-    }
+    },
   ]
 })
 export class CoreModule extends EnsureModuleLoadedOnceGuard {

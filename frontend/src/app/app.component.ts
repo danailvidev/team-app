@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostBinding } from '@angular/core';
+import { OverlayContainer } from '@angular/cdk/overlay';
 import { AuthService } from './core/auth.service';
 import { Router } from '@angular/router';
 
@@ -12,11 +13,29 @@ export class AppComponent implements OnInit {
     { link: 'users', label: 'Users', color: '' },
     { link: 'about', label: 'About', color: '' }
   ];
+  theme = 'light-theme';
 
-  constructor(public auth: AuthService, private router: Router) {
+  @HostBinding('class') componentCssClass;
+
+  constructor(
+    public auth: AuthService,
+    private router: Router,
+    public overlayContainer: OverlayContainer) {
 
   }
   ngOnInit() {
+    this.setTheme(this.theme);
+  }
+
+  setTheme(theme) {
+    this.theme = this.componentCssClass = theme;
+
+    this.overlayContainer.getContainerElement().classList.add(theme);
+  }
+
+  switchTheme(event) {
+    this.overlayContainer.getContainerElement().classList.remove(this.theme);
+    event.checked === true ? this.setTheme('black-theme') : this.setTheme('light-theme');
   }
 
   logout() {

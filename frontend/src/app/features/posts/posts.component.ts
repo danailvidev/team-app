@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../core/api.service';
+import { AuthService } from '../../core/auth.service';
+import { NotifyService } from '../../core/notify.service';
 
 
 @Component({
@@ -9,21 +11,34 @@ import { ApiService } from '../../core/api.service';
 })
 export class PostsComponent implements OnInit {
   postMsg: string;
-  errorMsg?: any = null;
-  constructor(private apiService: ApiService) { }
+  constructor(
+    private apiService: ApiService,
+    public auth: AuthService,
+    public notifyService: NotifyService) { }
 
   ngOnInit() {
   }
 
   post() {
     this.apiService.postMsg({ msg: this.postMsg }).subscribe(res => {
-      if (res) {
+      if (res.result) {
         this.postMsg = '';
-      } else {
-        this.errorMsg = res;
+        const notifyConfig = this.notifyService.notify('message posted', 'undo?', {
+          duration: 400000,
+          panelClass: ['snack-success']
+        });
+        // tslint:disable-next-line:no-shadowed-variable
+        this.notifyService.notifyAction(notifyConfig, () => this.deletePost(res.id));
       }
     }, (err) => {
-      this.errorMsg = err;
+      this.notifyService.notify(err, null, {
+        duration: 4000,
+        panelClass: ['snack-denied']
+      });
     });
+  }
+
+  deletePost(postId) {
+    this.apiService.deleteMsg(postId);
   }
 }

@@ -1,3 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
+
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
-@import url(https://fonts.googleapis.com/icon?family=Material+Icons);
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
+@import '~@angular/material/theming';
+@import 'node_modules/angular2-toaster/toaster'; //toaster
+// Themese
+@include mat-core();
+@import './themes/light-theme';
+@import './themes/black-theme';
+.light-theme {
+  @include angular-material-theme($dv-light-theme);
+}
+
+.black-theme {
+  @include angular-material-theme($dv-black-theme);
+}
+
+// Font override
+body,
+html {
+  font-family: 'Nunito', sans-serif;
+}
+
+$custom-typography: mat-typography-config( $font-family: 'Nunito');
+@include angular-material-typography($custom-typography);
+
+
