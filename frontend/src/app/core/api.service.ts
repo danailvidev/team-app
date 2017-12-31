@@ -39,6 +39,10 @@ export class ApiService {
     );
   }
 
+  deleteUser(id): any {
+    console.log('delete', id);
+  }
+
   /**
    * Post a message
    * @param postMsg msg body

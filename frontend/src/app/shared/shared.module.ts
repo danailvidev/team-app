@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 // Material
 import {
@@ -20,14 +20,18 @@ import {
   MatTooltipModule,
   MatSlideToggleModule
 } from '@angular/material';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import 'hammerjs';
+
+// components
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 
 @NgModule({
   imports: [
     FormsModule,
     ReactiveFormsModule,
+    CommonModule,
 
     // Material
     MatButtonModule,
@@ -48,9 +52,12 @@ import 'hammerjs';
     MatSnackBarModule
   ],
   exports: [
-    CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    CommonModule,
+    
+    // components
+    LoadingSpinnerComponent,
 
     // Material
     MatButtonModule,
@@ -69,6 +76,8 @@ import 'hammerjs';
     MatTooltipModule,
     MatSlideToggleModule
   ],
-  declarations: []
+  declarations: [
+    LoadingSpinnerComponent
+  ]
 })
 export class SharedModule { }

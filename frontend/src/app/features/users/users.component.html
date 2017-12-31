@@ -1,4 +1,4 @@
-<div *ngFor="let user of users$" style="margin:20px;cursor:pointer;">
+<div *ngFor="let user of users$ | async" style="margin:20px;cursor:pointer;">
   <mat-card [routerLink]="['profile', user._id]">
       <strong>email: </strong>{{user.email}}
   </mat-card>
