@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit {
   navigation = [
     { link: 'users', label: 'Users', color: '' },
-    { link: 'about', label: 'About', color: '' }
+    { link: 'calendar', label: 'Calendar', color: '' }
   ];
   theme = 'light-theme';
 

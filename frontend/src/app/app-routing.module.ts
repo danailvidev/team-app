@@ -12,7 +12,7 @@ const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'forgot-password', component: ForgotPasswordComponent },
-    { path: 'about', canActivate: [AuthGuard], loadChildren: 'app/features/about/about.module#AboutModule' },
+    { path: 'calendar', canActivate: [AuthGuard], loadChildren: 'app/features/calendar/calendar.module#CalendarModule' },
     { path: 'users', canActivate: [AuthGuard], loadChildren: 'app/features/users/users.module#UsersModule' },
     { path: '**', pathMatch: 'full', redirectTo: '/login' }
 ];
