@@ -51,4 +51,16 @@ $dv-black-theme: mat-dark-theme( $dv-black-primary, $dv-black-accent, $dv-black-
       text-transform: uppercase;
     }
   }
+  .cal-month-view .cal-cell-row:hover {
+    background-color: transparent!important;
+  }
+  .cal-month-view .cal-cell-row .cal-cell:hover, .cal-month-view .cal-cell.cal-has-events.cal-open {
+    background-color: #6dab85;
+}
+.cal-month-view .cal-day-cell.cal-weekend .cal-day-number {
+  color: #ff6161;
+}
+.cal-month-view .cal-day-cell.cal-today {
+  background-color: #5d5c5c;
+}
 }
