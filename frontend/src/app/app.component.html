@@ -1,13 +1,38 @@
 <mat-sidenav-container fullscreen>
   <mat-toolbar>
+
+    <!-- left side -->
     <button mat-button routerLink="/">
       <i class="material-icons">public</i>
     </button>
-    <span>Hello {{auth.userInfo?.email}} </span>
+
+    <!-- userinfo -->
+    <button *ngIf="auth.isAuthenticated" mat-button [matMenuTriggerFor]="menu">Hello, {{auth.userInfo?.email}}
+      <i class="material-icons">keyboard_arrow_down</i>
+    </button>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+        <mat-radio-group>
+            <mat-radio-button checked value="1">Online</mat-radio-button>
+            <mat-radio-button value="2">Invisible</mat-radio-button>
+          </mat-radio-group>
+        </button>
+      <button mat-menu-item>
+          <mat-icon> settings </mat-icon>
+          <span>Settings</span>
+      </button>
+      <button mat-menu-item (click)="logout()">
+          <mat-icon> exit_to_app </mat-icon>
+          <span>Logout <span style="color:grey;">{{auth.userInfo?.email}}</span></span>
+      </button>
+    </mat-menu>
+
+    <span style="flex: 1 1 auto"></span>
+
+    <!-- right side -->
     <mat-slide-toggle matTooltip="Change theme" matdTooltipPosition="before" (change)="switchTheme($event)">
       Theme
     </mat-slide-toggle>
-    <span style="flex: 1 1 auto"></span>
     <button mat-button color={{item.color}} *ngFor="let item of navigation" [routerLink]="[item.link]" routerLinkActive="active">
       {{item.label}}
     </button>

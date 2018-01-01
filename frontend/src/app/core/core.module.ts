@@ -14,6 +14,10 @@ import { AuthGuard } from '../auth/auth.guard';
 // system
 import { EnsureModuleLoadedOnceGuard } from '../shared/module-import-guard';
 
+// input validations
+import { ErrorStateMatcher } from '@angular/material/core';
+import { ShowOnDirtyErrorStateMatcher } from '@angular/material';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -30,6 +34,7 @@ import { EnsureModuleLoadedOnceGuard } from '../shared/module-import-guard';
       useClass: AuthInterceptor,
       multi: true
     },
+    {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}
   ]
 })
 export class CoreModule extends EnsureModuleLoadedOnceGuard {

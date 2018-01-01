@@ -1,0 +1,15 @@
+:host {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    mat-card {
+        text-align: center;
+        min-width: 400px;
+        margin: 0 auto;
+        p {
+            font-weight: bold;
+            font-size: 21px;
+        }
+    }
+}

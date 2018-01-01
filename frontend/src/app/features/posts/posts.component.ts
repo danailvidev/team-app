@@ -3,7 +3,6 @@ import { ApiService } from '../../core/api.service';
 import { AuthService } from '../../core/auth.service';
 import { NotifyService } from '../../core/notify.service';
 
-
 @Component({
   selector: 'app-posts',
   templateUrl: './posts.component.html',
@@ -24,7 +23,7 @@ export class PostsComponent implements OnInit {
       if (res.result) {
         this.postMsg = '';
         const notifyConfig = this.notifyService.notify('message posted', 'undo?', {
-          duration: 400000,
+          duration: 4000,
           panelClass: ['snack-success']
         });
         // tslint:disable-next-line:no-shadowed-variable

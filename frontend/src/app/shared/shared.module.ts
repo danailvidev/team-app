@@ -18,7 +18,8 @@ import {
   MatListModule,
   MatIconModule,
   MatTooltipModule,
-  MatSlideToggleModule
+  MatSlideToggleModule,
+  MatRadioModule
 } from '@angular/material';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
@@ -49,7 +50,8 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
     MatIconModule,
     MatTooltipModule,
     MatSlideToggleModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatRadioModule
   ],
   exports: [
     FormsModule,
@@ -74,7 +76,8 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
     MatListModule,
     MatIconModule,
     MatTooltipModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatRadioModule
   ],
   declarations: [
     LoadingSpinnerComponent
