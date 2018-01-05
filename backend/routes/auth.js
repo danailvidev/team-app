@@ -1,5 +1,5 @@
 var bcrypt = require('bcrypt-nodejs')
-var User = require('./models/User.js')
+var User = require('../models/User.js')
 var jwt = require('jwt-simple')
 var express = require('express')
 var router = express.Router()
