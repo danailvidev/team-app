@@ -12,7 +12,7 @@ export class ApiService {
   constructor(private http: HttpClient) { }
 
   getMessages(userId): Observable<any> {
-    return this.http.get(this.baseUrl + `/posts/${userId}`).pipe(
+    return this.http.get(this.baseUrl + `/post/${userId}`).pipe(
       map((res: HttpResponse<any>) => {
         console.log(res);
         return res;
@@ -31,7 +31,7 @@ export class ApiService {
   }
 
   getUsers(): Observable<any> {
-    return this.http.get(this.baseUrl + '/users').pipe(
+    return this.http.get(this.baseUrl + '/user').pipe(
       map((res: HttpResponse<any>) => {
         return res;
       }),

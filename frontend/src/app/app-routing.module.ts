@@ -14,6 +14,7 @@ const routes: Routes = [
     { path: 'forgot-password', component: ForgotPasswordComponent },
     { path: 'calendar', canActivate: [AuthGuard], loadChildren: 'app/features/calendar/calendar.module#CalendarModule' },
     { path: 'users', canActivate: [AuthGuard], loadChildren: 'app/features/users/users.module#UsersModule' },
+    { path: 'chat', canActivate: [AuthGuard], loadChildren: 'app/features/chat/chat.module#ChatModule' },
     { path: '**', pathMatch: 'full', redirectTo: '/login' }
 ];
 

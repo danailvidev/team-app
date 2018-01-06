@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class AppComponent implements OnInit {
   navigation = [
+    { link: 'chat', label: 'Live Chat', color: '' },
     { link: 'users', label: 'Users', color: '' },
     { link: 'calendar', label: 'Calendar', color: '' }
   ];
