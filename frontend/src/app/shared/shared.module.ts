@@ -22,6 +22,7 @@ import {
   MatRadioModule
 } from '@angular/material';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import {MatDialogModule} from '@angular/material/dialog';
 
 import 'hammerjs';
 
@@ -51,7 +52,8 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
     MatTooltipModule,
     MatSlideToggleModule,
     MatSnackBarModule,
-    MatRadioModule
+    MatRadioModule,
+    MatDialogModule
   ],
   exports: [
     FormsModule,
@@ -77,7 +79,8 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
     MatIconModule,
     MatTooltipModule,
     MatSlideToggleModule,
-    MatRadioModule
+    MatRadioModule,
+    MatDialogModule
   ],
   declarations: [
     LoadingSpinnerComponent

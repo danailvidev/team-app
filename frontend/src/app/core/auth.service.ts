@@ -66,6 +66,12 @@ export class AuthService {
     return this.http.post<any>(this.baseAuthUrl + '/register', body, options).subscribe(res => {
       this.saveToken(res.token);
       this.saveUserData(res.userData);
+    }, (err) => {
+      this.notifyService.notify(err.error.message, null, {
+        duration: 4000,
+        panelClass: ['snack-denied']
+      });
+      return false;
     });
   }
 

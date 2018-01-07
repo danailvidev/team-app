@@ -4,10 +4,21 @@ var jwt = require('jwt-simple')
 var express = require('express')
 var router = express.Router()
 
-router.post('/register', (req, res) => {
+router.post('/register', async (req, res) => {
     var userData = req.body;
+    
+    // check for existing email
+    var user = await User.findOne({
+        email: userData.email
+    })
 
-    var user = new User(userData)
+    if (user) {
+        return res.status(422).send({
+            message: 'Email Already Exist'
+        })
+    } else {
+        user = new User(userData)
+    }
 
     user.save((err, newUser) => {
         if (err) {

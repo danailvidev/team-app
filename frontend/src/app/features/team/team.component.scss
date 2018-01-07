@@ -1,0 +1,17 @@
+// :host {
+//     display: flex;
+//     justify-content: space-around;
+//     flex-direction: row;
+// }
+
+mat-sidenav-container {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+
+mat-sidenav {
+    width: 300px;
+
+   
+  }

@@ -1,5 +1,4 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { ApiService } from '../../core/api.service';
 import { Store } from '@ngrx/store';
 import { AppState, IUser } from '../../shared/interfaces';
 import { Observable } from 'rxjs/Observable';
@@ -15,7 +14,6 @@ export class UsersComponent implements OnInit {
   pageError?: string = null;
 
   constructor(
-    private apiService: ApiService,
     private store: Store<AppState>
   ) {
     this.users$ = this.store.select(state => state.users);

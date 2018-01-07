@@ -27,7 +27,7 @@ $dv-light-theme: mat-light-theme( $dv-light-primary, $dv-light-accent, $dv-light
     .mat-simple-snackbar {
       text-align: center;
       display: block;
-      color: mat-color($dv-light-warn)!important;
+      color: #000!important;
       font-weight: bold;
       text-transform: uppercase;
     }

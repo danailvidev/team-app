@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
     selector: 'selector-name',
-    template: `works`
+    templateUrl: 'team.component.html',
+    styleUrls: ['team.component.scss']
 })
 
-export class ChatComponent implements OnInit {
+export class TeamComponent implements OnInit {
     constructor() { }
 
     ngOnInit() { }
