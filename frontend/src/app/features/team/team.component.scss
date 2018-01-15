@@ -1,8 +1,8 @@
-// :host {
-//     display: flex;
-//     justify-content: space-around;
-//     flex-direction: row;
-// }
+:host {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+}
 
 mat-sidenav-container {
     position: fixed;

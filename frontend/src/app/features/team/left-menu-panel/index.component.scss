@@ -1,0 +1,15 @@
+.mat-sidenav {
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .user-menu {
+    margin-bottom: 64px;
+    width: 250px;
+    button {
+      font-size: 18px;
+      width: 100%;
+    }
+  }
+  

@@ -24,11 +24,11 @@ export class AuthService {
     return !!localStorage.getItem(this.TOKEN_KEY);
   }
 
-  get userInfo() {
+  userInfo(): any {
     if (!this.userData) {
       this.userData = JSON.parse(localStorage.getItem(this.DATA_KEY));
     }
-    return this.userData;
+    return Observable.of(this.userData);
   }
 
   loginUser(userData): any {
@@ -36,7 +36,7 @@ export class AuthService {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const options = new HttpResponse({ headers: headers });
     return this.http.post<any>(this.baseAuthUrl + '/login', userData).subscribe(res => {
-      this.userData = res.userData;
+      this.userData = JSON.parse(res.userData);
       this.saveUserData(res.userData);
       this.saveToken(res.token);
     }, (err) => {
