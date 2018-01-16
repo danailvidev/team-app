@@ -1,0 +1,59 @@
+<mat-sidenav class="left-menu mat-elevation-z4" opened mode="side">
+
+  <!-- menu -->
+  <mat-nav-list>
+
+    <div *ngFor="let item of menuItems" class="menuItem">
+      <div style="display:flex;align-items:center;">
+          <mat-icon matListIcon color="accent">{{item.icon}}</mat-icon>
+          <a matLine [routerLink]="[item.link]" routerLinkActive="active" style="padding:0 10px;">{{item.label}}</a>
+      </div>
+
+      <div *ngIf="item.items && item.items.length" class="subMenuItem">
+          <div *ngFor="let item of item.items">
+              <a matLine [routerLink]="[item.link]" routerLinkActive="active">{{item.label}}</a>
+          </div>
+      </div>
+    </div>
+
+  </mat-nav-list>
+
+  <!-- userinfo -->
+  <div class="user-menu">
+    <mat-divider></mat-divider>
+    <button mat-button [matMenuTriggerFor]="menu">
+      <img src="assets/default-avatar.svg" height="25" width="25" alt="avatar">
+      <span>
+        {{ currentUser.currentUser.email | emailToUser}}
+      </span>
+      <i class="material-icons">keyboard_arrow_up</i>
+    </button>
+
+    <!-- Auth menu -->
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>
+        <mat-radio-group>
+          <mat-radio-button checked value="1">Online</mat-radio-button>
+          <span> &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+          <mat-radio-button value="2">Invisible</mat-radio-button>
+        </mat-radio-group>
+      </button>
+      <mat-divider></mat-divider>
+      <button mat-menu-item>
+        <mat-icon> description </mat-icon>
+        <span>Personal Tasks</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon> settings </mat-icon>
+        <span>My Settings</span>
+      </button>
+      <mat-divider></mat-divider>
+      <button mat-menu-item (click)="false">
+        <mat-icon> exit_to_app </mat-icon>
+        <span>Logout</span>
+      </button>
+    </mat-menu>
+
+  </div>
+
+</mat-sidenav>

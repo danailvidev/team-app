@@ -1,26 +1,42 @@
 <mat-sidenav opened mode="side" position="end" class="mat-elevation-z4">
-        
-      
-<mat-toolbar class="mat-elevation-z4" color="primary">
-  <span>Channel Members</span>
-  <mat-menu #appMenu="matMenu" style="flex: 1 1 auto;">
-    <button mat-menu-item> Sort A-Z </button>
-    <button mat-menu-item> Close SideBar </button>
-  </mat-menu>
-
-  <button mat-icon-button [matMenuTriggerFor]="appMenu">
-    <mat-icon>menu</mat-icon>
-  </button>
-</mat-toolbar>
 
 
+  <mat-toolbar class="mat-elevation-z4" color="primary">
+    <span>Channel Members</span>
+    <mat-menu #appMenu="matMenu" style="flex: 1 1 auto;">
+      <button mat-menu-item> Sort A-Z </button>
+      <button mat-menu-item> Close SideBar </button>
+    </mat-menu>
+
+    <button mat-icon-button [matMenuTriggerFor]="appMenu">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </mat-toolbar>
 
 
-<mat-list>
-  <a mat-list-item *ngFor="let user of users$ | async" (click)="openDialog(user)">
-    <!-- <mat-icon matListIcon>folder</mat-icon> -->
-    <img src="assets/default-avatar.svg" height="25" width="25" alt="..."> {{user.name}}
-    <span style="opacity:0.5;">({{user.email}})</span>
-  </a>
-</mat-list>
+
+  <div class="headlines" (click)="hideUsers = !hideUsers">
+    <h5>Team Admins ({{ users?.length }})</h5>
+    <i *ngIf="!hideUsers" class="material-icons">keyboard_arrow_up</i>
+    <i *ngIf="hideUsers" class="material-icons">keyboard_arrow_down</i>
+  </div>
+  <mat-nav-list [style.display]="hideUsers?'none':'inherit'">
+    <a mat-list-item *ngFor="let user of users" (click)="openDialog(user)">
+      <img src="assets/default-avatar.svg" height="25" width="25" alt="avatar">
+      <span style="padding:0 5px;">{{user.name}}</span>
+      <span style="opacity:0.5;">({{user.email | emailToUser}})</span>
+    </a>
+  </mat-nav-list>
+  <div class="headlines" (click)="hideUsers = !hideUsers">
+    <h5>Joined Members ({{ users?.length }})</h5>
+    <i *ngIf="!hideUsers" class="material-icons">keyboard_arrow_up</i>
+    <i *ngIf="hideUsers" class="material-icons">keyboard_arrow_down</i>
+  </div>
+  <mat-nav-list [style.display]="hideUsers?'none':'inherit'">
+    <a mat-list-item *ngFor="let user of users" (click)="openDialog(user)">
+      <img src="assets/default-avatar.svg" height="25" width="25" alt="avatar">
+      <span style="padding:0 5px;">{{user.name}}</span>
+      <span style="opacity:0.5;">({{user.email | emailToUser}})</span>
+    </a>
+  </mat-nav-list>
 </mat-sidenav>

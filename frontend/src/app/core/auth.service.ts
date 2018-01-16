@@ -36,7 +36,7 @@ export class AuthService {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const options = new HttpResponse({ headers: headers });
     return this.http.post<any>(this.baseAuthUrl + '/login', userData).subscribe(res => {
-      this.userData = JSON.parse(res.userData);
+      this.userData = res.userData;
       this.saveUserData(res.userData);
       this.saveToken(res.token);
     }, (err) => {

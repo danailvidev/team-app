@@ -6,17 +6,25 @@ import * as authActions from '../../../actions/auth.actions';
 
 @Component({
     selector: 'left-menu-panel',
-    templateUrl: 'index.component.html',
-    styleUrls: ['index.component.scss']
+    templateUrl: 'left-menu-panel.component.html',
+    styleUrls: ['left-menu-panel.component.scss']
 })
 
 export class LeftMenuPanelComponent implements OnInit {
     currentUser: any;
     menuItems = [
-        { link: 'team', label: 'Team Service', color: '' },
-        { link: 'task-stream', label: 'Task Stream', color: '' },
-        { link: 'private-teams', label: 'Private Teams', color: '' },
-      ];
+        { link: 'notifications', label: 'Notifications', color: '', icon: 'notifications' },
+        { link: 'task-stream', label: 'Task Stream', color: '', icon: 'assignment_turned_in' },
+        { link: 'personal-task', label: 'Personal Tasks', color: '', icon: 'assignment_turned_in' },
+        {
+            link: '', label: 'Open Forums', disabled: true, color: '', icon: 'forum',
+            items: [
+                { link: 'forum', label: 'General' }
+            ]
+        },
+        { link: 'private-teams', label: 'Private Teams', color: '', icon: 'supervisor_account' },
+        { link: 'messages', label: 'Direct Messages', color: '', icon: 'record_voice_over' },
+    ];
 
     constructor(
         private store: Store<AppState>

@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, Inject } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState, IUser } from '../../../shared/interfaces';
 import { Observable } from 'rxjs/Observable';
@@ -9,17 +9,21 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
   selector: 'user-panel',
   templateUrl: 'user-panel.component.html',
   styleUrls: ['user-panel.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class UserPanelComponent implements OnInit {
-  users$: Observable<IUser[]>;
+  users: IUser[];
+  usersCount: number;
 
   constructor(
     private store: Store<AppState>,
     public dialog: MatDialog
   ) {
-    this.users$ = this.store.select(state => state.users);
+     this.store.select(state => state.users).subscribe( res => {
+      this.users = res;
+    }, error => {
+      console.log(error)
+    });
   }
 
   ngOnInit() {

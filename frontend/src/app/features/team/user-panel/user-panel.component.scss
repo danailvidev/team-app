@@ -1,10 +1,18 @@
-mat-list {
-    a {
-        text-decoration: unset;
-    }
-}
 mat-sidenav {
-    width: 250px;
+  width: 250px;
+}
+.headlines {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 14px;
+  height: 35px;
 
-   
-  }
+ 
+}
+
+mat-nav-list {
+  transition        : all .6s ease;
+  -webkit-transition: all .6s ease;
+}

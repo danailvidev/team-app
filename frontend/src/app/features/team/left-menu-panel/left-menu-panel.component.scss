@@ -12,4 +12,16 @@
       width: 100%;
     }
   }
-  
+ .menuItem {
+  > div:first-of-type > a {
+      font-size: 0.83em;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    padding: 5px 10px;
+    .subMenuItem {
+      width: 100%;
+      margin-left: 50px;
+
+    }
+  }

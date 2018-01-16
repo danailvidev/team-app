@@ -8,6 +8,9 @@ import { AuthEffects } from '../../effects/auth.effects';
 import { StoreModule, ActionReducerMap } from '@ngrx/store';
 import { authReducer } from '../../reducers/auth.reducer';
 
+// Pipes
+import { EmailToUserPipe } from '../../shared/pipes/email.pipe';
+
 export const reducers: ActionReducerMap<any> = {
   currentUser: authReducer,
 };
@@ -23,7 +26,10 @@ export const reducers: ActionReducerMap<any> = {
   ],
   declarations: [
     TeamRoutingModule.components,
-    DialogOverviewExampleDialog
+    DialogOverviewExampleDialog,
+
+    // Pipes
+    EmailToUserPipe
   ],
   entryComponents: [
     DialogOverviewExampleDialog
