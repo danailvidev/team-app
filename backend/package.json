@@ -14,7 +14,8 @@
     "cors": "^2.8.4",
     "express": "^4.16.2",
     "jwt-simple": "^0.5.1",
-    "mongoose": "^4.13.1"
+    "mongoose": "^4.13.1",
+    "nodemailer": "^4.4.1"
   },
   "engines": {
     "node": "9.3.0"
