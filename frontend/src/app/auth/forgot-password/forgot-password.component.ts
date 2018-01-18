@@ -25,11 +25,11 @@ export class ForgotPasswordComponent {
 
     }
 
-    onSubmit(){
+    onSubmit() {
         console.log(this.emailFormControl.value)
         this.notifyService.notify(`email has been sent to ${this.emailFormControl.value}`, null, {
             duration: 4000,
             panelClass: ['snack-success']
-          });
+        });
     }
 }

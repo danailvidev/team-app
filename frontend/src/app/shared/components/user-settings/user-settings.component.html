@@ -1,0 +1,47 @@
+<mat-toolbar>
+  <h2>My Settings</h2>
+  <span style="flex: 1 1 auto;"></span>
+  <i class="material-icons" (click)="onNoClick()" style="cursor:pointer;">close</i>
+</mat-toolbar>
+
+<mat-tab-group style="flex-grow:1;">
+  <mat-tab label="Preferences">
+    <mat-form-field>
+      <mat-select placeholder="Theme">
+        <mat-option *ngFor="let theme of themes" [value]="theme.value">
+          {{ theme.viewValue }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </mat-tab>
+  <mat-tab label="User Account">
+    <span>{{mySettings |json}}</span>
+  </mat-tab>
+  <mat-tab label="Profile">
+    <form class="example-form">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Display Name" value="">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Role" value="">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="About Me" value="">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput tel placeholder="Phone" value="">
+      </mat-form-field>
+    </form>
+  </mat-tab>
+  <mat-tab label="Notifications">
+    <span>Notifications</span>
+  </mat-tab>
+  <mat-tab label="My Teams">
+    <span>Channels</span>
+  </mat-tab>
+</mat-tab-group>
+
+<div class="footer-buttons">
+    <button mat-raised-button color="accent" (click)="saveMySettings()">Save</button>
+</div>
+   

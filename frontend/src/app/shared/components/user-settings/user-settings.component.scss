@@ -1,0 +1,15 @@
+
+:host {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.example-form {
+    min-width: 150px;
+    max-width: 300px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }

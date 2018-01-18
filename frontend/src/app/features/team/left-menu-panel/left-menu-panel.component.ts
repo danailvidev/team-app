@@ -3,6 +3,8 @@ import { Store } from '@ngrx/store';
 import { AppState, IUser } from '../../../shared/interfaces';
 import { Observable } from 'rxjs/Observable';
 import * as authActions from '../../../actions/auth.actions';
+import { MatDialog } from '@angular/material';
+import { UserSettingsComponent } from '../../../shared/components/user-settings/user-settings.component';
 
 @Component({
     selector: 'left-menu-panel',
@@ -27,7 +29,8 @@ export class LeftMenuPanelComponent implements OnInit {
     ];
 
     constructor(
-        private store: Store<AppState>
+        private store: Store<AppState>,
+        public dialog: MatDialog
     ) {
         this.store.select(state => state.currentUser).subscribe(res => {
             this.currentUser = res;
@@ -42,5 +45,16 @@ export class LeftMenuPanelComponent implements OnInit {
 
     getCurrentUserData() {
         this.store.dispatch(new authActions.GetCurrentUserAction());
+    }
+
+    mySettings() {
+        const dialogRef = this.dialog.open(UserSettingsComponent, {
+            width: '90vw',
+            height: '90vh',
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+            console.log('The dialog was closed');
+        });
     }
 }
