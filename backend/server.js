@@ -2,6 +2,7 @@ var express = require('express')
 var cors = require('cors')
 var bodyParser = require('body-parser')
 var mongoose = require('mongoose')
+const config = require('./config')
 var app = express()
 
 // routes
@@ -17,7 +18,7 @@ app.use(cors({
 }))
 app.use(bodyParser.json())
 
-mongoose.connect('mongodb://dbadmin:restPass@ds159845.mlab.com:59845/restaurant', {
+mongoose.connect(config.mongo_url, {
     useMongoClient: true,
 }, (err) => {
     if (!err) {
@@ -32,4 +33,4 @@ app.use('/user', user.router)
 app.use('/post', post.router)
 app.use('/channel', channel.router)
 
-app.listen(process.env.PORT || 3000)
+app.listen(config.app_port)
