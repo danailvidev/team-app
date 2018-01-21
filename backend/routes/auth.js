@@ -2,10 +2,24 @@ var bcrypt = require('bcrypt-nodejs')
 var User = require('../models/User.js')
 var jwt = require('jwt-simple')
 var express = require('express')
+const email = require('../utils/email')
 var router = express.Router()
+
+
 
 router.post('/register', async (req, res) => {
     var userData = req.body;
+
+    const registerEmail = {
+        to: userData.email,
+        subject: 'Registration',
+        text: 'Welcome Aboard',
+        html: `<b> Welcome Aboard ${userData.name} </b>
+        <br>
+        username: ${userData.email}
+        <br>
+        password: ${userData.password}`
+    }
     
     // check for existing email
     var user = await User.findOne({
@@ -25,6 +39,7 @@ router.post('/register', async (req, res) => {
             console.log('error')
         } else {
             createSendToken(res, newUser)
+            email.sendEmail(registerEmail)
         }
     })
 })

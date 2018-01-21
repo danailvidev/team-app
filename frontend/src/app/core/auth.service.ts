@@ -31,14 +31,19 @@ export class AuthService {
     return Observable.of(this.userData);
   }
 
-  loginUser(userData): any {
+  loginUser(userData): Observable<any> {
     const body = userData;
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const options = new HttpResponse({ headers: headers });
-    return this.http.post<any>(this.baseAuthUrl + '/login', userData).subscribe(res => {
+    return this.http.post<any>(this.baseAuthUrl + '/login', userData).map(res => {
       this.userData = res.userData;
       this.saveUserData(res.userData);
       this.saveToken(res.token);
+      this.notifyService.notify('You have been successfully logged in', null, {
+        duration: 4000,
+        panelClass: ['snack-success']
+      });
+      return true;
     }, (err) => {
       this.notifyService.notify(err.error.message, null, {
         duration: 4000,
@@ -59,19 +64,24 @@ export class AuthService {
     }
   }
 
-  registerUser(userData) {
+  registerUser(userData): Observable<any> {
     const body = userData;
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const options = new HttpResponse({ headers: headers });
-    return this.http.post<any>(this.baseAuthUrl + '/register', body, options).subscribe(res => {
+    return this.http.post<any>(this.baseAuthUrl + '/register', body, options).map(res => {
       this.saveToken(res.token);
       this.saveUserData(res.userData);
+      this.notifyService.notify(`Email has been sent to ${userData.email}`, null, {
+        duration: 4000,
+        panelClass: ['snack-success']
+      });
+      return true;
     }, (err) => {
       this.notifyService.notify(err.error.message, null, {
         duration: 4000,
         panelClass: ['snack-denied']
       });
-      return false;
+      return err;
     });
   }
 

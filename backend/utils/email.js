@@ -1,5 +1,5 @@
 const nodemailer = require('nodemailer')
-var config = require('./config')
+var config = require('./../config')
 
 var transporter = nodemailer.createTransport({
     host: config.smtp.host,
@@ -21,11 +21,20 @@ var mailOptions = {
 };
 
 var email = {
-    sendEmail: (options) => {
-        mailOptions.to = options.to
-        mailOptions.subject = options.subject
-        mailOptions.text = options.text
-        mailOptions.html = options.html
+    /**
+     * Send Email
+     * @param to
+     * @param subject
+     * @param text
+     * @param html
+     */
+    sendEmail: (options = null) => {
+        if (options) {
+            mailOptions.to = options.to
+            mailOptions.subject = options.subject
+            mailOptions.text = options.text
+            mailOptions.html = options.html
+        }
         // send mail with defined transport object
         transporter.sendMail(mailOptions, function (error, info) {
             if (error) {

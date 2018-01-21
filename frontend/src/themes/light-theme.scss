@@ -33,6 +33,7 @@ $dv-light-theme: mat-light-theme( $dv-light-primary, $dv-light-accent, $dv-light
     }
   }
   snack-bar-container.snack-success {
+    background: lightgreen!important;
     .mat-simple-snackbar {
       text-align: center;
       display: block;

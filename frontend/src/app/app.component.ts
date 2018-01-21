@@ -42,7 +42,7 @@ export class AppComponent implements OnInit {
   logout() {
     const isLoggedOut = this.auth.logout();
     if (isLoggedOut) {
-      this.router.navigate([`/`]);
+      this.router.navigate([`/login`]);
     }
   }
 }
