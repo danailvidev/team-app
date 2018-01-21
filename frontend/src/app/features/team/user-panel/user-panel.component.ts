@@ -22,7 +22,7 @@ export class UserPanelComponent implements OnInit {
      this.store.select(state => state.users).subscribe( res => {
       this.users = res;
     }, error => {
-      console.log(error)
+      console.log(error);
     });
   }
 

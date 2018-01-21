@@ -2,11 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
     selector: 'message-panel',
-    template: `<mat-sidenav-content>
-    <span>ada</span>
-    </mat-sidenav-content>
-    <user-panel></user-panel>`,
-    styleUrls: ['styles.scss']
+    templateUrl: 'message-panel.component.html',
+    styleUrls: ['message-panel.component.scss']
 })
 
 export class MessagePanelComponent implements OnInit {

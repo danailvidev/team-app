@@ -17,14 +17,16 @@ export class LeftMenuPanelComponent implements OnInit {
     menuItems = [
         { link: 'notifications', label: 'Notifications', color: '', icon: 'notifications' },
         { link: 'task-stream', label: 'Task Stream', color: '', icon: 'assignment_turned_in' },
-        { link: 'personal-task', label: 'Personal Tasks', color: '', icon: 'assignment_turned_in' },
+        { link: 'personal-tasks', label: 'Personal Tasks', color: '', icon: 'assignment_turned_in' },
         {
             link: '', label: 'Open Forums', disabled: true, color: '', icon: 'forum',
             items: [
-                { link: 'forum', label: 'General' }
+                { link: 'forum', label: '-General' }
             ]
         },
-        { link: 'private-teams', label: 'Private Teams', color: '', icon: 'supervisor_account' },
+        { link: 'private-teams', label: 'Private Teams', color: '', icon: 'supervisor_account', items: [
+            { link: 'private-teams', label: '-Team service project' }
+        ] },
         { link: 'messages', label: 'Direct Messages', color: '', icon: 'record_voice_over' },
     ];
 

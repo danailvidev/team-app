@@ -1,0 +1,16 @@
+.wrapper {
+   width: calc(100% - 260px);
+   margin-right: auto;
+}
+
+.message-form {
+  min-width: 150px;
+  max-width: calc(100% - 520px);
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+
+.message-full-width {
+  width: 100%;
+}

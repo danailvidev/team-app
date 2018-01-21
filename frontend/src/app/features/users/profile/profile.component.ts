@@ -1,17 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../../../core/api.service';
 import { Observable } from 'rxjs/Observable';
+import { Subscriber } from 'rxjs/Subscriber';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html'
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit, OnDestroy {
   isNewContact: boolean;
   user: any = {};
   messages$: Observable<any>;
   errorMsg: string = null;
+  subscriptions = new Subscriber();
 
   constructor(private activatedRoute: ActivatedRoute,
     private apiService: ApiService) { }
@@ -20,14 +22,19 @@ export class ProfileComponent implements OnInit {
     const userId = this.activatedRoute.snapshot.params['id'];
     this.isNewContact = userId === 'new';
     if (!this.isNewContact) {
-      this.apiService.getUser(userId).subscribe(res => {
-        this.user = res;
-      });
-      this.apiService.getMessages(userId).subscribe(res => {
-        this.messages$ = res;
-      }, (err) => {
-        this.errorMsg = err;
-      });
+      this.subscriptions
+        .add(this.apiService.getUser(userId).subscribe(res => {
+          this.user = res;
+        }))
+        .add(this.apiService.getMessages(userId).subscribe(res => {
+          this.messages$ = res;
+        }, (err) => {
+          this.errorMsg = err;
+        }));
     }
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.unsubscribe();
   }
 }

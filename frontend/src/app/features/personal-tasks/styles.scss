@@ -1,0 +1,9 @@
+.wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: nowrap;
+    div {
+        width: 33.33333333%
+    }
+}

@@ -3,25 +3,26 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    
   }
   .user-menu {
-    margin-bottom: 49px;
+    height: 67px;
     width: 250px;
     button {
+      height: 95%;
       font-size: 18px;
       width: 100%;
     }
   }
  .menuItem {
-  > div:first-of-type > a {
+   > a span{
       font-size: 0.83em;
       font-weight: bold;
       text-transform: uppercase;
     }
-    padding: 5px 10px;
     .subMenuItem {
       width: 100%;
-      margin-left: 50px;
+      margin-left: 40px;
 
     }
   }

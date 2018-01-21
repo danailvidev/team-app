@@ -1,17 +1,18 @@
-<mat-sidenav class="left-menu mat-elevation-z4" opened mode="side">
+
+<mat-sidenav class="left-menu mat-elevation-z4" mode="side" opened="true">
 
   <!-- menu -->
   <mat-nav-list>
 
     <div *ngFor="let item of menuItems" class="menuItem">
-      <div style="display:flex;align-items:center;">
+      <a mat-list-item style="display:flex;align-items:center;"[routerLink]="[item.link]" routerLinkActive="active">
           <mat-icon matListIcon color="accent">{{item.icon}}</mat-icon>
-          <a matLine [routerLink]="[item.link]" routerLinkActive="active" style="padding:0 10px;">{{item.label}}</a>
-      </div>
+          <span matLine>{{item.label}}</span>
+      </a>
 
       <div *ngIf="item.items && item.items.length" class="subMenuItem">
           <div *ngFor="let item of item.items">
-              <a matLine [routerLink]="[item.link]" routerLinkActive="active">{{item.label}}</a>
+              <a mat-list-item [routerLink]="[item.link]">{{item.label}}</a>
           </div>
       </div>
     </div>
@@ -39,7 +40,7 @@
         </mat-radio-group>
       </button>
       <mat-divider></mat-divider>
-      <button mat-menu-item>
+      <button mat-menu-item [routerLink]="['/team/personal-tasks']">
         <mat-icon> description </mat-icon>
         <span>Personal Tasks</span>
       </button>

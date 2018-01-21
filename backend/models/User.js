@@ -6,23 +6,34 @@ var userSchema = mongoose.Schema({
     password: String,
     name: String,
     description: String,
-    activeChannel: String
+    activeChannel: String,
+    isVisible: Boolean,
+    registeredAt: Date
 })
 
-userSchema.pre('save', function(next) {
+userSchema.pre('save', function (next) {
     var user = this
-    
-    if(!user.isModified('password')) {
+
+    if (!user.isModified('password')) {
         return next
     }
 
+    setDefaultSettings(user)
+
     bcrypt.hash(user.password, null, null, (err, hash) => {
-        if(err) {
+        if (err) {
             return next(err)
         }
         user.password = hash
         next()
     })
 })
+
+function setDefaultSettings(user) {
+    user.isVisible = true
+    user.activeChannel = null
+    user.registeredAt = new Date()
+    return user
+}
 
 module.exports = mongoose.model('User', userSchema)

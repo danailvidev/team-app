@@ -32,6 +32,7 @@ export class AuthService {
   }
 
   loginUser(userData): Observable<any> {
+    this.userData = null;
     const body = userData;
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const options = new HttpResponse({ headers: headers });
@@ -57,6 +58,7 @@ export class AuthService {
     try {
       localStorage.removeItem(this.TOKEN_KEY);
       localStorage.removeItem(this.DATA_KEY);
+      this.userData = null;
       return true;
     } catch (err) {
       console.error('server error:', err);
@@ -65,6 +67,7 @@ export class AuthService {
   }
 
   registerUser(userData): Observable<any> {
+    this.userData = null;
     const body = userData;
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const options = new HttpResponse({ headers: headers });
