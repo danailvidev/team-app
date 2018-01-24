@@ -1,84 +1,50 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { map, catchError } from 'rxjs/operators';
-import { environment } from '../../environments/environment';
-import { HttpClient, HttpResponse, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import 'rxjs/add/observable/throw';
+import { BaseApiService } from './abstract.service';
 
 @Injectable()
-export class ApiService {
-  baseUrl = environment.baseUrl;
+export class ApiService extends BaseApiService {
 
-  constructor(private http: HttpClient) { }
+    public constructor(protected http: HttpClient) {
+        super(http);
+     }
 
-  getMessages(userId): Observable<any> {
-    return this.http.get(this.baseUrl + `/post/${userId}`).pipe(
-      map((res: HttpResponse<any>) => {
-        return res;
-      }),
-      catchError(this.handleError('getMessages'))
-    );
-  }
+    getMessages(userId): Observable<any> {
+        const relativeUrl = `post/${userId}`;
+        return this.get(relativeUrl);
+    }
 
-  getUser(id): Observable<any> {
-    return this.http.get(this.baseUrl + `/user/${id}`).pipe(
-      map((res: HttpResponse<any>) => {
-        return res;
-      }),
-      catchError(this.handleError('getUser'))
-    );
-  }
+    getUser(id): Observable<any> {
+        const relativeUrl = `user/${id}`;
+        return this.get(relativeUrl);
+    }
 
-  getUsers(): Observable<any> {
-    return this.http.get(this.baseUrl + '/user').pipe(
-      map((res: HttpResponse<any>) => {
-        return res;
-      }),
-      catchError(this.handleError('getUsers'))
-    );
-  }
+    getUsers(): Observable<any> {
+        const relativeUrl = `user`;
+        return this.get(relativeUrl);
+    }
 
-  deleteUser(id): any {
-    console.log('delete', id);
-  }
+    deleteUser(id): any {
+        const relativeUrl = ``;
+        return this.delete(relativeUrl, id);
+    }
 
-  /**
-   * Post a message
-   * @param postMsg msg body
-   * @returns res object {result:boolean,id:string}
-   */
-  postMsg(postMsg): Observable<any> {
-    const body = JSON.stringify(postMsg);
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    const options = new HttpResponse({ headers: headers });
-    return this.http.post<any>(this.baseUrl + '/post', body, options).pipe(
-      map((res) => {
-        if (res.result) {
-          console.log(res);
-          return res;
-        }
-        return false;
-      }),
-      catchError(this.handleError('postMsg'))
-    );
-  }
+    /**
+     * Post a message
+     * @param postMsg msg body
+     * @returns res object {result:boolean,id:string}
+     */
+    postMsg(postMsg): Observable<any> {
+        const body = JSON.stringify(postMsg);
+        const relativeUrl = `post`;
+        return this.post(relativeUrl, postMsg);
+    }
 
-  deleteMsg(id): any {
-    this.http.delete(this.baseUrl + `/post/${id}`).subscribe(res => {
-      console.log('es', res);
-    }, err => console.log(err));
-  }
-
-  private handleError(operation: String) {
-    return (err: any) => {
-      const errMsg = `error in ${operation} retrieving ${this.baseUrl}`;
-      console.log(`${errMsg}:`, err);
-      if (err instanceof HttpErrorResponse) {
-        // you could extract more info calendar the error if you want, e.g.:
-        console.log(`status: ${err.status}, ${err.statusText}`);
-      }
-      return Observable.throw(errMsg);
-    };
-  }
+    deleteMsg(id): any {
+        const relativeUrl = `post/${id}`;
+        return this.delete(relativeUrl, id);
+    }
 
 }
