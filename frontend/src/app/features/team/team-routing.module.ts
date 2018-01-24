@@ -12,7 +12,9 @@ const routes: Routes = [
             { path: '', component: PrivateTeamsComponent },
             { path: 'private-teams', component: PrivateTeamsComponent },
             { path: 'task-stream', loadChildren: 'app/features/task-stream/task-stream.module#TaskStreamModule' },
-            { path: 'personal-tasks', loadChildren: 'app/features/personal-tasks/personal-tasks.module#PersonalTasksModule' }
+            { path: 'personal-tasks', loadChildren: 'app/features/personal-tasks/personal-tasks.module#PersonalTasksModule' },
+            { path: 'notifications', loadChildren: 'app/features/notifications/notifications.module#NotificationsModule' },
+            { path: 'forum', loadChildren: 'app/features/forum/forum.module#ForumModule' }
         ]
     }
 ];

@@ -19,9 +19,9 @@ export class LeftMenuPanelComponent implements OnInit {
         { link: 'task-stream', label: 'Task Stream', color: '', icon: 'assignment_turned_in' },
         { link: 'personal-tasks', label: 'Personal Tasks', color: '', icon: 'assignment_turned_in' },
         {
-            link: '', label: 'Open Forums', disabled: true, color: '', icon: 'forum',
+            link: 'forum', label: 'Open Forums', disabled: true, color: '', icon: 'forum',
             items: [
-                { link: 'forum', label: '-General' }
+                { link: 'forum/general', label: '-General' }
             ]
         },
         { link: 'private-teams', label: 'Private Teams', color: '', icon: 'supervisor_account', items: [

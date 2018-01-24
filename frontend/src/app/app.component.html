@@ -7,9 +7,6 @@
       <img src="assets/logo.png" alt="" height="40" style="vertical-align:middle;">
     </a>
 
-    
-    
-
     <span style="flex: 1 1 auto"></span>
 
     <!-- right side -->
@@ -23,6 +20,6 @@
     <button *ngIf="!auth.isAuthenticated" [routerLink]="['register']" routerLinkActive="active" mat-button color="accent">Register</button>
     <button *ngIf="auth.isAuthenticated" (click)="logout()" routerLinkActive="active" mat-button color="accent">Logout</button>
   </mat-toolbar>
-  
+
   <router-outlet></router-outlet>
 </mat-sidenav-container>
