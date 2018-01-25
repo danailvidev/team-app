@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { environment } from '../../environments/environment.prod';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { NotifyService } from './notify.service';
+import { LoggingService } from './logging/loggin.service';
 
 @Injectable()
 export class AuthService {
@@ -14,7 +15,8 @@ export class AuthService {
 
     constructor(
         private http: HttpClient,
-        private notifyService: NotifyService) { }
+        private notifyService: NotifyService,
+        private logger: LoggingService) { }
 
     get token() {
         return localStorage.getItem(this.TOKEN_KEY);
@@ -38,6 +40,7 @@ export class AuthService {
         const options = new HttpResponse({ headers: headers });
         return this.http.post<any>(this.baseAuthUrl + 'login', userData).map(res => {
             this.userData = res.userData;
+            this.logger.info(JSON.stringify(res.userData.email) + ' has been logged in');
             this.saveUserData(res.userData);
             this.saveToken(res.token);
             this.notifyService.notify('You have been successfully logged in', null, {
@@ -58,6 +61,7 @@ export class AuthService {
         try {
             localStorage.removeItem(this.TOKEN_KEY);
             localStorage.removeItem(this.DATA_KEY);
+            this.logger.info(JSON.stringify(this.userData.email) + ' has been logged out');
             this.userData = null;
             return true;
         } catch (err) {
@@ -72,6 +76,7 @@ export class AuthService {
         const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
         const options = new HttpResponse({ headers: headers });
         return this.http.post<any>(this.baseAuthUrl + 'register', body, options).map(res => {
+            this.logger.info(JSON.stringify(userData.email) + ' registered');
             this.saveToken(res.token);
             this.saveUserData(res.userData);
             this.notifyService.notify(`Email has been sent to ${userData.email}`, null, {
@@ -98,6 +103,7 @@ export class AuthService {
 
     private handleError(error: any) {
         console.error('server error:', error);
+        this.logger.error(JSON.stringify(error));
         if (error instanceof HttpResponse) {
             let errMessage = '';
             try {

@@ -15,6 +15,21 @@ export const environment = {
     backend: {
         'baseUrl': 'http://localhost:3000/',
         'baseAuthUrl': 'http://localhost:3000/auth/'
-    }
+    },
+    logging: [
+        {
+          loggerName: 'console',
+          loggerLocation: '',
+          isActive: true
+        }, {
+          loggerName: 'localStorage',
+          loggerLocation: 'logger',
+          isActive: false
+        }, {
+          loggerName: 'webApiDb',
+          loggerLocation: 'logs',
+          isActive: false
+        }
+      ]
 };
 

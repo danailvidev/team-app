@@ -1,6 +1,7 @@
 var express = require('express')
 var cors = require('cors')
 var bodyParser = require('body-parser')
+var expressValidator = require('express-validator')
 var mongoose = require('mongoose')
 const config = require('./config')
 var app = express()
@@ -27,6 +28,24 @@ mongoose.connect(config.mongo_url, {
         console.log('db err')
     }
 })
+
+// Express Validator
+app.use(expressValidator({
+    errorFormatter: function (param, msg, value) {
+        var namespace = param.split('.'),
+            root = namespace.shift(),
+            formParam = root;
+
+        while (namespace.length) {
+            formParam += '[' + namespace.shift() + ']';
+        }
+        return {
+            param: formParam,
+            msg: msg,
+            value: value
+        };
+    }
+}));
 
 app.use('/auth', auth.router)
 app.use('/user', user.router)

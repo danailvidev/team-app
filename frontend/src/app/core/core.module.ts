@@ -7,6 +7,8 @@ import { AuthService } from './auth.service';
 import { ApiService } from './api.service';
 import { AuthInterceptor } from './auth.interceptor';
 import { NotifyService } from './notify.service';
+import { LoggingService } from './logging/loggin.service';
+import { LogPublisherService } from './logging/log-publishers.service';
 
 // Guards
 import { AuthGuard } from '../auth/auth.guard';
@@ -28,6 +30,8 @@ import { ShowOnDirtyErrorStateMatcher } from '@angular/material';
     ApiService,
     AuthService,
     NotifyService,
+    LoggingService,
+    LogPublisherService,
     AuthGuard,
     {
       provide: HTTP_INTERCEPTORS,

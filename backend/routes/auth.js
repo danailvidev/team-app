@@ -5,10 +5,27 @@ var express = require('express')
 const email = require('../utils/email')
 var router = express.Router()
 
-
-
 router.post('/register', async (req, res) => {
-    var userData = req.body;
+    var userData = req.body
+
+    var name = userData.name
+	var email = req.body.email
+
+    // Validation
+	req.checkBody('name', 'Name is required').notEmpty();
+	req.checkBody('email', 'Email is required').notEmpty();
+	req.checkBody('email', 'Email is not valid').isEmail();
+	// req.checkBody('username', 'Username is required').notEmpty();
+	// req.checkBody('password', 'Password is required').notEmpty();
+    // req.checkBody('password2', 'Passwords do not match').equals(req.body.password);
+    
+    var errors = req.validationErrors() 
+
+    if (errors) {
+        return res.status(400).send({
+            message: errors
+        })
+    }
 
     const registerEmail = {
         to: userData.email,
@@ -37,6 +54,9 @@ router.post('/register', async (req, res) => {
     user.save((err, newUser) => {
         if (err) {
             console.log('error')
+            return res.status(400).send({
+                message: err
+            })
         } else {
             createSendToken(res, newUser)
             email.sendEmail(registerEmail)
