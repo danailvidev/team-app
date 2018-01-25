@@ -2,31 +2,45 @@ var bcrypt = require('bcrypt-nodejs')
 var User = require('../models/User.js')
 var jwt = require('jwt-simple')
 var express = require('express')
-const email = require('../utils/email')
+const utilsEmail = require('../utils/email')
 var router = express.Router()
+const { check, validationResult } = require('express-validator/check')
+const { matchedData, sanitize} = require('express-validator/filter')
 
-router.post('/register', async (req, res) => {
-    var userData = req.body
+router.post('/register', [
+    // name
+    check('name')
+    .isLength({
+        min: 1
+    }).withMessage('Name is required'),
 
-    var name = userData.name
-	var email = req.body.email
+    // password
+    check('password', 'passwords must be at least 5 chars long and contain one number')
+    .isLength({
+        min: 5
+    })
+    .matches(/\d/),
 
-    // Validation
-	req.checkBody('name', 'Name is required').notEmpty();
-	req.checkBody('email', 'Email is required').notEmpty();
-	req.checkBody('email', 'Email is not valid').isEmail();
-	// req.checkBody('username', 'Username is required').notEmpty();
-	// req.checkBody('password', 'Password is required').notEmpty();
-    // req.checkBody('password2', 'Passwords do not match').equals(req.body.password);
-    
-    var errors = req.validationErrors() 
+    // email
+    check('email')
+    .isEmail().withMessage('must be an email')
+    .trim()
+    .normalizeEmail()
+], async(req, res) => {
+    const userData = req.body
 
-    if (errors) {
-        return res.status(400).send({
-            message: errors
-        })
+    const name = userData.name
+    const email = req.body.email
+
+    const errors = validationResult(req)
+    console.log(errors)
+    if (!errors.isEmpty()) {
+        return res.status(422).json({
+            errors: errors.mapped()
+        });
     }
 
+    // email template
     const registerEmail = {
         to: userData.email,
         subject: 'Registration',
@@ -37,7 +51,7 @@ router.post('/register', async (req, res) => {
         <br>
         password: ${userData.password}`
     }
-    
+
     // check for existing email
     var user = await User.findOne({
         email: userData.email
@@ -59,7 +73,7 @@ router.post('/register', async (req, res) => {
             })
         } else {
             createSendToken(res, newUser)
-            email.sendEmail(registerEmail)
+            utilsEmail.sendEmail(registerEmail)
         }
     })
 })
