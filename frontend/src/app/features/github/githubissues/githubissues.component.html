@@ -29,7 +29,7 @@
 
     <!-- Number Column -->
     <ng-container matColumnDef="number">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>#</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>#</mat-header-cell>
       <mat-cell *matCellDef="let row">{{ row.number }}</mat-cell>
     </ng-container>
 
@@ -43,13 +43,13 @@
 
     <!-- Title Column -->
     <ng-container matColumnDef="title">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Title</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>Title</mat-header-cell>
       <mat-cell *matCellDef="let row">{{ row.title }}</mat-cell>
     </ng-container>
 
     <!-- State Column -->
     <ng-container matColumnDef="state">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>State</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>State</mat-header-cell>
       <mat-cell *matCellDef="let row">{{ row.state }}</mat-cell>
     </ng-container>
 
