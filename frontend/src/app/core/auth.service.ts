@@ -61,8 +61,10 @@ export class AuthService {
         try {
             localStorage.removeItem(this.TOKEN_KEY);
             localStorage.removeItem(this.DATA_KEY);
-            this.logger.info(JSON.stringify(this.userData.email) + ' has been logged out');
-            this.userData = null;
+            if (this.userData) {
+                this.logger.info(JSON.stringify(this.userData.email) + ' has been logged out');
+                this.userData = null;
+            }
             return true;
         } catch (err) {
             console.error('server error:', err);

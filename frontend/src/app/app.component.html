@@ -9,10 +9,14 @@
 
     <span style="flex: 1 1 auto"></span>
 
+
     <!-- right side -->
-    <mat-slide-toggle matTooltip="Change theme" matdTooltipPosition="before" (change)="switchTheme($event)">
-      Theme
-    </mat-slide-toggle>
+    <button mat-button>
+        <mat-slide-toggle matTooltip="Change theme" matdTooltipPosition="before" (change)="switchTheme($event)">
+            Theme
+          </mat-slide-toggle>
+    </button>
+
     <button mat-button color={{item.color}} *ngFor="let item of navigation" [routerLink]="[item.link]" routerLinkActive="active">
       {{item.label}}
     </button>

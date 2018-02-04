@@ -12,9 +12,11 @@ export abstract class BaseApiService {
     public constructor(protected http: HttpClient) { }
 
     protected get(relativeUrl: string): Observable<any> {
-        return this.http.get(this.baseUrl + relativeUrl).pipe(
+        return this.http.get(this.baseUrl + relativeUrl, { observe: 'response' }).pipe(
             map((res: HttpResponse<any>) => {
-                return res;
+                if (res.ok && res.status == 200) {
+                    return res.body;
+                }
             }),
             catchError(this.handleError(relativeUrl))
         );
@@ -32,8 +34,12 @@ export abstract class BaseApiService {
         );
     }
 
-    protected put(relativeUrl: string, id: string): Observable<any> {
-        throw new Error('Not implemented');
+    protected put(relativeUrl: string, body: any, options: HttpResponse<any> = this.defaultOptions): Observable<any> {
+        return this.http.put(this.baseUrl + relativeUrl, body, options).pipe(
+            map((res) => {
+                console.log(res);
+            })
+        );
     }
 
     protected delete(relativeUrl: string, id: string): Observable<any> {

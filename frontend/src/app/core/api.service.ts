@@ -27,6 +27,11 @@ export class ApiService extends BaseApiService {
         return this.get(relativeUrl);
     }
 
+    editUser(user: any): Observable<any> {
+        const relativeUrl = `user/${user.id}`;
+        return this.put(relativeUrl, user);
+    }
+
     /**
      * Get All Logs From DB
      */
@@ -65,5 +70,4 @@ export class ApiService extends BaseApiService {
         const relativeUrl = `post/${id}`;
         return this.delete(relativeUrl, id);
     }
-
 }

@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class AppComponent implements OnInit {
     navigation = [
+        { link: 'github', label: 'GitHub Issues', color: '' },
         { link: 'team', label: 'Team Service', color: '' },
         { link: 'users', label: 'Users', color: '' },
         { link: 'calendar', label: 'Calendar', color: '' }

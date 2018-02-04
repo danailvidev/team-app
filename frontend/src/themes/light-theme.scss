@@ -3,12 +3,20 @@ $dv-light-accent: mat-palette($mat-brown, 200);
 $dv-light-warn: mat-palette($mat-deep-orange, 200);
 $dv-light-theme: mat-light-theme( $dv-light-primary, $dv-light-accent, $dv-light-warn);
 .light-theme {
+  mat-toolbar {
+    button {
+      &.active {
+        color: mat-color($dv-light-accent, default-contrast);
+        background-color: mat-color($dv-light-accent);
+      }
+    }
+  }
   snack-bar-container {
-    background: mat-color($dv-light-warn)!important;
+    background: mat-color($dv-light-warn) !important;
     .mat-simple-snackbar {
       font-weight: bold;
       text-transform: uppercase;
-      color: #000!important;
+      color: #000 !important;
       button.mat-simple-snackbar-action {
         font-weight: bold;
         text-transform: uppercase;
@@ -18,7 +26,7 @@ $dv-light-theme: mat-light-theme( $dv-light-primary, $dv-light-accent, $dv-light
   }
   snack-bar-container.snack-delete {
     .mat-simple-snackbar-action {
-      color: mat-color($dv-light-warn)!important;
+      color: mat-color($dv-light-warn) !important;
       font-weight: bold;
       text-transform: uppercase;
     }
@@ -27,17 +35,17 @@ $dv-light-theme: mat-light-theme( $dv-light-primary, $dv-light-accent, $dv-light
     .mat-simple-snackbar {
       text-align: center;
       display: block;
-      color: #000!important;
+      color: #000 !important;
       font-weight: bold;
       text-transform: uppercase;
     }
   }
   snack-bar-container.snack-success {
-    background: lightgreen!important;
+    background: lightgreen !important;
     .mat-simple-snackbar {
       text-align: center;
       display: block;
-      color: #000!important;
+      color: #000 !important;
       font-weight: bold;
       text-transform: uppercase;
     }
