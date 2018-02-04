@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import { MatPaginator, MatSort, MatTableDataSource, MatDialog } from '@angular/material';
 import { Observable } from 'rxjs/Observable';
 import { merge } from 'rxjs/observable/merge';
 import { of as observableOf } from 'rxjs/observable/of';
@@ -9,6 +9,7 @@ import { map } from 'rxjs/operators/map';
 import { startWith } from 'rxjs/operators/startWith';
 import { switchMap } from 'rxjs/operators/switchMap';
 import { GithubService } from '../github.service';
+import { CreateissueComponent } from '../createissue/createissue.component';
 
 @Component({
     selector: 'app-githubissues',
@@ -27,9 +28,15 @@ export class GithubissuesComponent implements OnInit {
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
 
-    constructor(private svc: GithubService) { }
+    constructor(
+        private svc: GithubService,
+        public dialog: MatDialog) { }
 
     ngOnInit() {
+        this.getIssues();
+    }
+
+    getIssues() {
         // If the user changes the sort order, reset back to the first page.
         this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
         merge(this.sort.sortChange, this.paginator.page)
@@ -63,5 +70,15 @@ export class GithubissuesComponent implements OnInit {
         filterValue = filterValue.trim(); // Remove whitespace
         filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
         this.dataSource.filter = filterValue;
-      }
+    }
+
+    addIssue() {
+        const dialogRef = this.dialog.open(CreateissueComponent, {
+            width: '450px'
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+            this.getIssues();
+        });
+    }
 }

@@ -9,3 +9,12 @@ export interface GithubIssue {
     state: string;
     title: string;
 }
+
+export interface Issue {
+    title?: string;
+    body?: string;
+    assignee?: string;
+    milestone?: number;
+    labels?: Array<string>;
+    assignees?: Array<string>;
+}

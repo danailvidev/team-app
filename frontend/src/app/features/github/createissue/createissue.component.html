@@ -1,0 +1,27 @@
+
+
+  <h1 matDialogTitle>Create New Issue</h1>
+  
+  <mat-dialog-content>
+    <div class="example-form">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Title" [(ngModel)]="issue.title" required>
+        </mat-form-field>
+      
+        <mat-form-field class="example-full-width">
+          <textarea matInput placeholder="Leave a comment" [(ngModel)]="issue.body" required></textarea>
+        </mat-form-field>
+    </div>
+  </mat-dialog-content>
+  
+  <mat-dialog-actions>
+      <button mat-raised-button smatDialogClose (click)="dismiss()">
+        <mat-icon class="mat-18">cancel</mat-icon>
+        <span>Cancel</span>
+      </button>
+      <button mat-raised-button color="primary" (click)="save()">
+          <mat-icon class="mat-18">save</mat-icon>
+          <span>Save</span>
+      </button>
+      
+  </mat-dialog-actions>
