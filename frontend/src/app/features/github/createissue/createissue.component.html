@@ -19,7 +19,7 @@
         <mat-icon class="mat-18">cancel</mat-icon>
         <span>Cancel</span>
       </button>
-      <button mat-raised-button color="primary" (click)="save()">
+      <button mat-raised-button color="primary" [disabled]="issue?.title?.length < 2 || issue?.body?.length < 2" (click)="save()">
           <mat-icon class="mat-18">save</mat-icon>
           <span>Save</span>
       </button>

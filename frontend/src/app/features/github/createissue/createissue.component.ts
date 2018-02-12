@@ -29,17 +29,17 @@ export class CreateissueComponent implements OnInit {
                     duration: 4000,
                     panelClass: ['snack-success']
                 });
-                this.dismiss();
+                this.dismiss(res.id);
             }
         });
     }
 
-    dismiss() {
+    dismiss(id: any = null) {
         this.issue = {};
-        this.onNoClick();
+        this.onNoClick(id);
     }
 
-    onNoClick(): void {
-        this.dialogRef.close();
+    onNoClick(id: any = null): void {
+        this.dialogRef.close(id);
     }
 }

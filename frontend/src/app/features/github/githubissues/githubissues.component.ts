@@ -41,26 +41,26 @@ export class GithubissuesComponent implements OnInit {
         this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
         merge(this.sort.sortChange, this.paginator.page)
             .pipe(
-            startWith({}),
-            switchMap(() => {
-                this.isLoadingResults = true;
-                return this.svc.getRepoIssues(
-                    this.sort.active, this.sort.direction, this.paginator.pageIndex);
-            }),
-            map(data => {
-                // Flip flag to show that loading has finished.
-                this.isLoadingResults = false;
-                this.isRateLimitReached = false;
-                this.resultsLength = data.total_count;
+                startWith({}),
+                switchMap(() => {
+                    this.isLoadingResults = true;
+                    return this.svc.getRepoIssues(
+                        this.sort.active, this.sort.direction, this.paginator.pageIndex);
+                }),
+                map(data => {
+                    // Flip flag to show that loading has finished.
+                    this.isLoadingResults = false;
+                    this.isRateLimitReached = false;
+                    this.resultsLength = data.total_count;
 
-                return data.items;
-            }),
-            catchError((err) => {
-                this.isLoadingResults = false;
-                // Catch if the GitHub API has reached its rate limit. Return empty data.
-                this.isRateLimitReached = true;
-                return observableOf([]);
-            })
+                    return data.items;
+                }),
+                catchError((err) => {
+                    this.isLoadingResults = false;
+                    // Catch if the GitHub API has reached its rate limit. Return empty data.
+                    this.isRateLimitReached = true;
+                    return observableOf([]);
+                })
             ).subscribe(data => {
                 this.dataSource.data = data;
             });
@@ -78,7 +78,9 @@ export class GithubissuesComponent implements OnInit {
         });
 
         dialogRef.afterClosed().subscribe(result => {
-            this.getIssues();
+            if (result) {
+                this.getIssues();
+            }
         });
     }
 }
