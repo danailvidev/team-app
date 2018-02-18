@@ -27,7 +27,7 @@ import {MatIconModule} from '@angular/material/icon';
         CommonModule,
         GithubRoutingModule,
         FormsModule,
-        
+
         // Material
         MatTableModule,
         MatProgressSpinnerModule,

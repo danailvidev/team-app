@@ -12,7 +12,7 @@ import { GithubService } from '../github.service';
 import { CreateissueComponent } from '../createissue/createissue.component';
 
 @Component({
-    selector: 'app-githubissues',
+    selector: 'ta-githubissues',
     templateUrl: './githubissues.component.html',
     styleUrls: ['./githubissues.component.scss']
 })

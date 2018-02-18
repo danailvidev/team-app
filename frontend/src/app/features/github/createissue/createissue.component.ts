@@ -5,7 +5,7 @@ import { GithubService } from '../github.service';
 import { NotifyService } from '../../../core/notify.service';
 
 @Component({
-    selector: 'app-createissue',
+    selector: 'ta-createissue',
     templateUrl: './createissue.component.html',
     styleUrls: ['./createissue.component.scss']
 })

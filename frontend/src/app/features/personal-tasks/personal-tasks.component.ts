@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-    selector: 'personal-tasks',
+    selector: 'ta-personal-tasks',
     templateUrl: 'personal-tasks.component.html',
     styles: [`
     .wrapper {

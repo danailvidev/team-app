@@ -13,5 +13,5 @@ const routes: Routes = [
 export class GithubRoutingModule {
     static components = [
         GithubissuesComponent
-    ]
+    ];
 }
