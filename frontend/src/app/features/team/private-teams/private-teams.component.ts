@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-    selector: 'private-teams',
+    selector: 'ta-private-teams',
     template: `
-    <message-panel></message-panel>
-    <user-panel></user-panel>
+    <ta-message-panel></ta-message-panel>
+    <ta-user-panel></ta-user-panel>
     `
 })
 

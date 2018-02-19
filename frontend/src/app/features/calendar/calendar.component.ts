@@ -3,7 +3,7 @@ import { CalendarEvent } from 'angular-calendar';
 import { isSameDay, isSameMonth } from 'date-fns';
 
 @Component({
-  selector: 'app-calendar',
+  selector: 'ta-calendar',
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.scss']
 })

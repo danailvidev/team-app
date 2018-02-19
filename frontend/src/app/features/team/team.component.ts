@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-    selector: 'selector-name',
+    selector: 'ta-selector-name',
     templateUrl: 'team.component.html',
     styleUrls: ['team.component.scss']
 })

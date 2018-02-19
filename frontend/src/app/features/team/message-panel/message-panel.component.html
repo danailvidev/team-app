@@ -1,7 +1,6 @@
 <div class="wrapper">
   <div class="messages">
-    <span>111 adaadaadaadaada adaadaadaada adaadaadaadaada adaadaadaada adaadaadaadaada adaadaadaada adaadaadaadaada adaadaadaada adaadaadaadaada
-      adaadaadaada </span>
+    <span>{{messages | json}}</span>
   </div>
 
   <div class="incoming-text">
@@ -11,8 +10,9 @@
       <mat-form-field class="message-full-width">
         <span matPrefix>
           <mat-icon matSuffix>face</mat-icon> &nbsp;</span>
-        <input type="tel" matInput placeholder="Message...">
-        <mat-icon matSuffix>send</mat-icon>
+        <input type="text" matInput placeholder="Message..." (keyup.enter)="sendMessage(messageContent)" [(ngModel)]="messageContent"
+          name="messageContent">
+        <mat-icon matSuffix (click)="sendMessage(messageContent)">send</mat-icon>
       </mat-form-field>
 
     </form>
