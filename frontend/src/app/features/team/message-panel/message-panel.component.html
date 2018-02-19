@@ -1,6 +1,11 @@
 <div class="wrapper">
   <div class="messages">
-    <span>{{messages | json}}</span>
+    <div *ngFor="let msg of messages">
+        <div *ngIf="msg.username == currentUser; else otherUser" style="direction:rtl">{{msg.message}}</div>
+        <ng-template #otherUser>
+            <div><{{msg.username}}> {{msg.message}}</div>
+        </ng-template>
+    </div>
   </div>
 
   <div class="incoming-text">
