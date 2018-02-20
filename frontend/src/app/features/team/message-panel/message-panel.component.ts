@@ -84,7 +84,7 @@ export class MessagePanelComponent implements OnInit {
 
     private getCurrentUser() {
         this.store.select(state => state.currentUser).subscribe(res => {
-            this.currentUser = res.currentUser.email;
+            this.currentUser = res.currentUser;
         }, (err) => {
             console.log(err);
         });

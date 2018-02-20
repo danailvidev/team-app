@@ -12,6 +12,7 @@ var auth = require('./routes/auth.js')
 var post = require('./routes/post.js')
 var channel = require('./routes/channel.js')
 var user = require('./routes/user.js')
+var messages = require('./routes/messages.js')
 
 mongoose.Promise = Promise // use es6 promise  DeprecationWarning: Mongoose: mpromise (mongoose's default promise library) is deprecated
 
@@ -24,7 +25,7 @@ app.use(bodyParser.json())
 
 mongoose.connect(config.mongo_url, {
     useMongoClient: true,
-}, (err) => {
+    }, (err) => {
     if (!err) {
         console.log('db connected')
     } else {
@@ -46,9 +47,10 @@ io.on('connection', function (socket) {
     socket.on('new message', function (data) {
         console.log(data.from)
         console.log(data.content)
+        messages.saveMsg(data)
         // we tell the client to execute 'new message'
         socket.broadcast.emit('message', {
-            username: data.from,
+            username: data.from.email,
             message: data.content
         });
     });
