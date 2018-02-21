@@ -1,10 +1,30 @@
 <div class="wrapper">
   <div class="messages">
+    <div class="older">
+      <a>older messages</a>
+    </div>
     <div *ngFor="let msg of messages">
-        <div *ngIf="msg.username == currentUser; else otherUser" style="direction:rtl">{{msg.message}}</div>
-        <ng-template #otherUser>
-            <div><{{msg.username}}> {{msg.message}}</div>
-        </ng-template>
+      <div *ngIf="msg.username == currentUser.email; else otherUser" class="ownMsgs">
+        <span>
+          {{time | date:'mediumTime'}}
+        </span>
+        <div>
+          <span style="flex: 1 1 auto"></span>
+          <span class="ownMsgText">
+            {{msg.message}}
+          </span>
+        </div>
+      </div>
+      <ng-template #otherUser>
+        <div class="otherMsgs">
+          <span>
+            {{msg.username}}, {{time | date:'mediumTime'}}
+          </span>
+          <span>
+            {{msg.message}}
+          </span>
+        </div>
+      </ng-template>
     </div>
   </div>
 

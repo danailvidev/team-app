@@ -1,6 +1,43 @@
 .wrapper {
-   width: calc(100% - 260px);
-   margin-right: auto;
+  width: calc(100% - 260px);
+  margin-right: auto;
+  padding-top: 20px;
+  .older {
+    text-align: center;
+    font-size: 0.8em;
+    position: fixed;
+    width: calc(100% - 520px);
+    top: 70px;
+    a {
+      cursor: pointer;
+      color: blue;
+    }
+  }
+  .ownMsgs {
+    text-align: right;
+    .ownMsgText {
+      background: #a29d9d;
+      border-radius: 5px;
+      padding: 4px;
+    }
+  }
+  .ownMsgs,
+  .otherMsgs {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+    >span:first-child {
+      font-size: 0.7em;
+    }
+  }
+  .otherMsgs {
+    >span:last-child {
+      background: #5e92c3;
+      width: fit-content;
+      border-radius: 5px;
+      padding: 4px;
+    }
+  }
 }
 
 .message-form {

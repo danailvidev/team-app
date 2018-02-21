@@ -6,7 +6,6 @@ export class NotifyService {
 
     constructor(public snackBar: MatSnackBar) { }
 
-
     notify(message: string, action: string, config: MatSnackBarConfig): MatSnackBarRef<SimpleSnackBar> {
         return this.snackBar.open(message, action, {
             duration: config.duration,

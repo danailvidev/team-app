@@ -37,6 +37,7 @@ app.use('/auth', auth.router)
 app.use('/user', user.router)
 app.use('/post', post.router)
 app.use('/channel', channel.router)
+app.use('/messages', messages.router)
 
 var numUsers = 0;
 io.on('connection', function (socket) {
@@ -45,14 +46,15 @@ io.on('connection', function (socket) {
 
     // when the client emits 'new message', this listens and executes
     socket.on('new message', function (data) {
-        console.log(data.from)
-        console.log(data.content)
-        messages.saveMsg(data)
+        
         // we tell the client to execute 'new message'
         socket.broadcast.emit('message', {
             username: data.from.email,
             message: data.content
         });
+
+        // save the msg to db
+        messages.saveMsg(data)
     });
 
     // when the client emits 'add user', this listens and executes

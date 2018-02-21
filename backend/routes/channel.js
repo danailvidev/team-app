@@ -12,7 +12,7 @@ var channels = []
 //     return channel
 // }
 
-router.get('/', async (req,res) => {
+router.get('/', async (req, res) => {
     try {
         var channels = await Channel.find({}, '-__v') // remove unwanted props
         res.send(channels)
@@ -22,7 +22,7 @@ router.get('/', async (req,res) => {
     }
 })
 
-router.get('/:id', async(req, res) => {
+router.get('/:id', async (req, res) => {
     try {
         var channel = await Channel.findById({
             _id: req.params.id
@@ -58,15 +58,15 @@ router.put('/:id', (req, res) => {
     let id = req.params.id
     var updateData = req.body
 
-    Channel.findByIdAndUpdate(id, updateData, (err,result) =>{
-        if (err) return res.send(500, { error: err })
+    Channel.findByIdAndUpdate(id, updateData, (err, result) => {
+        if (err) return res.send(500, {
+            error: err
+        })
         res.send(result)
     })
-
-    
 })
 
-router.delete('/:id', auth.checkAuthenticated, async(req, res) => {
+router.delete('/:id', auth.checkAuthenticated, async (req, res) => {
     try {
         let id = req.params.id
         var channel = await Channel.findByIdAndRemove(id)
@@ -93,7 +93,12 @@ router.delete('/:id', auth.checkAuthenticated, async(req, res) => {
 //     res.status(300).json(channel);
 // })
 
-router.post('/user/activeChannel/:userId/:channelId',({params:{userId,channelId}},res) => {
+router.post('/user/activeChannel/:userId/:channelId', ({
+    params: {
+        userId,
+        channelId
+    }
+}, res) => {
     var user = User.findById(userId)
     user.activeChannel = channelId
     res.status(200).send(true)

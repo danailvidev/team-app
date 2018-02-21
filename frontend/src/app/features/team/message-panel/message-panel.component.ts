@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { SocketService, Action, Event } from '../../../core/socket.service';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../shared/interfaces/app-state';
+import { ApiService } from '../../../core/api.service';
+import { NotifyService } from '../../../core/notify.service';
+import { Subscription } from 'rxjs/Subscription';
 
 
 @Component({
@@ -16,14 +19,20 @@ export class MessagePanelComponent implements OnInit {
     messages: any[] = [];
     messageContent: string;
     ioConnection: any;
+    msgHistory: any[] = [];
+    time: Date | number = new Date();
+    private subscriptions = new Subscription();
 
     constructor(
         private socketService: SocketService,
-        private store: Store<AppState>) { }
+        private store: Store<AppState>,
+        private apiService: ApiService,
+        private notifyService: NotifyService) { }
 
     ngOnInit() {
         this.getCurrentUser();
         this.initIoConnection();
+        this.getMessagesFromDb();
     }
 
     private initIoConnection(): void {
@@ -57,7 +66,7 @@ export class MessagePanelComponent implements OnInit {
             from: this.currentUser,
             content: message
         });
-        this.messages.push({message: message, username: this.currentUser});
+        this.messages.push({ message: message, username: this.currentUser.email });
         this.messageContent = null;
     }
 
@@ -83,10 +92,30 @@ export class MessagePanelComponent implements OnInit {
     }
 
     private getCurrentUser() {
-        this.store.select(state => state.currentUser).subscribe(res => {
+        this.subscriptions.add(this.store.select(state => state.currentUser).subscribe(res => {
             this.currentUser = res.currentUser;
         }, (err) => {
+            this.notifyService.notify(err, null, {
+                duration: 4000,
+                panelClass: ['snack-denied']
+            });
             console.log(err);
-        });
+        }));
+    }
+
+    private getMessagesFromDb() {
+        this.subscriptions.add(this.apiService.getChatMessages().subscribe(data => {
+            this.msgHistory = data;
+            this.msgHistory.forEach((msg: any) => {
+                this.messages.push({ message: msg.content, username: msg.authorEmail });
+                console.log(msg)
+            });
+        }, (err) => {
+            this.notifyService.notify(err, null, {
+                duration: 4000,
+                panelClass: ['snack-denied']
+            });
+            console.log(err);
+        }));
     }
 }
