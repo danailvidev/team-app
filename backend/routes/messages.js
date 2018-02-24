@@ -29,12 +29,10 @@ var messages = {
     msgRouter,
     saveMsg: (msg) => {
         var msgData = {}
-        const {content, authorEmail, authorId, dateCreated} = msg
-        // msgData.content = msg.content
-        // msgData.authorEmail = msg.from.email
-        // msgData.authorId = msg.from.userId
-        // msgData.dateCreated = new Date()
-        console.log('authorId', authorId)
+        msgData.content = msg.content
+        msgData.authorEmail = msg.from.email
+        msgData.authorId = msg.from.userId
+        msgData.dateCreated = new Date()
 
         var message = new Message(msgData)
 
