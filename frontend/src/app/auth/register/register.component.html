@@ -3,35 +3,54 @@
   <form role="form" (submit)="register()">
     <br>
     <mat-input-container>
-      <input matInput type="text" required [(ngModel)]="user.email" id="email" name="email">
+      <input matInput type="text" [(ngModel)]="user.email" id="email" name="email" [formControl]="emailFormControl"
+      [errorStateMatcher]="matcher">
       <mat-placeholder>
         <i class="material-icons app-input-icon">email</i>Email/User Name
       </mat-placeholder>
+      <mat-hint>Email verification will be send!</mat-hint>
+      <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+        Please enter a valid email address
+      </mat-error>
+      <mat-error *ngIf="emailFormControl.hasError('required')">
+        Email is <strong>required</strong>
+      </mat-error>
     </mat-input-container>
     <br>
+    <br>
     <mat-input-container>
-        <span>passwords must be at least 5 chars long and contain one number</span>
-      <input matInput type="password" required [(ngModel)]="user.password" id="password" name="password">
+      <input matInput type="password" [(ngModel)]="user.password" id="password" name="password" [formControl]="passwordFormControl"
+      [errorStateMatcher]="matcher">
       <mat-placeholder>
         <i class="material-icons app-input-icon">lock_open</i>Password
       </mat-placeholder>
+      <mat-error *ngIf="passwordFormControl.hasError('minLength')">
+        Minimum password length is 5 symbols
+      </mat-error>
+      <mat-error *ngIf="passwordFormControl.hasError('pattern')">
+        Password must contain at least 1 number
+      </mat-error>
+      <mat-error *ngIf="passwordFormControl.hasError('required')">
+        Password is <strong>required</strong>
+      </mat-error>
     </mat-input-container>
     <br>
+    <br>
     <mat-input-container>
-      <input matInput type="text" required [(ngModel)]="user.name" id="name" name="name">
+      <input matInput type="text" [(ngModel)]="user.name" id="name" name="name">
       <mat-placeholder>
         First Name/Surname
       </mat-placeholder>
     </mat-input-container>
     <br>
     <mat-input-container>
-      <input matInput type="text" required [(ngModel)]="user.description" id="description" name="description">
+      <input matInput type="text" [(ngModel)]="user.description" id="description" name="description">
       <mat-placeholder>
         Description
       </mat-placeholder>
     </mat-input-container>
     <br>
-    <button mat-raised-button color="warn" type="submit" name="action">Register</button>
+    <button mat-raised-button color="warn" type="submit" name="action" [disabled]="(emailFormControl.errors || passwordFormControl.errors)">Register</button>
     <br>
   </form>
 </mat-card>

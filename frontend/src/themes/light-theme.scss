@@ -6,7 +6,7 @@ $dv-light-theme: mat-light-theme( $dv-light-primary, $dv-light-accent, $dv-light
   mat-toolbar {
     button {
       &.active {
-        color: mat-color($dv-light-accent, default-contrast);
+        color: #000!important;
         background-color: mat-color($dv-light-accent);
       }
     }

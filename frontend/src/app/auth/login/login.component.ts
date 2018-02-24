@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 
 @Component({
-  selector: 'app-login',
+  selector: 'ta-app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })

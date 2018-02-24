@@ -14,6 +14,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 export class UserPanelComponent implements OnInit {
     users: IUser[];
     usersCount: number;
+    hideUsers: any;
 
     constructor(
         private store: Store<AppState>,

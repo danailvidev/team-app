@@ -1,7 +1,7 @@
 var Channel = require('../models/Channel.js')
 var express = require('express')
 var auth = require('./auth.js')
-var router = express.Router()
+var channelRouter = express.Router()
 
 var channels = []
 // const Channel = (id) => {
@@ -12,61 +12,60 @@ var channels = []
 //     return channel
 // }
 
-router.get('/', async (req, res) => {
-    try {
-        var channels = await Channel.find({}, '-__v') // remove unwanted props
-        res.send(channels)
-    } catch (error) {
-        console.log(error)
-        res.sendStatus(500)
-    }
-})
-
-router.get('/:id', async (req, res) => {
-    try {
-        var channel = await Channel.findById({
-            _id: req.params.id
-        }, '-__v') // remove unwanted props
-        res.send(channel)
-    } catch (error) {
-        console.log(error)
-        res.sendStatus(500)
-    }
-})
-
-router.post('/', (req, res) => {
-    var postData = req.body
-
-    var channel = new Channel(postData)
-
-    channel.save((err, results) => {
-        if (err) {
-            console.error('saving channel error')
-            return res.status(500).send({
-                message: 'saving channel error'
-            })
-        } else {
-            res.status(200).send({
-                result: true,
-                id: results._id
-            })
+channelRouter.route('/')
+    .get(async (req, res) => {
+        try {
+            var channels = await Channel.find({}, '-__v') // remove unwanted props
+            res.send(channels)
+        } catch (error) {
+            console.log(error)
+            res.sendStatus(500)
         }
     })
-})
+    .post((req, res) => {
+        var postData = req.body
 
-router.put('/:id', (req, res) => {
-    let id = req.params.id
-    var updateData = req.body
+        var channel = new Channel(postData)
 
-    Channel.findByIdAndUpdate(id, updateData, (err, result) => {
-        if (err) return res.send(500, {
-            error: err
+        channel.save((err, results) => {
+            if (err) {
+                console.error('saving channel error')
+                return res.status(500).send({
+                    message: 'saving channel error'
+                })
+            } else {
+                res.status(200).send({
+                    result: true,
+                    id: results._id
+                })
+            }
         })
-        res.send(result)
     })
-})
 
-router.delete('/:id', auth.checkAuthenticated, async (req, res) => {
+channelRouter.route('/:id')
+    .get(async (req, res) => {
+        try {
+            var channel = await Channel.findById({
+                _id: req.params.id
+            }, '-__v') // remove unwanted props
+            res.send(channel)
+        } catch (error) {
+            console.log(error)
+            res.sendStatus(500)
+        }
+    })
+    .put((req, res) => {
+        let id = req.params.id
+        var updateData = req.body
+
+        Channel.findByIdAndUpdate(id, updateData, (err, result) => {
+            if (err) return res.send(500, {
+                error: err
+            })
+            res.send(result)
+        })
+    })
+    .delete(auth.checkAuthenticated, async (req, res) => {
     try {
         let id = req.params.id
         var channel = await Channel.findByIdAndRemove(id)
@@ -93,7 +92,7 @@ router.delete('/:id', auth.checkAuthenticated, async (req, res) => {
 //     res.status(300).json(channel);
 // })
 
-router.post('/user/activeChannel/:userId/:channelId', ({
+channelRouter.post('/user/activeChannel/:userId/:channelId', ({
     params: {
         userId,
         channelId
@@ -105,7 +104,7 @@ router.post('/user/activeChannel/:userId/:channelId', ({
 })
 
 var channel = {
-    router
+    channelRouter
 }
 
 module.exports = channel

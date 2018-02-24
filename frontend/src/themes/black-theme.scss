@@ -6,7 +6,8 @@ $dv-black-theme: mat-dark-theme( $dv-black-primary, $dv-black-accent, $dv-black-
   mat-toolbar {
     button {
       &.active {
-        color: mat-color($dv-black-accent, default-contrast);
+        color: #000!important;
+        // color: mat-color($dv-black-accent, default-contrast);
         background-color: mat-color($dv-black-accent);
       }
     }

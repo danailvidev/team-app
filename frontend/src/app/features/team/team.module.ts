@@ -14,6 +14,8 @@ import { authReducer } from '../../reducers/auth.reducer';
 // Pipes
 import { EmailToUserPipe } from '../../shared/pipes/email.pipe';
 
+// Plugins
+import {NgxAutoScrollModule} from 'ngx-auto-scroll';
 
 export const reducers: ActionReducerMap<any> = {
   currentUser: authReducer,
@@ -23,6 +25,7 @@ export const reducers: ActionReducerMap<any> = {
   imports: [
     SharedModule,
     TeamRoutingModule,
+    NgxAutoScrollModule,
 
     // ngrx
     StoreModule.forFeature('currentUser', reducers),

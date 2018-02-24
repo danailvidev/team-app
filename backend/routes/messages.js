@@ -1,18 +1,19 @@
 var Message = require('../models/Message.js')
 var express = require('express')
-var router = express.Router()
+var msgRouter = express.Router()
 
-router.get('/', async (req, res) => {
-    try {
-        var msgs = await Message.find({}, '-__v -hash') // remove unwanted props
-        res.send(msgs)
-    } catch (error) {
-        console.log(error)
-        res.sendStatus(500)
-    }
-})
+msgRouter.route('/')
+    .get(async (req, res) => {
+        try {
+            var msgs = await Message.find({}, '-__v -hash') // remove unwanted props
+            res.send(msgs)
+        } catch (error) {
+            console.log(error)
+            res.sendStatus(500)
+        }
+    })
 
-router.put('/:id', (req, res) => {
+msgRouter.put('/:id', (req, res) => {
     let id = req.params.id
     var updateData = req.body
 
@@ -25,13 +26,15 @@ router.put('/:id', (req, res) => {
 })
 
 var messages = {
-    router,
+    msgRouter,
     saveMsg: (msg) => {
         var msgData = {}
-        msgData.content = msg.content
-        msgData.authorEmail = msg.from.email
-        msgData.authorId = msg.from.userId
-        msgData.dateCreated = new Date()
+        const {content, authorEmail, authorId, dateCreated} = msg
+        // msgData.content = msg.content
+        // msgData.authorEmail = msg.from.email
+        // msgData.authorId = msg.from.userId
+        // msgData.dateCreated = new Date()
+        console.log('authorId', authorId)
 
         var message = new Message(msgData)
 

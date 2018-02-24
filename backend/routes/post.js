@@ -1,27 +1,27 @@
 var Post = require('../models/Post.js')
 var express = require('express')
 var auth = require('./auth.js')
-var router = express.Router()
+var postRouter = express.Router()
 
-router.get('/:id', async(req, res) => {
-    var author = req.params.id
-    var posts = await Post.find({
-        author
+postRouter.route('/:id')
+    .get(async (req, res) => {
+        var author = req.params.id
+        var posts = await Post.find({
+            author
+        })
+        res.send(posts)
     })
-    res.send(posts)
-})
+    .delete(auth.checkAuthenticated, async (req, res) => {
+        try {
+            let id = req.params.id
+            var post = await Post.findByIdAndRemove(id)
+            res.sendStatus(200)
+        } catch (error) {
+            res.sendStatus(500)
+        }
+    })
 
-router.delete('/:id', auth.checkAuthenticated, async(req, res) => {
-    try {
-        let id = req.params.id
-        var post = await Post.findByIdAndRemove(id)
-        res.sendStatus(200)
-    } catch (error) {
-        res.sendStatus(500)
-    }
-})
-
-router.post('/', auth.checkAuthenticated, (req, res) => {
+postRouter.post('/', auth.checkAuthenticated, (req, res) => {
     var postData = req.body
     postData.author = req.userId
     postData.dateCreated = new Date()
@@ -44,7 +44,7 @@ router.post('/', auth.checkAuthenticated, (req, res) => {
 })
 
 var post = {
-    router
+    postRouter
 }
 
 module.exports = post

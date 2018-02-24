@@ -2,6 +2,11 @@
   width: calc(100% - 260px);
   margin-right: auto;
   padding-top: 20px;
+  .messages {
+    height: calc(100vh - 160px);
+    overflow-y: scroll;
+    padding-right: 10px;
+  }
   .older {
     text-align: center;
     font-size: 0.8em;

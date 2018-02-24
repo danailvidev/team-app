@@ -8,7 +8,7 @@ import { LoggingService } from './logging/loggin.service';
 
 @Injectable()
 export class AuthService {
-    baseAuthUrl = environment.backend['baseAuthUrl'];
+    baseAuthUrl = environment.backend['baseUrl'] + 'auth/';
     TOKEN_KEY = 'token';
     DATA_KEY = 'userInfo';
     userData: any;

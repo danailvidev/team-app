@@ -6,7 +6,6 @@ import { ApiService } from '../../../core/api.service';
 import { NotifyService } from '../../../core/notify.service';
 import { Subscription } from 'rxjs/Subscription';
 
-
 @Component({
     selector: 'ta-message-panel',
     templateUrl: 'message-panel.component.html',
@@ -108,7 +107,6 @@ export class MessagePanelComponent implements OnInit {
             this.msgHistory = data;
             this.msgHistory.forEach((msg: any) => {
                 this.messages.push({ message: msg.content, username: msg.authorEmail });
-                console.log(msg)
             });
         }, (err) => {
             this.notifyService.notify(err, null, {

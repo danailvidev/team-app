@@ -14,8 +14,15 @@ var userSchema = mongoose.Schema({
     name: String,
     description: String,
     activeChannel: String,
-    isVisible: Boolean,
-    registeredAt: Date
+    isVisible: {
+        type : Boolean,
+        default: true
+    },
+    createdAt: {
+        type: Date,
+        required: true,
+        default: new Date()
+    }
 })
 
 userSchema.pre('save', function (next) {
@@ -25,8 +32,6 @@ userSchema.pre('save', function (next) {
         return next
     }
 
-    setDefaultSettings(user)
-
     bcrypt.hash(user.password, null, null, (err, hash) => {
         if (err) {
             return next(err)
@@ -35,12 +40,5 @@ userSchema.pre('save', function (next) {
         next()
     })
 })
-
-function setDefaultSettings(user) {
-    user.isVisible = true
-    user.activeChannel = null
-    user.registeredAt = new Date()
-    return user
-}
 
 module.exports = mongoose.model('User', userSchema)

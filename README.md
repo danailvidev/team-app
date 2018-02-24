@@ -1,10 +1,10 @@
 # Team Services App (Under Development)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.4.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.8.
 
 Demo -> [LINK](https://webadventure.org/team-app)
 
-![Alt text](https://webadventure.org/teamk-app/team-app.jpg?raw=true "Sample")
+![Alt text](https://webadventure.org/team-app/team-app.jpg?raw=true "Sample")
 
 ## Run the app
 
@@ -13,7 +13,7 @@ Need `node` to be installed. Download it from here: `https://nodejs.org/en/`
 2. cd folder
 3. npm install (install packages)
 4. npm start (start the app)
-5. open browser, default node path:port (e.g. http://localhost:3000)
+5. open browser, default node path:port (e.g. http://localhost:4200)
 
 ## Running unit tests
 

@@ -4,16 +4,16 @@ var jwt = require('jwt-simple')
 var express = require('express')
 const utilsEmail = require('../utils/email')
 var router = express.Router()
-const { check, validationResult } = require('express-validator/check')
-const { matchedData, sanitize} = require('express-validator/filter')
+const {
+    check,
+    validationResult
+} = require('express-validator/check')
+const {
+    matchedData,
+    sanitize
+} = require('express-validator/filter')
 
 router.post('/register', [
-    // name
-    check('name')
-    .isLength({
-        min: 1
-    }).withMessage('Name is required'),
-
     // password
     check('password', 'passwords must be at least 5 chars long and contain one number')
     .isLength({
@@ -26,14 +26,14 @@ router.post('/register', [
     .isEmail().withMessage('must be an email')
     .trim()
     .normalizeEmail()
-], async(req, res) => {
-    const userData = req.body
+], async (req, res) => {
 
-    const name = userData.name
-    const email = req.body.email
+    const {
+        email,
+        password
+    } = req.body
 
     const errors = validationResult(req)
-    console.log(errors)
     if (!errors.isEmpty()) {
         return res.status(422).json({
             errors: errors.mapped()
@@ -42,29 +42,30 @@ router.post('/register', [
 
     // email template
     const registerEmail = {
-        to: userData.email,
+        to: email,
         subject: 'Registration',
         text: 'Welcome Aboard',
-        html: `<b> Welcome Aboard ${userData.name} </b>
+        html: `<b> Welcome Aboard </b>
         <br>
-        username: ${userData.email}
+        username: ${email}
         <br>
-        password: ${userData.password}`
+        password: ${password}`
     }
 
     // check for existing email
     var user = await User.findOne({
-        email: userData.email
+        email: email
     })
+
 
     if (user) {
         return res.status(422).send({
             message: 'Email Already Exist'
         })
     } else {
-        user = new User(userData)
+        user = new User(req.body)
     }
-
+    
     user.save((err, newUser) => {
         if (err) {
             console.log('error')
@@ -77,12 +78,16 @@ router.post('/register', [
         }
     })
 })
-router.post('/login', async(req, res) => {
-    var loginData = req.body;
+router.post('/login', async (req, res) => {
+
+    const {
+        email,
+        password
+    } = req.body
 
     // search db for the user email
     var user = await User.findOne({
-        email: loginData.email
+        email: email
     })
 
     // validations
@@ -91,7 +96,7 @@ router.post('/login', async(req, res) => {
             message: 'Email or Password Invalid'
         })
     }
-    bcrypt.compare(loginData.password, user.password, (err, isMatch) => {
+    bcrypt.compare(password, user.password, (err, isMatch) => {
         if (!isMatch) {
             return res.status(401).send({
                 message: 'Email or Password Invalid'

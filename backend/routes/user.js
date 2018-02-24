@@ -1,9 +1,9 @@
 var User = require('../models/User.js')
 var express = require('express')
 var auth = require('./auth.js')
-var router = express.Router()
+var userRouter = express.Router()
 
-router.get('/:id', async(req, res) => {
+userRouter.get('/:id', async(req, res) => {
     try {
         var user = await User.findById({
             _id: req.params.id
@@ -15,7 +15,7 @@ router.get('/:id', async(req, res) => {
     }
 })
 
-router.get('/', async(req, res) => {
+userRouter.get('/', async(req, res) => {
     try {
         var users = await User.find({}, '-password -__v -hash -confirmPassword') // remove unwanted props
         res.send(users)
@@ -26,7 +26,7 @@ router.get('/', async(req, res) => {
 })
 
 var user = {
-    router
+    userRouter
 }
 
 module.exports = user

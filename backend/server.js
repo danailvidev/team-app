@@ -18,7 +18,7 @@ mongoose.Promise = Promise // use es6 promise  DeprecationWarning: Mongoose: mpr
 
 app.use(cors({
     credentials: true,
-    origin: 'http://localhost:4200'
+    origin: config.cors.headers
 }));
 
 app.use(bodyParser.json())
@@ -34,15 +34,14 @@ mongoose.connect(config.mongo_url, {
 })
 
 app.use('/auth', auth.router)
-app.use('/user', user.router)
-app.use('/post', post.router)
-app.use('/channel', channel.router)
-app.use('/messages', messages.router)
+app.use('/user', user.userRouter)
+app.use('/post', post.postRouter)
+app.use('/channel', channel.channelRouter)
+app.use('/messages', messages.msgRouter)
 
 var numUsers = 0;
 io.on('connection', function (socket) {
     var addedUser = false;
-    console.log('a user connected');
 
     // when the client emits 'new message', this listens and executes
     socket.on('new message', function (data) {
@@ -59,7 +58,6 @@ io.on('connection', function (socket) {
 
     // when the client emits 'add user', this listens and executes
     socket.on('add user', function (username) {
-        console.log('username', username)
         if (addedUser) return;
 
         // we store the username in the socket session for this client
