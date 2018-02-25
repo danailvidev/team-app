@@ -6,7 +6,7 @@
     <div *ngFor="let msg of messages">
       <div *ngIf="msg.username == currentUser.email; else otherUser" class="ownMsgs">
         <span>
-          {{time | date:'mediumTime'}}
+          {{msg.dateCreated | date:'mediumTime'}}
         </span>
         <div>
           <span style="flex: 1 1 auto"></span>
@@ -18,7 +18,7 @@
       <ng-template #otherUser>
         <div class="otherMsgs">
           <span>
-            {{msg.username}}, {{time | date:'mediumTime'}}
+            {{msg.username}}, {{msg.dateCreated | date:'mediumTime'}}
           </span>
           <span>
             {{msg.message}}

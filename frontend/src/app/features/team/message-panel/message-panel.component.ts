@@ -19,7 +19,6 @@ export class MessagePanelComponent implements OnInit {
     messageContent: string;
     ioConnection: any;
     msgHistory: any[] = [];
-    time: Date | number = new Date();
     private subscriptions = new Subscription();
 
     constructor(
@@ -65,7 +64,11 @@ export class MessagePanelComponent implements OnInit {
             from: this.currentUser,
             content: message
         });
-        this.messages.push({ message: message, username: this.currentUser.email });
+        this.messages.push({
+            message: message,
+            username: this.currentUser.email,
+            dateCreated: new Date()
+        });
         this.messageContent = null;
     }
 
@@ -106,7 +109,11 @@ export class MessagePanelComponent implements OnInit {
         this.subscriptions.add(this.apiService.getChatMessages().subscribe(data => {
             this.msgHistory = data;
             this.msgHistory.forEach((msg: any) => {
-                this.messages.push({ message: msg.content, username: msg.authorEmail });
+                this.messages.push({
+                    message: msg.content,
+                    username: msg.authorEmail,
+                    dateCreated: msg.dateCreated
+                });
             });
         }, (err) => {
             this.notifyService.notify(err, null, {
