@@ -3,7 +3,7 @@ var User = require('../models/User.js')
 var jwt = require('jwt-simple')
 var express = require('express')
 const utilsEmail = require('../utils/email')
-var router = express.Router()
+var authRouter = express.Router()
 const {
     check,
     validationResult
@@ -13,99 +13,102 @@ const {
     sanitize
 } = require('express-validator/filter')
 
-router.post('/register', [
-    // password
-    check('password', 'passwords must be at least 5 chars long and contain one number')
-    .isLength({
-        min: 5
-    })
-    .matches(/\d/),
+authRouter.route('/register')
+    .post([
+        // password
+        check('password', 'passwords must be at least 5 chars long and contain one number')
+        .isLength({
+            min: 5
+        })
+        .matches(/\d/),
 
-    // email
-    check('email')
-    .isEmail().withMessage('must be an email')
-    .trim()
-    .normalizeEmail()
-], async (req, res) => {
+        // email
+        check('email')
+        .isEmail().withMessage('must be an email')
+        .trim()
+        .normalizeEmail()
+    ], async (req, res) => {
 
-    const {
-        email,
-        password
-    } = req.body
+        const {
+            email,
+            password
+        } = req.body
 
-    const errors = validationResult(req)
-    if (!errors.isEmpty()) {
-        return res.status(422).json({
-            errors: errors.mapped()
-        });
-    }
+        const errors = validationResult(req)
+        if (!errors.isEmpty()) {
+            return res.status(422).json({
+                errors: errors.mapped()
+            });
+        }
 
-    // email template
-    const registerEmail = {
-        to: email,
-        subject: 'Registration',
-        text: 'Welcome Aboard',
-        html: `<b> Welcome Aboard </b>
+        // email template
+        const registerEmail = {
+            to: email,
+            subject: 'Registration',
+            text: 'Welcome Aboard',
+            html: `<b> Welcome Aboard </b>
         <br>
         username: ${email}
         <br>
         password: ${password}`
-    }
+        }
 
-    // check for existing email
-    var user = await User.findOne({
-        email: email
-    })
-
-
-    if (user) {
-        return res.status(422).send({
-            message: 'Email Already Exist'
+        // check for existing email
+        var user = await User.findOne({
+            email: email
         })
-    } else {
-        user = new User(req.body)
-    }
-    
-    user.save((err, newUser) => {
-        if (err) {
-            console.log('error')
-            return res.status(400).send({
-                message: err
+
+
+        if (user) {
+            return res.status(422).send({
+                message: 'Email Already Exist'
             })
         } else {
-            createSendToken(res, newUser)
-            utilsEmail.sendEmail(registerEmail)
+            user = new User(req.body)
         }
-    })
-})
-router.post('/login', async (req, res) => {
 
-    const {
-        email,
-        password
-    } = req.body
-
-    // search db for the user email
-    var user = await User.findOne({
-        email: email
-    })
-
-    // validations
-    if (!user) {
-        return res.status(401).send({
-            message: 'Email or Password Invalid'
+        user.save((err, newUser) => {
+            if (err) {
+                console.log('error')
+                return res.status(400).send({
+                    message: err
+                })
+            } else {
+                createSendToken(res, newUser)
+                utilsEmail.sendEmail(registerEmail)
+            }
         })
-    }
-    bcrypt.compare(password, user.password, (err, isMatch) => {
-        if (!isMatch) {
+    })
+
+authRouter.route('/login')
+    .post(async (req, res) => {
+
+        const {
+            email,
+            password
+        } = req.body
+
+        // search db for the user email
+        var user = await User.findOne({
+            email: email
+        })
+
+        // validations
+        if (!user) {
             return res.status(401).send({
                 message: 'Email or Password Invalid'
             })
-        } else {
-            createSendToken(res, user)
         }
+        bcrypt.compare(password, user.password, (err, isMatch) => {
+            if (!isMatch) {
+                return res.status(401).send({
+                    message: 'Email or Password Invalid'
+                })
+            } else {
+                createSendToken(res, user)
+            }
+        })
     })
-})
 
 function createSendToken(res, user) {
     var payload = {
@@ -126,7 +129,7 @@ function createSendToken(res, user) {
 }
 
 var auth = {
-    router,
+    authRouter,
     checkAuthenticated: (req, res, next) => {
         if (!req.header('authorization')) {
             return res.status(401).send({

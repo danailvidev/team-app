@@ -33,7 +33,7 @@ mongoose.connect(config.mongo_url, {
     }
 })
 
-app.use('/auth', auth.router)
+app.use('/auth', auth.authRouter)
 app.use('/user', user.userRouter)
 app.use('/post', post.postRouter)
 app.use('/channel', channel.channelRouter)
