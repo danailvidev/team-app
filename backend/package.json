@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "nodemon -e ts -w ./lib -x npm run watch:serve",
+    "watch:serve": "/usr/local/lib/node_modules/node/bin/ts-node lib/server.ts"
   },
   "author": "",
   "license": "ISC",
@@ -23,5 +26,8 @@
   },
   "engines": {
     "node": "9.3.0"
+  },
+  "devDependencies": {
+    "@types/errorhandler": "0.0.32"
   }
 }
