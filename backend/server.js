@@ -3,7 +3,7 @@ var app = express();
 var cors = require('cors')
 var bodyParser = require('body-parser')
 var mongoose = require('mongoose')
-const config = require('./config')
+const config = require('./config.json');
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 
@@ -103,4 +103,4 @@ io.on('connection', function (socket) {
 
 });
 
-server.listen(config.app_port)
+server.listen(process.env.PORT || 3000)
