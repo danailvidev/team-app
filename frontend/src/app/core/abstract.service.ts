@@ -3,6 +3,7 @@ import { map, catchError } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { HttpClient, HttpResponse, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import 'rxjs/add/observable/throw';
+import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 
 export abstract class BaseApiService {
     protected baseUrl = environment.backend['baseUrl'];
@@ -14,7 +15,7 @@ export abstract class BaseApiService {
     protected get(relativeUrl: string): Observable<any> {
         return this.http.get(this.baseUrl + relativeUrl, { observe: 'response' }).pipe(
             map((res: HttpResponse<any>) => {
-                if (res.ok && res.status == 200) {
+                if (res.ok && res.status === 200) {
                     return res.body;
                 }
             }),
@@ -54,7 +55,7 @@ export abstract class BaseApiService {
                 // you could extract more info calendar the error if you want, e.g.:
                 console.log(`status: ${err.status}, ${err.statusText}`);
             }
-            return Observable.throw(errMsg);
+            return ErrorObservable.create(errMsg);
         };
     }
 }
