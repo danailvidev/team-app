@@ -1,12 +1,12 @@
 import { Injectable, Injector } from '@angular/core';
-import { HttpInterceptor } from '@angular/common/http';
+import { HttpInterceptor, HttpRequest, HttpHandler } from '@angular/common/http';
 import { AuthService } from './auth.service';
 import { environment } from '../../environments/environment';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
     constructor(private injector: Injector) { }
-    intercept(req, next) {
+    intercept(req: HttpRequest<any>, next: HttpHandler) {
         const authService = this.injector.get(AuthService);
         if (req.url.indexOf('github') > -1) {
             req = req.clone({

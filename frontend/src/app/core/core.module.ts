@@ -6,6 +6,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthService } from './auth.service';
 import { ApiService } from './api.service';
 import { AuthInterceptor } from './auth.interceptor';
+import { ResponseInterceptor } from './response.interceptor';
 import { NotifyService } from './notify.service';
 import { LoggingService } from './logging/loggin.service';
 import { LogPublisherService } from './logging/log-publishers.service';
@@ -22,29 +23,26 @@ import { ErrorStateMatcher } from '@angular/material/core';
 import { ShowOnDirtyErrorStateMatcher } from '@angular/material';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    HttpClientModule,
-  ],
-  declarations: [],
-  providers: [
-    ApiService,
-    AuthService,
-    NotifyService,
-    LoggingService,
-    LogPublisherService,
-    SocketService,
-    AuthGuard,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true
-    },
-    {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}
-  ]
+    imports: [
+        CommonModule,
+        HttpClientModule,
+    ],
+    declarations: [],
+    providers: [
+        ApiService,
+        AuthService,
+        NotifyService,
+        LoggingService,
+        LogPublisherService,
+        SocketService,
+        AuthGuard,
+        { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+        { provide: HTTP_INTERCEPTORS, useClass: ResponseInterceptor, multi: true },
+        { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher }
+    ]
 })
 export class CoreModule extends EnsureModuleLoadedOnceGuard {
-  constructor( @Optional() @SkipSelf() parentModule: CoreModule) {
-    super(parentModule);
-  }
+    constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
+        super(parentModule);
+    }
 }
