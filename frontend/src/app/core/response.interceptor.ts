@@ -8,8 +8,10 @@ export class ResponseInterceptor implements HttpInterceptor {
         return next.handle(req).pipe(
             tap(event => {
                 if (event.type === HttpEventType.Response ) {
-                    console.log(event);
+                    console.log(event.body);
                 }
+            }, (err:any) => {
+                console.log(err)
             })
         );
     }
