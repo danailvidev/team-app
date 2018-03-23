@@ -13,6 +13,7 @@ var post = require('./routes/post.js')
 var channel = require('./routes/channel.js')
 var user = require('./routes/user.js')
 var messages = require('./routes/messages.js')
+var task = require('./routes/task.js')
 
 mongoose.Promise = Promise // use es6 promise  DeprecationWarning: Mongoose: mpromise (mongoose's default promise library) is deprecated
 
@@ -38,6 +39,7 @@ app.use('/user', user.userRouter)
 app.use('/post', post.postRouter)
 app.use('/channel', channel.channelRouter)
 app.use('/messages', messages.msgRouter)
+app.use('/task', task.taskRouter)
 
 var numUsers = 0;
 io.on('connection', function (socket) {
