@@ -13,9 +13,16 @@ export const environment = {
         typescript: packageJson.devDependencies['typescript']
     },
     backend: {
-        'baseUrl': 'http://localhost:3000/',
-        'baseAuthUrl': 'http://localhost:3000/auth/'
+        'baseUrl': 'http://localhost:3000/'
     },
+    github: {
+        token: 'token',
+        userName: 'danailvidev',
+        repoName: 'danailvidev/team-app',
+        baseUrl: 'https://api.github.com/search/issues',
+        issueUrl: 'https://api.github.com/repos/danailvidev/team-app/issues'
+    }
+    ,
     logging: [
         {
           loggerName: 'console',
