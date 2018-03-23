@@ -7,11 +7,12 @@ export class ResponseInterceptor implements HttpInterceptor {
     intercept(req: HttpRequest<any>, next: HttpHandler) {
         return next.handle(req).pipe(
             tap(event => {
-                if (event.type === HttpEventType.Response ) {
-                    console.log(event.body);
-                }
-            }, (err:any) => {
-                console.log(err)
+                // if (event.type === HttpEventType.Response ) {
+                //     console.log(event.body);
+                // }
+            }, (err: any) => {
+                // TODO: log the error in db
+                console.log(err);
             })
         );
     }
