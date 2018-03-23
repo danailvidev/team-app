@@ -22,7 +22,6 @@ export class HomePage {
       .subscribe(users => {
         this.users = users,
         error => this.errorMessage = <any>error
-        console.log(users)
       });
   }
 

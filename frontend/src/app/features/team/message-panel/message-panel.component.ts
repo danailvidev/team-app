@@ -38,7 +38,6 @@ export class MessagePanelComponent implements OnInit {
 
         this.ioConnection = this.socketService.onMessage()
             .subscribe((message: any) => {
-                console.log('msg', message);
                 this.messages.push(message);
             });
 
