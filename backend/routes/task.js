@@ -6,16 +6,33 @@ var ObjectId = require('mongodb').ObjectID;
 
 taskRouter.route('/:id')
     .get(async (req, res) => {
-        var author = req.params.id
-        var tasks = await task.find({
+        let author = req.params.id
+        let tasks = await task.find({
             author
         })
         res.send(tasks)
     })
+    .put((req, res) => {
+        let id = req.body._id
+        let content = req.body.content
+        let type = req.body.type
+
+        Task.findByIdAndUpdate(id, {
+            $set: {
+                content: content,
+                type: type
+            }
+        }, (err, result) => {
+            if (err) return res.send(500, {
+                error: err
+            })
+            res.send(result)
+        })
+    })
     .delete(auth.checkAuthenticated, async (req, res) => {
         try {
             let id = req.params.id
-            var task = await task.findByIdAndRemove(id)
+            let task = await task.findByIdAndRemove(id)
             res.sendStatus(200)
         } catch (error) {
             res.sendStatus(500)
@@ -29,13 +46,13 @@ taskRouter.route('/')
             authorId: {
                 $in: [ObjectId(authorId)]
             }
-        })
+        }, '-__v')
         res.send(tasks)
     })
     .post(auth.checkAuthenticated, (req, res) => {
-        var taskData = req.body
+        let taskData = req.body
         taskData.authorId = req.userId
-        var task = new Task(taskData)
+        let task = new Task(taskData)
 
         task.save((err, result) => {
             if (err) {
@@ -52,7 +69,7 @@ taskRouter.route('/')
         })
     })
 
-var task = {
+let task = {
     taskRouter
 }
 
