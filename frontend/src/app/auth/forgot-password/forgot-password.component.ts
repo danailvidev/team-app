@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
-import { NotifyService } from '../../core/notify.service';
+import { NotifyService } from '@services/notify.service';
 
 @Component({
-    selector: 'forgot-password',
+    selector: 'ta-forgot-password',
     templateUrl: 'forgot-password.component.html',
     styleUrls: ['forgot-password.scss']
 })

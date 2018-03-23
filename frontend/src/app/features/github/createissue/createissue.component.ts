@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 import { Issue } from '../interfaces';
 import { GithubService } from '../github.service';
-import { NotifyService } from '../../../core/notify.service';
+import { NotifyService } from '@services/notify.service';
 
 @Component({
     selector: 'ta-createissue',

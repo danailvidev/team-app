@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ApiService } from '../core/api.service';
+import { ApiService } from '@services/api.service';
 import { Effect, Actions } from '@ngrx/effects';
 import * as userActions from './../actions/user.actions';
 import { Router } from '@angular/router';

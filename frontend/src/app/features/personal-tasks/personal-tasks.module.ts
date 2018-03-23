@@ -10,7 +10,7 @@ import { MatInputModule } from '@angular/material/input';
 // import { DragulaModule } from 'ng2-dragula';
 import { KeysPipe } from './key.pipe';
 
-import { TaskService } from '@services/index';
+import { TaskService } from '@services/task.service';
 
 import { PersonalTaskDetail } from './personal-task-detail/personal-task-detail.component';
 

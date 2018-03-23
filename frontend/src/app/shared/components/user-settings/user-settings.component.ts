@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { AppState } from '../../interfaces/app-state';
 import { Store } from '@ngrx/store';
-import { NotifyService } from '../../../core/notify.service';
+import { NotifyService } from '@services/notify.service';
 
 @Component({
     selector: 'user-settings',

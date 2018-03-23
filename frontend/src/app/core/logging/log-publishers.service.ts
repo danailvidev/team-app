@@ -3,9 +3,9 @@ import { LogPublisher, LogConsole, LogLocalStorage, LogWebApiDb } from './log-pu
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
-import { environment } from '../../../environments/environment';
+import { environment } from '@env/environment';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { ApiService } from '../api.service';
+import { ApiService } from '@services/api.service';
 
 @Injectable()
 export class LogPublisherService {
