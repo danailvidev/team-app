@@ -37,9 +37,10 @@ export abstract class BaseApiService {
 
     protected put(relativeUrl: string, body: any, options: HttpResponse<any> = this.defaultOptions): Observable<any> {
         return this.http.put(this.baseUrl + relativeUrl, body, options).pipe(
-            map((res) => {
-                console.log(res);
-            })
+            map((res: any) => {
+                return res;
+            }),
+            catchError(this.handleError(relativeUrl))
         );
     }
 

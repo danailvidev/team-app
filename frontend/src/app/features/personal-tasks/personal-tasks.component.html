@@ -1,8 +1,74 @@
-<div class="wrapper">
-  <div class="backlog">
-    backlog
+<!-- <div class='wrapper'>
+  <div class='container' *ngFor='let group of groups' [dragula]='"nested-bag"'>
+    <span class="nonDraggable">{{group.name}}</span>
+    <div *ngFor='let item of group.items' class="draggable" (click)=onclick(item)>
+      <mat-card>
+        <mat-card-content>
+          <mat-form-field>
+                <textarea matInput value="{{item.name}}">
+                    </textarea>
+          </mat-form-field>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <span class="nonDraggable" (click)="group.items.push({})">New Task...</span>
   </div>
-  <div class="current">current</div>
-  <div class="in-progress">progress</div>
-  <div class="done">done</div>
+
+</div> -->
+<div style="padding-top:20px;">
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Task content" [(ngModel)]="task.content">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-select placeholder="Type" [(ngModel)]="task.type" name="task.type">
+      <mat-option *ngFor="let item of types | keys" [value]="item.value">
+        {{item.label}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button mat-raised-button (click)="addTask()" color="warn" [disabled]="task.type?.length < 1 || task.content?.length < 1">Save Task</button>
+</div>
+
+<!-- <ul>
+    <li *ngFor="let task of tasks">
+        contenct: <span>{{task.content}}</span>
+        type: <span>{{task.type | }}</span>
+    </li>
+</ul> -->
+
+<div class="wrapper">
+  <div class="container">
+    <span>Backlog</span>
+    <div *ngFor="let task of backlog" (click)="getTaskDetails(task)">
+      contenct:
+      <span>{{task.content}}</span>
+      type:
+      <span>{{task.type }}</span>
+    </div>
+  </div>
+  <div class="container">
+    <span>Current</span>
+    <div *ngFor="let task of current">
+      <span>{{task.content}}</span>
+      <span>{{task.type }}</span>
+    </div>
+  </div>
+  <div class="container">
+    <span>In Progress</span>
+    <div *ngFor="let task of inprogress">
+      contenct:
+      <span>{{task.content}}</span>
+      type:
+      <span>{{task.type }}</span>
+    </div>
+  </div>
+  <div class="container">
+    <span>Done</span>
+    <div *ngFor="let task of done">
+      contenct:
+      <span>{{task.content}}</span>
+      type:
+      <span>{{task.type }}</span>
+    </div>
+  </div>
 </div>

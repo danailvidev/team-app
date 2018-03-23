@@ -12,6 +12,6 @@ const routes: Routes = [
 })
 export class PersonalTasksRoutingModule {
     static components = [
-        PersonalTasksComponent,
+        PersonalTasksComponent
     ];
 }

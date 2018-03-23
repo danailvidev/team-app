@@ -1,0 +1,14 @@
+{{data | json}}
+<div>
+        <mat-form-field class="example-full-width">
+                <input matInput type="data" placeholder="Date Created" disabled value="{{data.createdAt | date:'medium'}}">
+              </mat-form-field>
+</div>
+
+
+<mat-form-field class="example-full-width">
+  <textarea matInput placeholder="Content" [(ngModel)]="data.content">{{data.content}}</textarea>
+</mat-form-field>
+<mat-divider></mat-divider>
+<button mat-raised-button color="primary" (click)="onClick">Cancel</button>
+<button mat-raised-button color="warn" (click)="updateTask()">Update</button>

@@ -2,15 +2,38 @@ import { NgModule } from '@angular/core';
 import { PersonalTasksRoutingModule } from './personal-tasks-routing.module';
 import { SharedModule } from '../../shared/shared.module';
 
-import {MatGridListModule} from '@angular/material/grid-list';
+// material
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatInputModule } from '@angular/material/input';
+
+// dragula
+// import { DragulaModule } from 'ng2-dragula';
+import { KeysPipe } from './key.pipe';
+
+import { TaskService } from '@services/index';
+
+import { PersonalTaskDetail } from './personal-task-detail/personal-task-detail.component';
 
 @NgModule({
-  imports: [
-    SharedModule,
-    PersonalTasksRoutingModule,
+    imports: [
+        SharedModule,
+        PersonalTasksRoutingModule,
+        // DragulaModule,
 
-    MatGridListModule
-  ],
-  declarations: [PersonalTasksRoutingModule.components],
+        // material
+        MatGridListModule,
+        MatInputModule
+    ],
+    declarations: [
+        PersonalTasksRoutingModule.components,
+        PersonalTaskDetail,
+        KeysPipe
+    ],
+    entryComponents: [
+        PersonalTaskDetail
+    ],
+    providers: [
+        TaskService
+    ]
 })
 export class PersonalTasksModule { }

@@ -7,7 +7,7 @@ import { BaseApiService } from './abstract.service';
 @Injectable()
 export class ApiService extends BaseApiService {
 
-    public constructor(protected http: HttpClient) {
+    public constructor(http: HttpClient) {
         super(http);
     }
 

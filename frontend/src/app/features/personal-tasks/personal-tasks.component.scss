@@ -1,0 +1,46 @@
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  overflow-y: scroll;
+  .container {
+    // background-color:#989898;
+    flex-grow: 1;
+    margin: 10px 5px;
+    position: relative;
+    // &:nth-child(odd) {
+    //   background-color: rgba(0, 0, 0, 0.2);
+    // }
+    > span {
+        font-size: 14px;
+            margin: 10px;
+        &:first-child{
+            font-size: 20px;
+            font-weight: bold;
+        }
+        &:last-child {
+            cursor: pointer;
+        }
+    }
+  }
+}
+
+.container div,
+.gu-mirror {
+  margin: 10px;
+  padding: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+  transition: opacity 0.4s ease-in-out;
+}
+
+.container div {
+  cursor: move;
+  cursor: grab;
+  cursor: -moz-grab;
+  cursor: -webkit-grab;
+}
+
+.gu-mirror {
+  cursor: grabbing;
+  cursor: -moz-grabbing;
+  cursor: -webkit-grabbing;
+}
