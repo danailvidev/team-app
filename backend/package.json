@@ -13,12 +13,14 @@
     "@types/socket.io": "^1.4.31",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.2",
+    "chalk": "^2.3.2",
     "cors": "^2.8.4",
     "express": "^4.16.2",
     "express-validator": "^4.3.0",
     "jwt-simple": "^0.5.1",
     "mongoose": "^4.13.1",
     "nodemailer": "^4.4.1",
+    "nodemon": "^1.17.3",
     "socket.io": "^2.0.4"
   },
   "engines": {

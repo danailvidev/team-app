@@ -1,10 +1,11 @@
-var express = require('express');
-var app = express();
+var express = require('express')
+var app = express()
 var cors = require('cors')
 var bodyParser = require('body-parser')
+var chalk = require('chalk')
 var mongoose = require('mongoose')
-const config = require('./config.json');
-var server = require('http').createServer(app);
+const config = require('./config.json')
+var server = require('http').createServer(app)
 var io = require('socket.io')(server);
 
 // routes
@@ -15,8 +16,6 @@ var user = require('./routes/user.js')
 var messages = require('./routes/messages.js')
 var task = require('./routes/task.js')
 
-mongoose.Promise = Promise // use es6 promise  DeprecationWarning: Mongoose: mpromise (mongoose's default promise library) is deprecated
-
 app.use(cors({
     credentials: true,
     origin: config.cors.headers
@@ -24,15 +23,23 @@ app.use(cors({
 
 app.use(bodyParser.json())
 
+//#region Connect to MongoDB.
+
+mongoose.Promise = Promise // use es6 promise  DeprecationWarning: Mongoose: mpromise (mongoose's default promise library) is deprecated
+
 mongoose.connect(config.mongo_url, {
     useMongoClient: true,
-    }, (err) => {
+}, (err) => {
     if (!err) {
-        console.log('db connected')
+        console.log(chalk.underline.green.bold('MongoDB connected'))
     } else {
-        console.log('db err')
+        console.error(err);
+        console.log('%s MongoDB connection error. Please make sure MongoDB is running.', chalk.red('✗'));
+        process.exit();
     }
 })
+
+//#endregion
 
 app.use('/auth', auth.authRouter)
 app.use('/user', user.userRouter)
@@ -47,7 +54,7 @@ io.on('connection', function (socket) {
 
     // when the client emits 'new message', this listens and executes
     socket.on('new message', function (data) {
-        
+
         // we tell the client to execute 'new message'
         socket.broadcast.emit('message', {
             username: data.from.email,
