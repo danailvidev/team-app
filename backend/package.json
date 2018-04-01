@@ -1,29 +1,51 @@
 {
-  "name": "backend",
-  "version": "1.0.1",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "@types/express": "^4.11.1",
-    "@types/socket.io": "^1.4.31",
-    "bcrypt-nodejs": "0.0.3",
-    "body-parser": "^1.18.2",
-    "chalk": "^2.3.2",
-    "cors": "^2.8.4",
-    "express": "^4.16.2",
-    "express-validator": "^4.3.0",
-    "jwt-simple": "^0.5.1",
-    "mongoose": "^4.13.1",
-    "nodemailer": "^4.4.1",
-    "nodemon": "^1.17.3",
-    "socket.io": "^2.0.4"
-  },
-  "engines": {
-    "node": "9.3.0"
-  }
+    "name": "backend",
+    "version": "1.0.1",
+    "author": "danail videv",
+    "description": "",
+    "homepage": "https://webadventure.org/team-app",
+    "main": "server.js",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/danailvidev/team-app.git"
+    },
+    "keywords": [
+        "team",
+        "development",
+        "service",
+        "communication",
+        "chat",
+        "task",
+        "tasks",
+        "node",
+        "express"
+    ],
+    "license": "MIT",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "nodemon server.js",
+        "killall": "ps auxww | grep node | grep -v grep | awk '{ print $2 }' | xargs kill -9"
+    },
+    "dependencies": {
+        "@types/express": "^4.11.1",
+        "@types/socket.io": "^1.4.31",
+        "bcrypt-nodejs": "0.0.3",
+        "body-parser": "^1.18.2",
+        "chalk": "^2.3.2",
+        "cors": "^2.8.4",
+        "express": "^4.16.2",
+        "express-validator": "^4.3.0",
+        "jwt-simple": "^0.5.1",
+        "mongoose": "^4.13.1",
+        "nodemailer": "^4.4.1",
+        "nodemon": "^1.17.3",
+        "socket.io": "^2.0.4"
+    },
+    "engines": {
+        "node": "9.3.0"
+    },
+    "nodemonConfig": {
+        "ignore": ["test/*", "docs/*","node_modules/*"],
+        "delay": "2500"
+    }
 }
