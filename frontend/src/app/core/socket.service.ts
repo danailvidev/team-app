@@ -21,8 +21,16 @@ export enum Event {
     DISCONNECT = 'disconnect'
 }
 
+export abstract class SocketService {
+    abstract initSocket();
+    abstract onMessage();
+    abstract send(message: any): void;
+    abstract addUser(username);
+    abstract onEvent(event: Event);
+}
+
 @Injectable()
-export class SocketService {
+export class SocketIOService extends SocketService {
     private socket;
 
     public initSocket(): void {

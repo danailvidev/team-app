@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { SocketService, Action, Event } from '../../../core/socket.service';
+import { SocketService, Action, Event } from '@services/socket.service';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../shared/interfaces/app-state';
-import { ApiService } from '../../../core/api.service';
-import { NotifyService } from '../../../core/notify.service';
+import { ApiService } from '@services/api.service';
+import { NotifyService } from '@services/notify.service';
 import { Subscription } from 'rxjs/Subscription';
 
 @Component({
