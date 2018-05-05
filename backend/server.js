@@ -27,7 +27,7 @@ app.use(bodyParser.json())
 
 mongoose.Promise = Promise // use es6 promise  DeprecationWarning: Mongoose: mpromise (mongoose's default promise library) is deprecated
 
-mongoose.connect(config.mongo_url, {
+mongoose.connect(config.mlabCom, {
     useMongoClient: true,
 }, (err) => {
     if (!err) {
@@ -37,7 +37,7 @@ mongoose.connect(config.mongo_url, {
         console.log('%s MongoDB connection error. Please make sure MongoDB is running.', chalk.red('✗'));
         process.exit();
     }
-})
+}) 
 
 //#endregion
 
