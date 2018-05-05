@@ -44,9 +44,8 @@ export class LogPublisherService {
         });
     }
 
-    getLoggers(): any {
-        return Observable.create(environment.logging);
-
+    getLoggers(): Observable<any> {
+        return of(environment.logging);
     }
 
     private handleError(error) {
