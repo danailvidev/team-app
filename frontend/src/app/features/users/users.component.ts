@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState, IUser } from '../../shared/interfaces';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import * as userActions from '../../actions/user.actions';
 
 @Component({
@@ -13,9 +13,7 @@ export class UsersComponent implements OnInit {
   users$: Observable<IUser[]>;
   pageError?: string = null;
 
-  constructor(
-    private store: Store<AppState>
-  ) {
+  constructor(private store: Store<AppState>) {
     this.users$ = this.store.select(state => state.users);
   }
 

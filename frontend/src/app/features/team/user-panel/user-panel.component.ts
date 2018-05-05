@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState, IUser } from '../../../shared/interfaces';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import * as userActions from '../../../actions/user.actions';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 

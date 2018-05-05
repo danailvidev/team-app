@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState, IUser } from '../../../shared/interfaces';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import * as authActions from '../../../actions/auth.actions';
 import { MatDialog } from '@angular/material';
 import { UserSettingsComponent } from '../../../shared/components/user-settings/user-settings.component';

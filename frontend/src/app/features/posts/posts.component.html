@@ -6,12 +6,12 @@
   </mat-card-header>
   <form role="form" (submit)="post()">
 
-    <mat-input-container>
+    <mat-form-field>
       <input matInput type="text" required [(ngModel)]="postMsg" id="postMsg" name="postMsg">
       <mat-placeholder>
         Post Message
       </mat-placeholder>
-    </mat-input-container>
+    </mat-form-field>
     <br>
     <br>
     <button mat-raised-button color="warn" type="submit" name="action">Post</button>

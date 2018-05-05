@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { LogPublisher, LogConsole, LogLocalStorage, LogWebApiDb } from './log-publishers';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/map';
+import { Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
+
 import { environment } from '@env/environment';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { ApiService } from '@services/api.service';
@@ -45,7 +45,7 @@ export class LogPublisherService {
     }
 
     getLoggers(): any {
-        return Observable.of(environment.logging);
+        return Observable.create(environment.logging);
 
     }
 

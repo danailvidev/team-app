@@ -77,7 +77,7 @@ export class PersonalTasksComponent implements OnInit, OnDestroy {
 
     addTask() {
         this.subscriptions.add(
-            this.taskService.addTask(this.task).subscribe(res => {
+            this.taskService.addTask(this.task).subscribe((res: any) => {
                 if (res.result) {
                     this.getUserTasks();
                     this.task = new Task();

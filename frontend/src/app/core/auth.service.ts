@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Response, RequestOptions } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
+import { Observable, of } from 'rxjs';
 import { environment } from '../../environments/environment.prod';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { NotifyService } from './notify.service';
 import { LoggingService } from './logging/loggin.service';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class AuthService {
@@ -30,7 +31,7 @@ export class AuthService {
         if (!this.userData) {
             this.userData = JSON.parse(localStorage.getItem(this.DATA_KEY));
         }
-        return Observable.of(this.userData);
+        return of(this.userData);
     }
 
     loginUser(userData): Observable<any> {
@@ -38,7 +39,7 @@ export class AuthService {
         const body = userData;
         const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
         const options = new HttpResponse({ headers: headers });
-        return this.http.post<any>(this.baseAuthUrl + 'login', userData).map(res => {
+        return this.http.post<any>(this.baseAuthUrl + 'login', userData).pipe(map(res => {
             this.userData = res.userData;
             this.logger.info(JSON.stringify(res.userData.email) + ' has been logged in');
             this.saveUserData(res.userData);
@@ -54,7 +55,7 @@ export class AuthService {
                 panelClass: ['snack-denied']
             });
             return false;
-        });
+        }));
     }
 
     logout(): boolean {
@@ -77,7 +78,7 @@ export class AuthService {
         const body = userData;
         const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
         const options = new HttpResponse({ headers: headers });
-        return this.http.post<any>(this.baseAuthUrl + 'register', body, options).map(res => {
+        return this.http.post<any>(this.baseAuthUrl + 'register', body, options).pipe(map(res => {
             this.logger.info(JSON.stringify(userData.email) + ' registered');
             this.saveToken(res.token);
             this.saveUserData(res.userData);
@@ -92,7 +93,7 @@ export class AuthService {
                 panelClass: ['snack-denied']
             });
             return err;
-        });
+        }));
     }
 
     private saveToken(token) {

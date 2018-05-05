@@ -1,13 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MatPaginator, MatSort, MatTableDataSource, MatDialog } from '@angular/material';
-import { Observable } from 'rxjs/Observable';
-import { merge } from 'rxjs/observable/merge';
-import { of as observableOf } from 'rxjs/observable/of';
-import { catchError } from 'rxjs/operators/catchError';
-import { map } from 'rxjs/operators/map';
-import { startWith } from 'rxjs/operators/startWith';
-import { switchMap } from 'rxjs/operators/switchMap';
+import { Observable, of, merge } from 'rxjs';
+import {  map, startWith, switchMap, catchError } from 'rxjs/operators';
 import { GithubService } from '../github.service';
 import { CreateissueComponent } from '../createissue/createissue.component';
 
@@ -47,7 +42,7 @@ export class GithubissuesComponent implements OnInit {
                     return this.svc.getRepoIssues(
                         this.sort.active, this.sort.direction, this.paginator.pageIndex);
                 }),
-                map(data => {
+                map((data: any) => {
                     // Flip flag to show that loading has finished.
                     this.isLoadingResults = false;
                     this.isRateLimitReached = false;
@@ -59,7 +54,7 @@ export class GithubissuesComponent implements OnInit {
                     this.isLoadingResults = false;
                     // Catch if the GitHub API has reached its rate limit. Return empty data.
                     this.isRateLimitReached = true;
-                    return observableOf([]);
+                    return of([]);
                 })
             ).subscribe(data => {
                 this.dataSource.data = data;

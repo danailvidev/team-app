@@ -1,5 +1,4 @@
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
+import { Observable, of } from 'rxjs';
 import { Response } from '@angular/http';
 import { LogEntry } from './loggin.service';
 import { ApiService } from '../api.service';
@@ -12,17 +11,17 @@ export abstract class LogPublisher {
     abstract clear(): Observable<boolean>;
 }
 
-export class LogConsole extends BaseApiService implements LogPublisher  {
+export class LogConsole extends BaseApiService implements LogPublisher {
     log(record: LogEntry): Observable<boolean> {
         console.log(record.buildLogString());
 
-        return Observable.of(true);
+        return of(true);
     }
 
     clear(): Observable<boolean> {
         console.clear();
 
-        return Observable.of(true);
+        return of(true);
     }
 }
 
@@ -50,7 +49,7 @@ export class LogLocalStorage extends LogPublisher {
         // Retrieve all values from localStorage
         values = JSON.parse(localStorage.getItem(this.location)) || [];
 
-        return Observable.of(values);
+        return of(values);
     }
 
     log(record: LogEntry): Observable<boolean> {
@@ -69,12 +68,12 @@ export class LogLocalStorage extends LogPublisher {
             console.log(ex);
         }
 
-        return Observable.of(ret);
+        return of(ret);
     }
 
     clear(): Observable<boolean> {
         localStorage.removeItem(this.location);
-        return Observable.of(true);
+        return of(true);
     }
 }
 

@@ -2,7 +2,7 @@
   <p>Register</p>
   <form role="form" (submit)="register()">
     <br>
-    <mat-input-container>
+    <mat-form-field>
       <input matInput type="text" [(ngModel)]="user.email" id="email" name="email" [formControl]="emailFormControl"
       [errorStateMatcher]="matcher">
       <mat-placeholder>
@@ -15,10 +15,10 @@
       <mat-error *ngIf="emailFormControl.hasError('required')">
         Email is <strong>required</strong>
       </mat-error>
-    </mat-input-container>
+    </mat-form-field>
     <br>
     <br>
-    <mat-input-container>
+    <mat-form-field>
       <input matInput type="password" [(ngModel)]="user.password" id="password" name="password" [formControl]="passwordFormControl"
       [errorStateMatcher]="matcher">
       <mat-placeholder>
@@ -33,22 +33,22 @@
       <mat-error *ngIf="passwordFormControl.hasError('required')">
         Password is <strong>required</strong>
       </mat-error>
-    </mat-input-container>
+    </mat-form-field>
     <br>
     <br>
-    <mat-input-container>
+    <mat-form-field>
       <input matInput type="text" [(ngModel)]="user.name" id="name" name="name">
       <mat-placeholder>
         First Name/Surname
       </mat-placeholder>
-    </mat-input-container>
+    </mat-form-field>
     <br>
-    <mat-input-container>
+    <mat-form-field>
       <input matInput type="text" [(ngModel)]="user.description" id="description" name="description">
       <mat-placeholder>
         Description
       </mat-placeholder>
-    </mat-input-container>
+    </mat-form-field>
     <br>
     <button mat-raised-button color="warn" type="submit" name="action" [disabled]="(emailFormControl.errors || passwordFormControl.errors)">Register</button>
     <br>
