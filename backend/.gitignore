@@ -32,7 +32,7 @@
 npm-debug.log
 testem.log
 /typings
-config.*
+config.json
 yarn.lock
 
 # e2e
