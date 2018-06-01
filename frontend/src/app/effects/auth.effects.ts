@@ -3,9 +3,7 @@ import { AuthService } from '@services/auth.service';
 import { Effect, Actions } from '@ngrx/effects';
 import * as authActions from './../actions/auth.actions';
 import { Router } from '@angular/router';
-import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/switchMap';
-import 'rxjs/add/operator/map';
+import { switchMap, map} from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 @Injectable()

@@ -17,10 +17,25 @@
     ],
     "baseUrl": "src",
     "paths": {
-        "@app/*": ["app/*"],
-        "@env/*": ["environments/*"],
-        "@services/*": ["app/core/*"],
-        "socket.io-client": ["../node_modules/socket.io-client/dist/socket.io.slim.js"]
-      }
+      "@app/*": [
+        "app/*"
+      ],
+      "@env/*": [
+        "environments/*"
+      ],
+      "@services/*": [
+        "app/core/*"
+      ],
+      "socket.io-client": [
+        "../node_modules/socket.io-client/dist/socket.io.slim.js"
+      ]
+    },
+    "strict": true,
+    "alwaysStrict": false,
+    "noImplicitAny": false,
+    "noImplicitThis": false,
+    "strictNullChecks": false,
+    "strictFunctionTypes": false,
+    "strictPropertyInitialization": false
   }
 }
