@@ -2,9 +2,9 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.3.
 
-Demo -> [LINK](https://webadventure.org/team-app)
+Demo -> [LINK](https://geop.io/team-app)
 
-![Alt text](https://webadventure.org/team-app/team-app.jpg?raw=true "Sample")
+![Alt text](https://geop.io/team-app/team-app.jpg?raw=true "Sample")
 
 ## Run the app
 
