@@ -1,7 +1,8 @@
 var express = require('express')
 var app = express()
-const config = require('./config.json')
+const config = require('./config/config')
 var server = require('http').createServer(app)
+var api = require('./middleware/routes')
 
 // middleware 
 require('./middleware/middleware')(app)
@@ -10,7 +11,7 @@ require('./middleware/middleware')(app)
 require('./middleware/database')()
 
 // routes
-require('./middleware/routes')(app)
+app.use('/api', api)
 
 // socket.io
 require('./middleware/socketio')(server)
