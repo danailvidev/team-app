@@ -1,32 +1,60 @@
 # Team Services App (Under Development)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.3.
+> ### Made with :heart: 
 
-Demo -> [LINK](https://geop.io/team-app)
+[![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php)
+[![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
+[![TypeScript](https://badges.frapsoft.com/typescript/love/typescript.svg?v=101)](https://github.com/ellerbrock/typescript-badges/)
 
-![Alt text](https://geop.io/team-app/team-app.jpg?raw=true "Sample")
+## [LIVE DEMO](https://geop.io/team-app)
+[![example-team-app](https://goo.gl/aYZCEL)](https://geop.io/team-app)
 
-## Run the app
+## UI Description
+The app provides a possibility to maintain team/project.
 
-Need `node` to be installed. Download it from here: `https://nodejs.org/en/`
-1. git clone `https://github.com/danailvidev/team-app.git` folder or download zip `https://github.com/danailvidev/team-app/archive/master.zip`
-2. cd backend 
-3. npm install (install packages)
-4. nodemon server.js (start the backend)
-5. cd frondend
-6. npm install (install packages)
-7. npm start (start the app)
-8. open browser, default node path:port (e.g. http://localhost:4200)
+- Team chat
+- Project management
+- Personal tasks
+- User friendly design
 
-## Running unit tests
+API connection:
+- Own node.js,express, mongodb API
+- App uses github.com API for issue tracking
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-Doesn't work with firebase
+## Features
+- Angular 6+
+- Internationalization (translations)
+- Routing
+- Lazy loading
+- Theming
+- Material Design
+- Socket.io
+- NGRX
+- RxJS/Observables
+- Angular forms
+- Http
+- Scalable architecture
+- Following the best practices
 
-## Running end-to-end tests
+## Environment installation
+You need to have `Node.js` and `npm` installed on your PC/Mac.
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Run the backend:
+- cd backend & npm install
+- nodemon server.js (start the backend)
 
-## Further help
+Run the frontend:
+- cd frondend & npm install
+- Run `npm start` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Build
+
+Run `npm run build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+
+## Contributing
+Please see the CONTRIBUTING file for guidelines.
+
+## License
+MIT
+
+Enjoy :stuck_out_tongue_winking_eye:
