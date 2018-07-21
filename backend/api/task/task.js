@@ -1,6 +1,6 @@
-var Task = require('../models/Task.js')
+var Task = require('./taskModel.js')
 var express = require('express')
-var auth = require('./auth.js')
+var auth = require('../auth/auth.js')
 var taskRouter = express.Router()
 var ObjectId = require('mongodb').ObjectID;
 

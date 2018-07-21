@@ -1,6 +1,6 @@
-var User = require('../models/User.js')
+var User = require('./userModel.js')
 var express = require('express')
-var auth = require('./auth.js')
+var auth = require('../auth/auth.js')
 var userRouter = express.Router()
 
 userRouter.get('/:id', async(req, res) => {

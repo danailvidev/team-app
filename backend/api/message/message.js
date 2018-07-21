@@ -1,4 +1,4 @@
-var Message = require('../models/Message.js')
+var Message = require('./messageModel.js')
 var express = require('express')
 var msgRouter = express.Router()
 
@@ -25,7 +25,7 @@ msgRouter.put('/:id', (req, res) => {
     })
 })
 
-var messages = {
+var message = {
     msgRouter,
     saveMsg: (msg) => {
         var msgData = {}
@@ -46,4 +46,4 @@ var messages = {
     }
 }
 
-module.exports = messages
+module.exports = message

@@ -5,7 +5,7 @@ const config = require('../config/config')
 module.exports = function () {
     mongoose.Promise = Promise // use es6 promise  DeprecationWarning: Mongoose: mpromise (mongoose's default promise library) is deprecated
 
-    mongoose.connect(config.defaultConnection, {
+    mongoose.connect(config.mlabCom, {
         useMongoClient: true,
     }, (err) => {
         if (!err) {

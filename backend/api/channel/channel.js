@@ -1,6 +1,6 @@
-var Channel = require('../models/Channel.js')
+var Channel = require('./channelModel.js')
 var express = require('express')
-var auth = require('./auth.js')
+var auth = require('../auth/auth.js')
 var channelRouter = express.Router()
 
 var channels = []

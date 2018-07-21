@@ -1,8 +1,8 @@
 var bcrypt = require('bcrypt-nodejs')
-var User = require('../models/User.js')
+var User = require('../user/userModel.js')
 var jwt = require('jwt-simple')
 var express = require('express')
-const utilsEmail = require('../utils/email')
+const utilsEmail = require('../../utils/email')
 var authRouter = express.Router()
 const {
     check,

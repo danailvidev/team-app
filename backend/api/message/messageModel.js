@@ -5,7 +5,8 @@ module.exports = mongoose.model('Messages', {
     authorEmail: String,
     authorId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'User',
+        require: true
     },
     dateCreated: Date
 })

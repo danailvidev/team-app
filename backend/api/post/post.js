@@ -1,6 +1,6 @@
-var Post = require('../models/Post.js')
+var Post = require('./postModel.js')
 var express = require('express')
-var auth = require('./auth.js')
+var auth = require('../auth/auth.js')
 var postRouter = express.Router()
 
 postRouter.route('/:id')
