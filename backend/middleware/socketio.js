@@ -1,5 +1,6 @@
 module.exports = function (server) {
     var io = require('socket.io')(server);
+    var messageController= require('../api/message/messageController')
 
     var numUsers = 0;
 
@@ -16,7 +17,7 @@ module.exports = function (server) {
             });
 
             // save the msg to db
-            messages.saveMsg(data)
+            messageController.saveMsg(data)
         });
 
         // when the client emits 'add user', this listens and executes

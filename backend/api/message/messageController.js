@@ -1,40 +1,71 @@
 var Message = require('./messageModel.js')
 var _ = require('lodash')
 
-exports.params = function (req, res, next, id) {
-    Message.findById(id)
-        .then(function (message) {
-            if (!message) {
-                next(new Error('No message with that id'))
-            } else {
-                req.message = message;
-                next()
-            }
-        }, function (err) {
-            next(err)
-        })
+const params = async (req, res, next, id) => {
+    try {
+        let message = await Message.findById(id)
+        if (!message) {
+            next(new Error('No message with that id'))
+        } else {
+            req.message = message;
+            next()
+        }
+    } catch (err) {
+        next(err)
+    }
 }
 
-exports.get = function (req, res, next) {
-    Message.find({}, '-__v -hash') // remove unwanted props
-        .then(function (messages) {
+const get = async (req, res, next) => {
+    try {
+        let messages = await Message.find({}, '-__v -hash') // remove unwanted props
+        if (messages) {
             res.send(messages)
-        }, function (err) {
+        } else {
+            res.send([])
+        }
+    } catch (err) {
+        next(err)
+    }
+
+}
+
+const put = function (req, res, next) {
+    var message = req.message
+    var update = req.body
+
+    _.merge(message, update)
+
+    message.save(function (err, saved) {
+        if (err) {
             next(err)
-        })
+        } else {
+            res.send(saved)
+        }
+    })
 }
 
-exports.put = function (req, res, next) {
-   var message = req.message
-   var update = req.body
+const saveMsg = (msg) => {
+    var msgData = {}
+    msgData.content = msg.content
+    msgData.authorEmail = msg.from.email
+    msgData.authorId = msg.from.userId
+    msgData.dateCreated = new Date()
 
-   _.merge(message, update)
+    var message = new Message(msgData)
 
-   message.save(function(err, saved){
-       if(err){
-           next(err)
-       } else {
-           res.send(saved)
-       }
-   })
+    message.save((err, results) => {
+        if (err) {
+            // TODO: log the error in db
+            console.log('saving msg error', err)
+        } 
+    })
 }
+
+var messageController = {
+    params,
+    get,
+    put,
+    saveMsg
+}
+
+module.exports = messageController

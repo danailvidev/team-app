@@ -17,7 +17,7 @@ export class ApiService extends BaseApiService {
     }
 
     getChatMessages(): Observable<any> {
-        const relativeUrl = `messages`;
+        const relativeUrl = `message`;
         return this.get(relativeUrl);
     }
 

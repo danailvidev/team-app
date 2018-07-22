@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Observer, Observable } from 'rxjs';
+import {  Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 import * as socketIo from 'socket.io-client';
 
-// const SERVER_URL = 'http://localhost:3000';
-const SERVER_URL = 'https://dv-social.herokuapp.com';
-
+const SOCKET_SERVER_URL = environment.SOCKET_SERVER_URL;
 
 // Actions you can take on the App
 export enum Action {
@@ -33,7 +32,7 @@ export class SocketIOService extends SocketService {
     private socket;
 
     public initSocket(): void {
-        this.socket = socketIo(SERVER_URL);
+        this.socket = socketIo(SOCKET_SERVER_URL);
     }
 
     public send(message: any): void {
