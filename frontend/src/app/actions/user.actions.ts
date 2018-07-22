@@ -1,4 +1,4 @@
-import { IUser } from '../shared/interfaces';
+import { IUser } from '@app/shared/interfaces';
 import { Action } from '@ngrx/store';
 export const LOAD_USERS = 'LOAD_USERS;';
 export const LOAD_USERS_SUCCESS = 'LOAD_USERS_SUCCESS;';

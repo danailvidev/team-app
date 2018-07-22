@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 // import { DragulaService } from 'ng2-dragula';
-import { TaskService } from '@app/core';
+import { TaskService } from './task.service';
 import { Subscriber } from 'rxjs/Subscriber';
-import { PersonalTaskDetail } from './personal-task-detail/personal-task-detail.component';
+import { PersonalTaskDetailComponent } from '@app/features/personal-tasks/personal-task-detail/personal-task-detail.component';
 import { MatDialog } from '@angular/material';
 
 export enum TaskType {
@@ -12,12 +12,11 @@ export enum TaskType {
     done
 }
 
-export class Task {
+export class TaskModel {
     _id: string;
     content: string;
     type: TaskType;
     createdAt: Date;
-
 }
 
 @Component({
@@ -28,10 +27,10 @@ export class Task {
 
 export class PersonalTasksComponent implements OnInit, OnDestroy {
 
-    public backlog: Array<Task> = [];
-    public current: Array<Task> = [];
-    public inprogress: Array<Task> = [];
-    public done: Array<Task> = [];
+    public backlog: Array<TaskModel> = [];
+    public current: Array<TaskModel> = [];
+    public inprogress: Array<TaskModel> = [];
+    public done: Array<TaskModel> = [];
 
     public groups: Array<any> = [
         this.backlog,
@@ -41,8 +40,8 @@ export class PersonalTasksComponent implements OnInit, OnDestroy {
     ];
 
     public types = TaskType;
-    public task = new Task();
-    public tasks: Array<Task> = [];
+    public task = new TaskModel();
+    public tasks: Array<TaskModel> = [];
     private subscriptions = new Subscriber();
 
     constructor(
@@ -80,7 +79,7 @@ export class PersonalTasksComponent implements OnInit, OnDestroy {
             this.taskService.addTask(this.task).subscribe((res: any) => {
                 if (res.result) {
                     this.getUserTasks();
-                    this.task = new Task();
+                    this.task = new TaskModel();
                 }
             }, err => {
                 console.log(`error : ${err}`);
@@ -119,8 +118,8 @@ export class PersonalTasksComponent implements OnInit, OnDestroy {
         this.done = [];
     }
 
-    public getTaskDetails(task: Task) {
-        const dialogRef = this.dialog.open(PersonalTaskDetail, {
+    public getTaskDetails(task: TaskModel) {
+        const dialogRef = this.dialog.open(PersonalTaskDetailComponent, {
             data: task,
             height: '400px',
             width: '600px',

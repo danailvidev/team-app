@@ -10,9 +10,9 @@ import { MatInputModule } from '@angular/material/input';
 // import { DragulaModule } from 'ng2-dragula';
 import { KeysPipe } from './key.pipe';
 
-import { TaskService } from '@services/task.service';
+import { TaskService } from './task.service';
 
-import { PersonalTaskDetail } from './personal-task-detail/personal-task-detail.component';
+import { PersonalTaskDetailComponent } from './personal-task-detail/personal-task-detail.component';
 
 @NgModule({
     imports: [
@@ -26,11 +26,11 @@ import { PersonalTaskDetail } from './personal-task-detail/personal-task-detail.
     ],
     declarations: [
         PersonalTasksRoutingModule.components,
-        PersonalTaskDetail,
+        PersonalTaskDetailComponent,
         KeysPipe
     ],
     entryComponents: [
-        PersonalTaskDetail
+        PersonalTaskDetailComponent
     ],
     providers: [
         TaskService

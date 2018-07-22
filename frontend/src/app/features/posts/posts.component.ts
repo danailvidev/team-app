@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../../core/api.service';
-import { AuthService } from '../../core/auth.service';
-import { NotifyService } from '../../core/notify.service';
+import { ApiService } from '@services/api.service';
+import { AuthService } from '@services/auth.service';
+import { NotifyService } from '@services/notify.service';
 
 @Component({
   selector: 'app-posts',

@@ -1,6 +1,6 @@
 import { Observable,  throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
-import { environment } from '../../environments/environment';
+import { environment } from '@env/environment';
 import { HttpClient, HttpResponse, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import 'rxjs/add/observable/throw';
 

@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import 'rxjs/add/observable/throw';
-import { BaseApiService } from './abstract.service';
-import { Task } from '../features/personal-tasks/personal-tasks.component';
+import { BaseApiService } from '@app/core/abstract.service';
+import { TaskModel } from '@app/features/personal-tasks/personal-tasks.component';
 
 @Injectable()
 export class TaskService extends BaseApiService {
@@ -14,11 +14,11 @@ export class TaskService extends BaseApiService {
         super(http);
     }
 
-    addTask(task: Task): Observable<Task> {
+    addTask(task: TaskModel): Observable<TaskModel> {
         return this.post(this.relativeUrl, task);
     }
 
-    updateTask(task: Task): Observable<Task> {
+    updateTask(task: TaskModel): Observable<TaskModel> {
         return this.put(`${this.relativeUrl}/${task._id}`, task);
     }
 

@@ -1,16 +1,15 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { TaskService } from '@services/index';
-import { Task } from '../personal-tasks.component';
+import { TaskService } from '../task.service';
 
 @Component({
     selector: 'ta-personal-task-detail',
     templateUrl: 'persinal-task-detail.component.html',
     styleUrls: ['styles.scss']
 })
-export class PersonalTaskDetail {
+export class PersonalTaskDetailComponent {
     constructor(
-        public dialogRef: MatDialogRef<PersonalTaskDetail>,
+        public dialogRef: MatDialogRef<PersonalTaskDetailComponent>,
         @Inject(MAT_DIALOG_DATA) public data: any,
         private taskService: TaskService) { }
 

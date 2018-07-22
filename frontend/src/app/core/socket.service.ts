@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import {  Observable } from 'rxjs';
-import { environment } from '../../environments/environment';
-
+import { environment } from '@env/environment';
 import * as socketIo from 'socket.io-client';
 
 const SOCKET_SERVER_URL = environment.SOCKET_SERVER_URL;

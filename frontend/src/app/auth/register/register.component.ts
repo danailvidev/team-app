@@ -1,11 +1,11 @@
 import { Component, OnDestroy } from '@angular/core';
-import { User } from '../user.model';
-import { AuthService } from '../../core/auth.service';
+import { User } from '@app/auth/user.model';
+import { AuthService } from '@app/core/auth.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { FormControl, Validators } from '@angular/forms';
-import { CustomErrorStateMatcher } from '../../shared/validations/custom-error-state-matcher';
-import { NotifyService } from '../../core/notify.service';
+import { CustomErrorStateMatcher } from '@app/shared/validations/custom-error-state-matcher';
+import { NotifyService } from '@app/core/notify.service';
 
 @Component({
     selector: 'ta-app-register',

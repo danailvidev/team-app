@@ -1,8 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { AppState, IUser } from '../../../shared/interfaces';
+import { AppState, IUser } from '@app/shared/interfaces';
 import { Observable } from 'rxjs';
-import * as userActions from '../../../actions/user.actions';
+import * as userActions from '@app/actions/user.actions';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
