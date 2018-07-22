@@ -24,9 +24,9 @@ const get = async (req, res, next) => {
             res.send([])
         }
     } catch (err) {
-        next(err)
+        console.log(err)
+        res.sendStatus(500)
     }
-
 }
 
 const put = function (req, res, next) {

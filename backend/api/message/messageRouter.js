@@ -8,9 +8,9 @@ messageRouter.route('/')
         messageController.get(req, res, next)
     })
 
-messageRouter.put('/:id', (req, res, next) => {
-    messageController.params(req, res, next, req.params.id)
-    messageController.put(req, res, next)
+messageRouter.put('/:id', async (req, res, next) => {
+    await messageController.params(req, res, next, req.params.id)
+    await messageController.put(req, res, next)
 })
 
 module.exports = messageRouter
