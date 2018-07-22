@@ -3,7 +3,7 @@ var userController = require('./userController.js')
 var userRouter = express.Router()
 
 userRouter.get('/:id', async (req, res, next) => {
-    await userController.params(req, res, next, req.params.id)
+    await userController.params(req, res, next)
     await userController.getOne(req, res)
 })
 

@@ -1,7 +1,8 @@
 var User = require('./userModel.js')
 
-const params = async (req, res, next, id) => {
+const params = async (req, res, next) => {
     try {
+        let id = req.params.id
         let user = await User.findById(id)
         if (!user) {
             next(new Error('No user with that id'))

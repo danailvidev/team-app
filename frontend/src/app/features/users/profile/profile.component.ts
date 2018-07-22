@@ -21,15 +21,14 @@ export class ProfileComponent implements OnInit, OnDestroy {
     const userId = this.activatedRoute.snapshot.params['id'];
     this.isNewContact = userId === 'new';
     if (!this.isNewContact) {
-      this.subscriptions
-        .add(this.apiService.getUser(userId).subscribe(res => {
-          this.user = res;
-        }))
-        .add(this.apiService.getMessages(userId).subscribe(res => {
-          this.messages$ = res;
-        }, (err) => {
-          this.errorMsg = err;
-        }));
+      this.subscriptions.add(this.apiService.getUser(userId).subscribe(res => {
+        this.user = res;
+      }));
+      this.subscriptions.add(this.apiService.getMessages(userId).subscribe(res => {
+        this.messages$ = res;
+      }, (err) => {
+        this.errorMsg = err;
+      }));
     }
   }
 
