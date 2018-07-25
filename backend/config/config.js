@@ -5,9 +5,6 @@ var config = {
     test: 'testing',
     prod: 'production',
     port: process.env.PORT || 3000,
-    cors: {
-        headers: 'http://localhost:4200'
-    }, 
     smtp: {
         host: 'smtp.gmail.com',
         port: 587,

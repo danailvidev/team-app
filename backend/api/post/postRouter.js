@@ -14,7 +14,7 @@ postRouter.route('/:id')
     })
 
 postRouter.post('/', auth.checkAuthenticated, (req, res) => {
-    postController.post(req, res, next)
+    postController.post(req, res)
 })
 
 module.exports = postRouter

@@ -41,6 +41,7 @@ You need to have `Node.js` and `npm` installed on your PC/Mac.
 
 Run the backend:
 - cd backend & npm install
+- export NODE_ENV="development" (config needs the variable)
 - nodemon server.js (start the backend)
 
 Run the frontend:

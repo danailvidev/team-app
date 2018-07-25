@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import 'rxjs/add/observable/throw';
 import { BaseApiService } from '@app/core/abstract.service';
 import { TaskModel } from '@app/features/personal-tasks/personal-tasks.component';
 
