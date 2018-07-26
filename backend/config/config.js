@@ -5,6 +5,7 @@ var config = {
     test: 'testing',
     prod: 'production',
     port: process.env.PORT || 3000,
+    bcryptSecret: '123',
     smtp: {
         host: 'smtp.gmail.com',
         port: 587,

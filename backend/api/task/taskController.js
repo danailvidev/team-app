@@ -1,10 +1,10 @@
 var Task = require('./taskModel.js')
 var ObjectId = require('mongodb').ObjectID
 
+// refactor
 const params = async (req, res, next) => {
     try {
         var author = req.params.id
-        console.log(author)
         var tasks = await Task.find({
             author
         })

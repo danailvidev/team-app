@@ -1,4 +1,3 @@
-var Message = require('./messageModel.js')
 var express = require('express')
 var messageController = require('./messageController.js')
 var messageRouter = express.Router()

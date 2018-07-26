@@ -1,5 +1,5 @@
 var express = require('express')
-var auth = require('../auth/auth.js')
+var authController = require('../auth/authController.js')
 var postController = require('./postController.js')
 var postRouter = express.Router()
 
@@ -9,11 +9,11 @@ postRouter.route('/:id')
         await postController.params(req, res, next)
         await postController.getAllByAuthor(req, res)
     })
-    .delete(auth.checkAuthenticated, (req, res) => {
+    .delete(authController.checkAuthenticated, (req, res) => {
         postController.deleteOne(req, res, next)
     })
 
-postRouter.post('/', auth.checkAuthenticated, (req, res) => {
+postRouter.post('/', authController.checkAuthenticated, (req, res) => {
     postController.post(req, res)
 })
 

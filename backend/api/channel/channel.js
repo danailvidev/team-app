@@ -1,6 +1,6 @@
 var Channel = require('./channelModel.js')
 var express = require('express')
-var auth = require('../auth/auth.js')
+var authController = require('../auth/authController.js')
 var channelRouter = express.Router()
 
 var channels = []
@@ -65,7 +65,7 @@ channelRouter.route('/:id')
             res.send(result)
         })
     })
-    .delete(auth.checkAuthenticated, async (req, res) => {
+    .delete(authController.checkAuthenticated, async (req, res) => {
     try {
         let id = req.params.id
         var channel = await Channel.findByIdAndRemove(id)

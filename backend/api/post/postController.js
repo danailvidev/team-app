@@ -1,5 +1,4 @@
 var Post = require('./postModel.js')
-var auth = require('../auth/auth.js')
 
 const params = async (req, res, next) => {
     try {

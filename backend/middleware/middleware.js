@@ -5,7 +5,7 @@ const config = require('../config/config')
 module.exports = function(app){
     app.use(cors({
         credentials: true,
-        origin: config.cors.headers
+        origin: config.cors == undefined ? 'http://localhost:4200' : config.cors.headers
     }));
     
     app.use(bodyParser.json())
