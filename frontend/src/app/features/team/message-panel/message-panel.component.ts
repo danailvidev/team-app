@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SocketService, Action, Event } from '@services/socket.service';
+import { SocketService, Action, Event } from '@services/web-sockets';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../shared/interfaces/app-state';
 import { ApiService } from '@services/api.service';

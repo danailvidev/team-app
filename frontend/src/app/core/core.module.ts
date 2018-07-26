@@ -10,7 +10,7 @@ import { ResponseInterceptor } from './response.interceptor';
 import { NotifyService } from './notify.service';
 import { LoggingService } from './logging/loggin.service';
 import { LogPublisherService } from './logging/log-publishers.service';
-import { SocketIOService, SocketService } from './socket.service';
+import { SocketIOService, SocketService } from './web-sockets';
 
 // Guards
 import { AuthGuard } from '../auth/auth.guard';

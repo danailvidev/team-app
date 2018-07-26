@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Response, RequestOptions } from '@angular/http';
 import { Observable, of } from 'rxjs';
-import { environment } from '../../environments/environment.prod';
+import { environment } from '@env/environment';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { NotifyService } from './notify.service';
 import { LoggingService } from './logging/loggin.service';

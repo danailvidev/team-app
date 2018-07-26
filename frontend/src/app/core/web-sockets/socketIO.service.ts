@@ -1,30 +1,11 @@
 import { Injectable } from '@angular/core';
-import {  Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { environment } from '@env/environment';
 import * as socketIo from 'socket.io-client';
+import { SocketService } from './socket-service';
+import { Event } from './event';
 
 const SOCKET_SERVER_URL = environment.SOCKET_SERVER_URL;
-
-// Actions you can take on the App
-export enum Action {
-    JOINED,
-    LEFT,
-    RENAME
-}
-
-// Socket.io events
-export enum Event {
-    CONNECT = 'connect',
-    DISCONNECT = 'disconnect'
-}
-
-export abstract class SocketService {
-    abstract initSocket();
-    abstract onMessage();
-    abstract send(message: any): void;
-    abstract addUser(username);
-    abstract onEvent(event: Event);
-}
 
 @Injectable()
 export class SocketIOService extends SocketService {
