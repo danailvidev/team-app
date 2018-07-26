@@ -7,6 +7,8 @@
 
 # dependencies
 /node_modules
+/src/environments/environment.ts
+/src/environments/environment.prod.ts
 
 # IDEs and editors
 /.idea
@@ -32,7 +34,7 @@
 npm-debug.log
 testem.log
 /typings
-/src/environments/*.ts
+
 
 # e2e
 /e2e/*.js

@@ -16,11 +16,11 @@ export const environment = {
         'baseUrl': 'http://localhost:3000/api/'
     },
     github: {
-        token: '71b7f859d0fbeaada07a43063a2e7c6c506dd1a5',
-        userName: 'danailvidev',
-        repoName: 'danailvidev/team-app',
+        token: '<token>',
+        userName: '<username>',
+        repoName: '<reponame>',
         baseUrl: 'https://api.github.com/search/issues',
-        issueUrl: 'https://api.github.com/repos/danailvidev/team-app/issues'
+        issueUrl: 'https://api.github.com/repos/<username>/<reponame>/issues'
     },
     SOCKET_SERVER_URL: 'http://localhost:3000',
     logging: [
