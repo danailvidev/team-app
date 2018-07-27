@@ -1,5 +1,5 @@
 module.exports = {
     cors: {
-        headers: 'https://geop.io/team-app'
+        headers: 'https://geop.io'
     }
 }
