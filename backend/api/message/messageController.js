@@ -1,8 +1,9 @@
 var Message = require('./messageModel.js')
 var _ = require('lodash')
 
-const params = async (req, res, next, id) => {
+const params = async (req, res, next) => {
     try {
+        let id = req.body.id
         let message = await Message.findById(id)
         if (!message) {
             next(new Error('No message with that id'))

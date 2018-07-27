@@ -1,25 +1,17 @@
 var express = require('express')
 var authController = require('../auth/authController.js')
 var taskRouter = express.Router()
-var taskController = require('./taskController')
+var controller = require('./taskController')
+
+taskRouter.param('id', controller.params)
 
 taskRouter.route('/:id')
-    .get(authController.checkAuthenticated, async (req, res, next) => {
-        //
-    })
-    .put(authController.checkAuthenticated, (req, res) => {
-        taskController.updateById(req, res)
-    })
-    .delete(authController.checkAuthenticated, (req, res) => {
-        taskController.deleteById(req, res)
-    })
+    .get(authController.checkAuthenticated)
+    .put(authController.checkAuthenticated, controller.updateById)
+    .delete(authController.checkAuthenticated, controller.deleteById)
 
 taskRouter.route('/')
-    .get(authController.checkAuthenticated, (req, res) => {
-        taskController.get(req, res)
-    })
-    .post(authController.checkAuthenticated, (req, res) => {
-        taskController.post(req, res)
-    })
+    .get(authController.checkAuthenticated, controller.get)
+    .post(authController.checkAuthenticated, controller.post)
 
 module.exports = taskRouter

@@ -1,5 +1,6 @@
 var Post = require('./postModel.js')
 
+// get post by author id
 const params = async (req, res, next) => {
     try {
         var author = req.params.id

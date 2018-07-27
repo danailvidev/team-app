@@ -1,20 +1,16 @@
 var express = require('express')
 var authController = require('../auth/authController.js')
-var postController = require('./postController.js')
+var controller = require('./postController.js')
 var postRouter = express.Router()
 
-// get all posts by author id
-postRouter.route('/:id')
-    .get(async (req, res, next) => {
-        await postController.params(req, res, next)
-        await postController.getAllByAuthor(req, res)
-    })
-    .delete(authController.checkAuthenticated, (req, res) => {
-        postController.deleteOne(req, res, next)
-    })
+postRouter.param('id', controller.params)
 
-postRouter.post('/', authController.checkAuthenticated, (req, res) => {
-    postController.post(req, res)
-})
+// get all posts by author id - TODO: refactor
+postRouter.route('/:id')
+    .get(controller.getAllByAuthor)
+    .delete(authController.checkAuthenticated, controller.deleteOne)
+
+postRouter.route('/')
+    .post(authController.checkAuthenticated, controller.post)
 
 module.exports = postRouter

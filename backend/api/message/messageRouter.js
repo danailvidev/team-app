@@ -1,15 +1,13 @@
 var express = require('express')
-var messageController = require('./messageController.js')
+var controller = require('./messageController.js')
 var messageRouter = express.Router()
 
-messageRouter.route('/')
-    .get(async (req, res, next) => {
-        messageController.get(req, res, next)
-    })
+messageRouter.param('id', controller.params)
 
-messageRouter.put('/:id', async (req, res, next) => {
-    await messageController.params(req, res, next, req.params.id)
-    await messageController.put(req, res, next)
-})
+messageRouter.route('/')
+    .get(controller.get)
+
+messageRouter.route('/:id')
+    .put(controller.put)
 
 module.exports = messageRouter

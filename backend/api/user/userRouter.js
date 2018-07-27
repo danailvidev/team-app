@@ -1,17 +1,14 @@
 var express = require('express')
-var userController = require('./userController.js')
+var controller = require('./userController.js')
 var authController = require('../auth/authController.js')
 var userRouter = express.Router()
 
+userRouter.param('id', controller.params)
+
 userRouter.route('/:id')
-    .get(authController.checkAuthenticated, async (req, res, next) => {
-        await userController.params(req, res, next)
-        await userController.getOne(req, res)
-    })
+    .get(authController.checkAuthenticated, controller.getOne)
 
 userRouter.route('/')
-    .get(authController.checkAuthenticated, (req, res) => {
-        userController.get(req, res)
-    })
+    .get(authController.checkAuthenticated, controller.get)
 
 module.exports = userRouter

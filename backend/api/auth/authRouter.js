@@ -1,5 +1,5 @@
 var express = require('express')
-var authController = require('./authController.js')
+var controller = require('./authController.js')
 
 var authRouter = express.Router()
 const {
@@ -24,13 +24,9 @@ authRouter.route('/register')
         .isEmail().withMessage('must be an email')
         .trim()
         .normalizeEmail()
-    ], (req, res) => {
-        authController.register(req, res)
-    })
+    ], controller.register)
 
 authRouter.route('/login')
-    .post(async (req, res) => {
-        authController.login(req, res)
-    })
+    .post(controller.login)
 
 module.exports = authRouter
