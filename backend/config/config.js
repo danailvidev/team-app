@@ -5,7 +5,7 @@ var config = {
     test: 'testing',
     prod: 'production',
     port: process.env.PORT || 3000,
-    bcryptSecret: '123',
+    bcryptSecret: process.env.CRYPT_SECRET || '123',
     smtp: {
         host: 'smtp.gmail.com',
         port: 587,
@@ -13,8 +13,8 @@ var config = {
         user: 'geopioltd@gmail.com',
         pass: 'geop13geop13'
     },
-    mlabCom: 'mongodb://dbadmin:restPass@ds159845.mlab.com:59845/restaurant',
-    cloudMongodbCom: 'mongodb://teamapp:team13app13@cluster0-shard-00-00-ihpdd.mongodb.net:27017,cluster0-shard-00-01-ihpdd.mongodb.net:27017,cluster0-shard-00-02-ihpdd.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin'
+    mlabCom: process.env.MONGOLAB_URL || 'mongodb://dbadmin:restPass@ds159845.mlab.com:59845/restaurant',
+    cloudMongodbCom: process.env.CLOUDMONGOCOM_URL || 'mongodb://teamapp:team13app13@cluster0-shard-00-00-ihpdd.mongodb.net:27017,cluster0-shard-00-01-ihpdd.mongodb.net:27017,cluster0-shard-00-02-ihpdd.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin'
 }
 
 // check to see if the NODE_ENV was set, if not, set it to dev
