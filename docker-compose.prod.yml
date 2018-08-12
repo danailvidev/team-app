@@ -1,0 +1,52 @@
+# Run docker-compose build -f docker-compose.prod.yml build
+# Run docker-compose up
+
+version: '3.1'
+
+services:
+
+  nginx:
+    container_name: nginx-angular
+    image: nginx-angular
+    build:
+      context: ./frontend
+      dockerfile: nginx.prod.dockerfile
+    volumes:
+      - ./frontend/dist:/usr/share/nginx/html
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on: 
+      - node
+    networks:
+      - app-network
+
+  node:
+    container_name: angular-node-service
+    image: angular-node-service
+    build:
+      context: ./backend
+      dockerfile: node.dockerfile
+    environment:
+      - NODE_ENV=production
+    ports:
+      - "3000:3000"
+    networks:
+      - app-network
+      
+  cadvisor:
+    container_name: cadvisor
+    image: google/cadvisor
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+    ports:
+      - "8080:8080"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
