@@ -13,6 +13,12 @@ var config = {
         user: 'geopioltd@gmail.com',
         pass: 'geop13geop13'
     },
+    paypal: {
+        host: 'api.sandbox.paypal.com',
+        port: '',
+        client_id: 'AdcDxdhnbkhmGjbYqR1y75uc8QxB4iaUPbqLtfXhjcAiXKR2kIVbr35d_Lq1g2RueXwOKv9v_b0PaVLR',
+        client_secret: 'EDQR8zoKPj13qwF9u7eZfCqoq8PBvhfi_lECdk3FakNiGayhJ6_g4XCaABo1JeIyyEJgiUucWxBOJYX0'
+    },
     mlabCom: process.env.MONGOLAB_URL || 'mongodb://dbadmin:restPass@ds159845.mlab.com:59845/restaurant',
     cloudMongodbCom: process.env.CLOUDMONGOCOM_URL || 'mongodb://teamapp:team13app13@cluster0-shard-00-00-ihpdd.mongodb.net:27017,cluster0-shard-00-01-ihpdd.mongodb.net:27017,cluster0-shard-00-02-ihpdd.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin'
 }
