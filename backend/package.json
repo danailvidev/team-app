@@ -39,9 +39,9 @@
         "lodash": "^4.17.10",
         "mongoose": "^4.13.1",
         "nodemailer": "^4.4.1",
-        "nodemon": "^1.17.3",
-        "socket.io": "^2.0.4",
-        "paypal-rest-sdk": "^1.8.1"
+        "nodemon": "^1.18.3",
+        "paypal-rest-sdk": "^1.8.1",
+        "socket.io": "^2.0.4"
     },
     "engines": {
         "node": "9.3.0"
