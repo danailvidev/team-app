@@ -8,7 +8,6 @@ import { AuthGuard } from './auth/auth.guard';
 import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
 
 const routes: Routes = [
-    { path: '', component: PostsComponent },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'forgot-password', component: ForgotPasswordComponent },
@@ -16,7 +15,7 @@ const routes: Routes = [
     { path: 'users', canActivate: [AuthGuard], loadChildren: 'app/features/users/users.module#UsersModule' },
     { path: 'team', canActivate: [AuthGuard], loadChildren: 'app/features/team/team.module#TeamModule' },
     { path: 'github', canActivate: [AuthGuard], loadChildren: 'app/features/github/github.module#GithubModule' },
-    { path: '**', pathMatch: 'full', redirectTo: '/login' }
+    { path: '**', pathMatch: 'full', redirectTo: 'login' }
 ];
 
 @NgModule({

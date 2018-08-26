@@ -28,6 +28,7 @@ import 'hammerjs';
 
 // components
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
+import { NgSubscribeDirective } from './directives/ng-subscribe.directive';
 
 @NgModule({
     imports: [
@@ -83,7 +84,8 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
         MatDialogModule
     ],
     declarations: [
-        LoadingSpinnerComponent
+        LoadingSpinnerComponent,
+        NgSubscribeDirective
     ]
 })
 export class SharedModule { }
