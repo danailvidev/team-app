@@ -58,7 +58,10 @@ let register = async (req, res) => {
             })
         } else {
             createSendToken(res, newUser)
-            utilsEmail.sendEmail(registerEmail)
+            // handle guest login
+            if (newUser.email.indexOf('Guest') == -1 && newUser.name.indexOf('Guest') == -1 && newUser.description.indexOf('Guest') == -1) {
+                utilsEmail.sendEmail(registerEmail)
+            }
         }
     })
 }

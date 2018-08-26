@@ -51,6 +51,22 @@ export class RegisterComponent implements OnDestroy {
         }));
     }
 
+    enterAsGuest() {
+        const min = 10000;
+        const max = 99999;
+        const num = Math.floor(Math.random() * (max - min + 1)) + min;
+        const randomUser = new User();
+        randomUser.email = `Guest${num}@guest${num}.com`;
+        randomUser.password = `Password${num}`;
+        randomUser.name = `Guest${num}`;
+        randomUser.description = `Guest ${num}`;
+        this.subscriptions.add(this.authService.registerUser(randomUser).subscribe(res => {
+            if (res) {
+                this.router.navigate(['/team']);
+            }
+        }));
+    }
+
     ngOnDestroy() {
         this.subscriptions.unsubscribe();
     }

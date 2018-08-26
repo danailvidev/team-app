@@ -14,6 +14,6 @@ router.use('/post', postRouter)
 router.use('/channel', channel.channelRouter)
 router.use('/message', messageRouter)
 router.use('/task', taskRouter)
-router.use('/paypal', paypalRouter)
+// router.use('/paypal', paypalRouter)
 
 module.exports = router

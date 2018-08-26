@@ -46,6 +46,6 @@ export class NgSubscribeDirective implements OnInit, OnDestroy {
     }
 
     ngOnDestroy(): void {
-        this.subscription && this.subscription.unsubscribe();
+        this.subscription.unsubscribe();
     }
 }

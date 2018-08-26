@@ -52,5 +52,8 @@
     <br>
     <button mat-raised-button color="warn" type="submit" name="action" [disabled]="(emailFormControl.errors || passwordFormControl.errors)">Register</button>
     <br>
+    <br>
+    <a mat-stroked-button (click)="enterAsGuest()">Enter as Guest</a>
+    <br>
   </form>
 </mat-card>
