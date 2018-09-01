@@ -19,6 +19,48 @@ export class LoginComponent implements OnInit, OnDestroy {
     private router: Router) { }
 
   ngOnInit() {
+    (window as any).fbAsyncInit = function () {
+      const FB = (window as any).FB;
+      FB.init({
+        appId: '223564278507188',
+        cookie: true,
+        xfbml: true,
+        version: 'v3.1'
+      });
+      FB.AppEvents.logPageView();
+    };
+
+    (function (d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) { return; }
+      js = d.createElement(s); js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  }
+
+  facebookLogin() {
+    const FB = (window as any).FB;
+    const scopes = 'email,user_likes,public_profile';
+    console.log('submitLogin');
+    FB.login((response) => {
+      console.log('submitLogin', response);
+      if (response.authResponse) {
+        FB.api(
+          `/${response.authResponse.userID}`,
+          function (data) {
+            if (data) {
+              console.log(data);
+            }
+          }
+        );
+        // login success
+        // login success code here
+        // redirect to home page
+      } else {
+        console.log('User login failed');
+      }
+    }, { scope: scopes });
 
   }
 
@@ -43,9 +85,9 @@ export class LoginComponent implements OnInit, OnDestroy {
     randomUser.description = `Guest ${num}`;
     this.subscriptions.add(this.authService.registerUser(randomUser).subscribe(res => {
       if (res) {
-          this.router.navigate(['/team']);
+        this.router.navigate(['/team']);
       }
-  }));
+    }));
   }
 
   ngOnDestroy() {
