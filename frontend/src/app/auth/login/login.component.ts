@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   public loginUserData = new User();
   public errorMsg = '';
   private subscriptions = new Subscription();
+  capsWarning = false;
 
   constructor(
     private authService: AuthService,

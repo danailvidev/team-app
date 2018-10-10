@@ -1,21 +1,23 @@
 <mat-card>
   <p>Login</p>
-  <form role="form" (submit)="login()">
+  <form role="form" (submit)="login()" capsLock (capsLock)="capsWarning = $event">
     <br>
     <mat-form-field>
-      <input matInput type="text" required [(ngModel)]="loginUserData.email" id="email" name="email">
+      <input matInput type="text" required [(ngModel)]="loginUserData.email" id="email" name="email" (blur)="emailfocus = false" (focus)="emailfocus = true">
       <mat-placeholder>
         <i class="material-icons app-input-icon">face</i>Username
       </mat-placeholder>
     </mat-form-field>
+    <i class="material-icons app-input-icon" *ngIf="capsWarning && emailfocus" title="Caps Lock On">warning</i>
     <br>
     <br>
     <mat-form-field>
-      <input matInput type="password" required [(ngModel)]="loginUserData.password" id="password" name="password">
+      <input matInput type="password" required [(ngModel)]="loginUserData.password" id="password" name="password" (blur)="passwordnamefocus = false" (focus)="passwordnamefocus = true">
       <mat-placeholder>
         <i class="material-icons app-input-icon">lock_open</i>Password
       </mat-placeholder>
     </mat-form-field>
+    <i class="material-icons app-input-icon" *ngIf="capsWarning && passwordnamefocus" title="Caps Lock On">warning</i>
     <div>
       <button mat-button [routerLink]="['/forgot-password']">Forgot password?</button>
     </div>
