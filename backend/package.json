@@ -41,7 +41,8 @@
         "nodemailer": "^4.4.1",
         "nodemon": "^1.18.3",
         "paypal-rest-sdk": "^1.8.1",
-        "socket.io": "^2.0.4"
+        "socket.io": "^2.0.4",
+        "stripe": "^6.12.1"
     },
     "engines": {
         "node": "9.3.0"

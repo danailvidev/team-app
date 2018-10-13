@@ -10,10 +10,11 @@ import { Router } from '@angular/router';
 })
 export class AppComponent implements OnInit {
     navigation = [
-        { link: 'github', label: 'GitHub Issues', color: '' },
-        { link: 'team', label: 'Team Service', color: '' },
-        { link: 'users', label: 'Users', color: '' },
-        { link: 'calendar', label: 'Calendar', color: '' }
+        { link: 'payment', label: 'Payment', color: '', icon: 'payment' },
+        { link: 'github', label: 'GitHub Issues', color: '', icon: 'code' },
+        { link: 'team', label: 'Team Service', color: '', icon: 'share' },
+        { link: 'users', label: 'Users', color: '', icon: 'people' },
+        { link: 'calendar', label: 'Calendar', color: '' , icon: 'calendar_today'}
     ];
     theme = 'light-theme';
 

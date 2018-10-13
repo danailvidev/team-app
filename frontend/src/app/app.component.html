@@ -4,7 +4,7 @@
 
     <!-- left side -->
     <a routerLink="/">
-      <img src="assets/logo.png" alt="" height="40" style="vertical-align:middle;">
+      <img src="assets/logo.png" alt="" height="50" style="vertical-align:middle;">
     </a>
 
     <span style="flex: 1 1 auto"></span>
@@ -12,13 +12,14 @@
 
     <!-- right side -->
     <button mat-button>
-        <mat-slide-toggle matTooltip="Change theme" matdTooltipPosition="before" (change)="switchTheme($event)">
-            Theme
-          </mat-slide-toggle>
+      <mat-slide-toggle matTooltip="Change theme" matdTooltipPosition="before" (change)="switchTheme($event)">
+        Theme
+      </mat-slide-toggle>
     </button>
 
     <button mat-button color={{item.color}} *ngFor="let item of navigation" [routerLink]="[item.link]" routerLinkActive="active">
-      {{item.label}}
+      <mat-icon>{{item.icon}}</mat-icon>
+      <span>{{item.label}}</span>
     </button>
     <button *ngIf="!auth.isAuthenticated" [routerLink]="['login']" routerLinkActive="active" mat-button color="accent">Login</button>
     <button *ngIf="!auth.isAuthenticated" [routerLink]="['register']" routerLinkActive="active" mat-button color="accent">Register</button>

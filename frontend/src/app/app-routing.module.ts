@@ -15,6 +15,7 @@ const routes: Routes = [
     { path: 'users', canActivate: [AuthGuard], loadChildren: 'app/features/users/users.module#UsersModule' },
     { path: 'team', canActivate: [AuthGuard], loadChildren: 'app/features/team/team.module#TeamModule' },
     { path: 'github', canActivate: [AuthGuard], loadChildren: 'app/features/github/github.module#GithubModule' },
+    { path: 'payment', canActivate: [AuthGuard], loadChildren: 'app/features/payment/payment.module#PaymentModule' },
     { path: '**', pathMatch: 'full', redirectTo: 'login' }
 ];
 
