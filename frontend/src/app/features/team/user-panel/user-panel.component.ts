@@ -1,8 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState, IUser } from '@app/shared/interfaces';
-import { Observable } from 'rxjs';
-import * as userActions from '@app/actions/user.actions';
+import * as userActions from '@ngrxLocal/actions/user.actions';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
@@ -36,7 +35,7 @@ export class UserPanelComponent implements OnInit {
     }
 
     openDialog(data): void {
-        const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
+        const dialogRef = this.dialog.open(DialogOverviewExampleDialogComponent, {
             width: '450px',
             data: data
         });
@@ -51,10 +50,10 @@ export class UserPanelComponent implements OnInit {
     selector: 'ta-dialog-overview-example-dialog',
     template: `{{data | json}}`,
 })
-export class DialogOverviewExampleDialog {
+export class DialogOverviewExampleDialogComponent {
 
     constructor(
-        public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
+        public dialogRef: MatDialogRef<DialogOverviewExampleDialogComponent>,
         @Inject(MAT_DIALOG_DATA) public data: any) { }
 
     onNoClick(): void {

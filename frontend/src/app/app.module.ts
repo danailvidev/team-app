@@ -12,11 +12,11 @@ import { SharedModule } from './shared/shared.module';
 // ngrx
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { userReducer } from './reducers/user.reducer';
-import { UserEffects } from './effects/user.effects';
+import { userReducer } from '@ngrxLocal/reducers/user.reducer';
+import { UserEffects } from '@ngrxLocal/effects/user.effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
-import { authReducer } from './reducers/auth.reducer';
+import { authReducer } from '@ngrxLocal/reducers/auth.reducer';
 
 @NgModule({
   declarations: [

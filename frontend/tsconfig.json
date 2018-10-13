@@ -26,6 +26,9 @@
       "@services/*": [
         "app/core/*"
       ],
+      "@ngrxLocal/*": [
+        "app/ngrx/*"
+      ],
       "socket.io-client": [
         "../node_modules/socket.io-client/dist/socket.io.slim.js"
       ]

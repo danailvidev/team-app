@@ -3,13 +3,13 @@ import { TeamRoutingModule } from './team-routing.module';
 import { SharedModule } from '../../shared/shared.module';
 
 // dialogs
-import { DialogOverviewExampleDialog } from './user-panel/user-panel.component';
+import { DialogOverviewExampleDialogComponent } from './user-panel/user-panel.component';
 import { UserSettingsComponent } from '../../shared/components/user-settings/user-settings.component';
 
 import { EffectsModule } from '@ngrx/effects';
-import { AuthEffects } from '../../effects/auth.effects';
+import { AuthEffects } from '@ngrxLocal/effects/auth.effects';
 import { StoreModule, ActionReducerMap } from '@ngrx/store';
-import { authReducer } from '../../reducers/auth.reducer';
+import { authReducer } from '@ngrxLocal/reducers/auth.reducer';
 
 // Pipes
 import { EmailToUserPipe } from '../../shared/pipes/email.pipe';
@@ -35,14 +35,14 @@ export const reducers: ActionReducerMap<any> = {
     TeamRoutingModule.components,
 
     // dialogs
-    DialogOverviewExampleDialog,
+    DialogOverviewExampleDialogComponent,
     UserSettingsComponent,
 
     // Pipes
     EmailToUserPipe
   ],
   entryComponents: [
-    DialogOverviewExampleDialog,
+    DialogOverviewExampleDialogComponent,
     UserSettingsComponent
   ]
 })
