@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { AppState, IUser } from '../../shared/interfaces';
+import { AppState, IUser } from '@shared/interfaces';
 import { Observable } from 'rxjs';
 import * as userActions from '@ngrxLocal/actions/user.actions';
 

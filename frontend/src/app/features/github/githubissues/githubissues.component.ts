@@ -1,10 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { MatPaginator, MatSort, MatTableDataSource, MatDialog } from '@angular/material';
-import { Observable, of, merge } from 'rxjs';
-import {  map, startWith, switchMap, catchError } from 'rxjs/operators';
+import { of, merge, EMPTY } from 'rxjs';
+import { map, startWith, switchMap, catchError, filter, debounceTime } from 'rxjs/operators';
 import { GithubService } from '../github.service';
 import { CreateissueComponent } from '../createissue/createissue.component';
+import { UserModel } from '../user.model';
+import { FormControl } from '@angular/forms';
 
 @Component({
     selector: 'ta-githubissues',
@@ -15,6 +16,9 @@ export class GithubissuesComponent implements OnInit {
 
     displayedColumns = ['created', 'state', 'number', 'labels', 'title'];
     dataSource = new MatTableDataSource();
+    user: UserModel;
+    findControl = new FormControl();
+    error = false;
 
     resultsLength = 0;
     isLoadingResults = true;
@@ -29,6 +33,33 @@ export class GithubissuesComponent implements OnInit {
 
     ngOnInit() {
         this.getIssues();
+        this.getUser();
+    }
+
+    getUser() {
+        this.findControl.valueChanges
+            .pipe(
+                // Filter if less than two characters are entered
+                filter(value => value.length > 2),
+                // Set the delay to one second
+                debounceTime(1000),
+                // Requesting user data
+                switchMap(value =>
+                    this.svc.getUser(value).pipe(
+                        // Error processing
+                        catchError(err => {
+                            this.user = null;
+                            this.error = true;
+                            return EMPTY;
+                        })
+                    )
+                )
+            )
+            // Get the data
+            .subscribe(user => {
+                this.user = user;
+                this.error = false;
+            });
     }
 
     getIssues() {

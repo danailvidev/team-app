@@ -1,6 +1,6 @@
 /* Structure */
 
-.example-container {
+.example-container, .container {
   display: flex;
   flex-direction: column;
   max-height: 500px;
@@ -43,6 +43,10 @@
   text-align: center;
 }
 
+.example-form-field {
+    width: 200px;
+  }
+
 /* Column Widths */
 
 .mat-column-number,
@@ -59,4 +63,11 @@ span.label {
     padding: 3px;
     border-radius: 6px;
     margin: 2px;
+}
+
+.container.ready {
+    border: 1px solid #eee;
+    border-radius: 5px;
+    border-color: #eee #ddd #bbb;
+    margin-bottom: 50px;
 }

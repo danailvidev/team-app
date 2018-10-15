@@ -14,7 +14,7 @@
     <span style="flex: 1 1 auto"></span>
 
     <button mat-button matTooltip="Add New Issue" matTooltipPosition="below" (click)="addIssue()">
-        <i class="material-icons" color="warn">note_add</i>
+      <i class="material-icons" color="warn">note_add</i>
     </button>
 
     <div style="margin-right:24px;">
@@ -26,7 +26,8 @@
 
   </div>
 
-  <mat-table #table [dataSource]="dataSource" class="example-table" matSort matSortActive="created" matSortDisableClear matSortDirection="asc">
+  <mat-table #table [dataSource]="dataSource" class="example-table" matSort matSortActive="created" matSortDisableClear
+    matSortDirection="asc">
 
     <!--- Note that these columns can be defined in any order.
             The actual rendered columns are set as a property on the row definition" -->
@@ -73,4 +74,23 @@
   </mat-paginator>
 
 
+</div>
+
+<div class="container mat-elevation-z8" [class.ready]="!!user">
+  <mat-form-field class="example-form-field">
+    <input matInput type="text" placeholder="GitHub username" [formControl]="findControl">
+    <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <ta-user *ngIf="user" [user]="user"></ta-user>
+
+  <div *ngIf="error" class="error">
+    <h2>Oops!</h2>
+    <b>
+      User not found.
+    </b>
+    <p>Please try searching again.</p>
+  </div>
 </div>
