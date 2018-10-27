@@ -19,8 +19,9 @@ export const environment = {
         token: '<token>',
         userName: '<username>',
         repoName: '<reponame>',
-        baseUrl: 'https://api.github.com/search/issues',
-        issueUrl: 'https://api.github.com/repos/<username>/<reponame>/issues'
+        baseUrl: 'https://api.github.com',
+        baseIssueUrl: 'https://api.github.com/search/issues',
+        userIssueUrl: 'https://api.github.com/repos/<username>/<reponame>/issues'
     },
     SOCKET_SERVER_URL: 'http://localhost:3000',
     logging: [

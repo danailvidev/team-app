@@ -19,6 +19,7 @@ export class GithubissuesComponent implements OnInit {
     user: UserModel;
     findControl = new FormControl();
     error = false;
+    value: any;
 
     resultsLength = 0;
     isLoadingResults = true;

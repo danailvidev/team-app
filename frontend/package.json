@@ -2,13 +2,19 @@
   "name": "frontend",
   "version": "0.0.2",
   "license": "MIT",
+  "allLocales": [
+    "en",
+    "bg"
+  ],
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "build": "ng build",
+    "build-i18n": "node build-all.js",
+    "i18n": "ng xi18n --output-path locale --out-file messages.en.xlf"
   },
   "private": true,
   "dependencies": {
