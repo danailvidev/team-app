@@ -29,8 +29,13 @@ var userSchema = mongoose.Schema({
 userSchema.pre('save', function (next) {
     var user = this
 
+    // strategies without password
+    // if (!user.password) {
+    //     return next()
+    // }
+
     if (!user.isModified('password')) {
-        return next
+        return next()
     }
 
     bcrypt.hash(user.password, null, null, (err, hash) => {

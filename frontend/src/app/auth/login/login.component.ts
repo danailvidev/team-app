@@ -24,9 +24,9 @@ export class LoginComponent implements OnInit, OnDestroy {
       const FB = (window as any).FB;
       FB.init({
         appId: '223564278507188',
-        cookie: true,
+        cookie: false,
         xfbml: true,
-        version: 'v3.1'
+        version: 'v3.2'
       });
       FB.AppEvents.logPageView();
     };
@@ -42,13 +42,13 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   facebookLogin() {
     const FB = (window as any).FB;
-    const scopes = 'email,user_likes,public_profile';
+    const scopes = 'email,user_likes,public_profile,user_photos';
     console.log('submitLogin');
     FB.login((response) => {
       console.log('submitLogin', response);
       if (response.authResponse) {
         FB.api(
-          `/${response.authResponse.userID}`,
+          `/${response.authResponse.userID}?fields=picture,name,email`,
           function (data) {
             if (data) {
               console.log(data);

@@ -7,6 +7,8 @@ var app = express()
 const config = require('./config/config')
 var httpServer = require('http').createServer(app)
 // var httpsServer = require('https').createServer(credentials, app)
+// var passport = require('passport');
+// var session = require('express-session');
 var api = require('./middleware/routes')
 
 // middleware 
@@ -14,6 +16,22 @@ require('./middleware/middleware')(app)
 
 // db connect
 require('./middleware/database')()
+
+// app.use(session({
+//     secret: 's3cr3t',
+//     resave: true,
+//     saveUninitialized: true
+//   }));
+// app.use(passport.initialize());
+// app.use(passport.session());
+
+// passport.serializeUser(function(user, done) {
+//     done(null, user);
+//   });
+
+//   passport.deserializeUser(function(user, done) {
+//     done(null, user);
+//   });
 
 // routes
 app.use('/api', api)
