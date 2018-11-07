@@ -8,6 +8,7 @@
     right: 0;
     .header {
         height: 60px;
+        z-index: 4;
     }
 }
 
@@ -20,5 +21,6 @@
   .is-mobile .sidenav-container {
     /* When the sidenav is fixed, don't constrain the height of the sidenav container. This allows the
        `<body>` to be our scrolling element for mobile layouts. */
+       
     flex: 1 0 auto;
   }
