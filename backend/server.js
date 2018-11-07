@@ -20,7 +20,16 @@ require('./middleware/database')()
 // app.use(session({
 //     secret: 's3cr3t',
 //     resave: true,
-//     saveUninitialized: true
+//     saveUninitialized: true,
+//     store: new session({
+//         storage: 'mongodb',
+//         instance: mongoose, // optional
+//         host: 'localhost', // optional
+//         port: 27017, // optional
+//         db: 'test', // optional
+//         collection: 'sessions', // optional
+//         expire: 86400 // optional
+//     })
 //   }));
 // app.use(passport.initialize());
 // app.use(passport.session());
