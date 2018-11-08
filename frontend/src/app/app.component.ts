@@ -2,9 +2,15 @@ import { Component, OnInit, HostBinding, ChangeDetectorRef, OnDestroy } from '@a
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { AuthService } from './core/auth.service';
 import { Router } from '@angular/router';
-import { MediaMatcher } from '@angular/cdk/layout';
+// import { MediaMatcher } from '@angular/cdk/layout';
 import { MatSnackBar } from '@angular/material';
 import { IosInstallComponent } from './shared/components/ios-pwa-install/ios-install.component';
+
+import {
+    BreakpointObserver,
+    Breakpoints,
+    BreakpointState
+} from '@angular/cdk/layout';
 
 @Component({
     selector: 'app-root',
@@ -25,22 +31,24 @@ export class AppComponent implements OnInit, OnDestroy {
 
     mobileQuery: MediaQueryList;
     private mobileQueryListener: () => void;
+    isSmallScreen: boolean;
 
     constructor(
         public auth: AuthService,
         private router: Router,
         public overlayContainer: OverlayContainer,
-        changeDetectorRef: ChangeDetectorRef,
-        media: MediaMatcher,
-        private toast: MatSnackBar) {
-        this.mobileQuery = media.matchMedia('(max-width: 800px)');
-        this.mobileQueryListener = () => changeDetectorRef.detectChanges();
+        // changeDetectorRef: ChangeDetectorRef,
+        // media: MediaMatcher,
+        private toast: MatSnackBar,
+        public breakpointObserver: BreakpointObserver) {
+        // this.mobileQuery = media.matchMedia('(max-width: 800px)');
+        // this.mobileQueryListener = () => changeDetectorRef.detectChanges();
 
     }
 
     ngOnInit() {
         this.setTheme(this.theme);
-        this.mobileQuery.addListener(this.mobileQueryListener);
+        // this.mobileQuery.addListener(this.mobileQueryListener);
 
         // Detects if device is on iOS 
         const isIos = () => {
@@ -58,6 +66,16 @@ export class AppComponent implements OnInit, OnDestroy {
                 panelClass: ['mat-elevation-z3']
             });
         }
+
+        this.breakpointObserver
+            .observe([Breakpoints.Small, Breakpoints.XSmall])
+            .subscribe((state: BreakpointState) => {
+                if (state.matches) {
+                    this.isSmallScreen = true;
+                } else {
+                    this.isSmallScreen = false;
+                }
+            });
     }
 
     ngOnDestroy(): void {
@@ -81,22 +99,3 @@ export class AppComponent implements OnInit, OnDestroy {
         }
     }
 }
-
-
-// import {
-//     BreakpointObserver,
-//     Breakpoints,
-//     BreakpointState
-//   } from '@angular/cdk/layout';
-// constructor(public breakpointObserver: BreakpointObserver) {}
-// ngOnInit() {
-//     this.breakpointObserver
-//       .observe([Breakpoints.Small, Breakpoints.HandsetPortrait])
-//       .subscribe((state: BreakpointState) => {
-//         if (state.matches) {
-//           console.log(
-//             'Matches small viewport or handset in portrait mode'
-//           );
-//         }
-//       });
-//   }

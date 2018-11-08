@@ -43,6 +43,7 @@ import { IosInstallComponent } from './shared/components/ios-pwa-install/ios-ins
       UserEffects,
     ]),
     StoreDevtoolsModule.instrument(),
+    // sw worker
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
