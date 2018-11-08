@@ -28,7 +28,7 @@
               "src/manifest.json"
             ],
             "styles": [
-              "src/styles.scss",
+              "src/styles/styles.scss",
               "node_modules/angular-calendar/css/angular-calendar.css"
             ],
             "scripts": []

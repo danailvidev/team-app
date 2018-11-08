@@ -1,15 +1,24 @@
+@import '../../../styles/styles.scss';
+
 :host {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 50px;
     mat-card {
         text-align: center;
-        min-width: 400px;
+        max-width: 400px;
+        width: 100%;
         margin: 0 auto;
+        margin-top: 50px;
         p {
             font-weight: bold;
             font-size: 21px;
         }
     }
+    @include respond-below(sm) {
+        mat-card {
+            margin-top: 10px;
+        }
+      }
 }
+
