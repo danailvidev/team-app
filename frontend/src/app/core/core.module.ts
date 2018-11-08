@@ -11,6 +11,7 @@ import { NotifyService } from './notify.service';
 import { LoggingService } from './logging/loggin.service';
 import { LogPublisherService } from './logging/log-publishers.service';
 import { SocketIOService, SocketService } from './web-sockets';
+import { ScreenSizeService } from './screen-size.service';
 
 // Guards
 import { AuthGuard } from '../auth/auth.guard';
@@ -34,6 +35,7 @@ import { ShowOnDirtyErrorStateMatcher } from '@angular/material';
         NotifyService,
         LoggingService,
         LogPublisherService,
+        ScreenSizeService,
         { provide: SocketService, useClass: SocketIOService },
         AuthGuard,
         { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

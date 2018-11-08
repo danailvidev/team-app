@@ -1,23 +1,17 @@
-import { Component, OnInit, HostBinding, ChangeDetectorRef, OnDestroy } from '@angular/core';
+import { Component, OnInit, HostBinding } from '@angular/core';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { AuthService } from './core/auth.service';
 import { Router } from '@angular/router';
-// import { MediaMatcher } from '@angular/cdk/layout';
 import { MatSnackBar } from '@angular/material';
 import { IosInstallComponent } from './shared/components/ios-pwa-install/ios-install.component';
-
-import {
-    BreakpointObserver,
-    Breakpoints,
-    BreakpointState
-} from '@angular/cdk/layout';
+import { ScreenSizeService } from './core/screen-size.service';
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit, OnDestroy {
+export class AppComponent implements OnInit {
     navigation = [
         { link: 'payment', label: 'Payment', color: '', icon: 'payment' },
         { link: 'github', label: 'GitHub Issues', color: '', icon: 'code' },
@@ -28,27 +22,18 @@ export class AppComponent implements OnInit, OnDestroy {
     theme = 'light-theme';
 
     @HostBinding('class') componentCssClass;
-
-    mobileQuery: MediaQueryList;
-    private mobileQueryListener: () => void;
     isSmallScreen: boolean;
 
     constructor(
         public auth: AuthService,
         private router: Router,
         public overlayContainer: OverlayContainer,
-        // changeDetectorRef: ChangeDetectorRef,
-        // media: MediaMatcher,
         private toast: MatSnackBar,
-        public breakpointObserver: BreakpointObserver) {
-        // this.mobileQuery = media.matchMedia('(max-width: 800px)');
-        // this.mobileQueryListener = () => changeDetectorRef.detectChanges();
-
-    }
+        private screenSizeSvc: ScreenSizeService) {}
 
     ngOnInit() {
         this.setTheme(this.theme);
-        // this.mobileQuery.addListener(this.mobileQueryListener);
+        this.isBelowSmallScreen();
 
         // Detects if device is on iOS 
         const isIos = () => {
@@ -66,20 +51,6 @@ export class AppComponent implements OnInit, OnDestroy {
                 panelClass: ['mat-elevation-z3']
             });
         }
-
-        this.breakpointObserver
-            .observe([Breakpoints.Small, Breakpoints.XSmall])
-            .subscribe((state: BreakpointState) => {
-                if (state.matches) {
-                    this.isSmallScreen = true;
-                } else {
-                    this.isSmallScreen = false;
-                }
-            });
-    }
-
-    ngOnDestroy(): void {
-        this.mobileQuery.removeListener(this.mobileQueryListener);
     }
 
     setTheme(theme) {
@@ -97,5 +68,11 @@ export class AppComponent implements OnInit, OnDestroy {
         if (isLoggedOut) {
             this.router.navigate([`/login`]);
         }
+    }
+
+    private isBelowSmallScreen() {
+        this.screenSizeSvc.isSmallScreen$.subscribe( res => {
+            this.isSmallScreen = res;
+        })
     }
 }
