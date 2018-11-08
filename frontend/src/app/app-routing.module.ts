@@ -1,10 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+
+// guards
+import { AuthGuard } from './auth/auth.guard';
+
+// components
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { PostsComponent } from './features/posts/posts.component';
-
-import { AuthGuard } from './auth/auth.guard';
+import { IosInstallComponent } from './shared/components/ios-pwa-install/ios-install.component';
 import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
 
 const routes: Routes = [
@@ -28,6 +32,7 @@ export class AppRoutingModule {
         LoginComponent,
         RegisterComponent,
         PostsComponent,
-        ForgotPasswordComponent
+        ForgotPasswordComponent,
+        IosInstallComponent
     ];
 }

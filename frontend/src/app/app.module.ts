@@ -17,6 +17,11 @@ import { UserEffects } from '@ngrxLocal/effects/user.effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { authReducer } from '@ngrxLocal/reducers/auth.reducer';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
+
+// entryComponents
+import { IosInstallComponent } from './shared/components/ios-pwa-install/ios-install.component';
 
 @NgModule({
   declarations: [
@@ -37,9 +42,11 @@ import { authReducer } from '@ngrxLocal/reducers/auth.reducer';
     EffectsModule.forRoot([
       UserEffects,
     ]),
-    StoreDevtoolsModule.instrument()
+    StoreDevtoolsModule.instrument(),
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [IosInstallComponent]
 })
 export class AppModule { }

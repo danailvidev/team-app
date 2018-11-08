@@ -14,7 +14,8 @@
     "e2e": "ng e2e",
     "build": "ng build",
     "build-i18n": "node build-all.js",
-    "i18n": "ng xi18n --output-path locale --out-file messages.en.xlf"
+    "i18n": "ng xi18n --output-path locale --out-file messages.en.xlf",
+    "http": "cd ./dist;python -m SimpleHTTPServer"
   },
   "private": true,
   "dependencies": {
@@ -28,7 +29,9 @@
     "@angular/material": "^7.0.3",
     "@angular/platform-browser": "7.0.2",
     "@angular/platform-browser-dynamic": "7.0.2",
+    "@angular/pwa": "^0.10.4",
     "@angular/router": "7.0.2",
+    "@angular/service-worker": "7.0.2",
     "@ngrx/core": "^1.2.0",
     "@ngrx/effects": "^6.1.2",
     "@ngrx/store": "^6.1.2",
