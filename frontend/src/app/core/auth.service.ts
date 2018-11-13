@@ -96,6 +96,10 @@ export class AuthService {
         }));
     }
 
+    refreshToken(): Observable<string> {
+        return of(this.token);
+    }
+
     private saveToken(token) {
         localStorage.setItem(this.TOKEN_KEY, token);
     }
