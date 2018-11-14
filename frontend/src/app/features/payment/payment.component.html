@@ -1,32 +1,47 @@
-
 <h1>Stripe</h1>
 <div class="wrapper">
-  <mat-card class="example-card">
-    <mat-card-header>
-      <mat-card-title>Basic Plan</mat-card-title>
-      <mat-card-subtitle>Most Used</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
-      <p>
-            10$ / month
-      </p>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-raised-button color="accent">SUBSCRIBE</button>
-    </mat-card-actions>
-  </mat-card>
-  <mat-card class="example-card">
+    <mat-card class="example-card">
         <mat-card-header>
-          <mat-card-title>Silver Plan</mat-card-title>
-          <mat-card-subtitle>ultimate features</mat-card-subtitle>
+            <mat-card-title>Basic Plan</mat-card-title>
+            <mat-card-subtitle>Most Used</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
-          <p>
-                13$ / month
-          </p>
+            <p>
+                10$ / month
+            </p>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-raised-button color="accent">SUBSCRIBE</button>
+            <button mat-raised-button color="accent" (click)="chargeCreditCard()">SUBSCRIBE</button>
         </mat-card-actions>
-      </mat-card>
+    </mat-card>
+    <mat-card class="example-card">
+        <mat-card-header>
+            <mat-card-title>Silver Plan</mat-card-title>
+            <mat-card-subtitle>ultimate features</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <p>
+                13$ / month
+            </p>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button color="accent" (click)="chargeCreditCard()">SUBSCRIBE</button>
+        </mat-card-actions>
+    </mat-card>
+
+    <form action="/charge" method="post" id="payment-form">
+        <div class="form-row">
+            <label for="card-element">
+                Credit or debit card
+            </label>
+            <div id="card-element">
+                <!-- a Stripe Element will be inserted here. -->
+            </div>
+
+            <!-- Used to display form errors -->
+            <div id="card-errors" role="alert"></div>
+        </div>
+
+        <input type="submit" class="submit" value="Submit Payment">
+    </form>
 </div>
