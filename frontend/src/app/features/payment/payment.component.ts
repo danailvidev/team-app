@@ -7,7 +7,8 @@ import { environment } from '@env/environment';
     templateUrl: 'payment.component.html',
     styles: [`
     .wrapper {
-        width: 500px;
+        display:flex;
+        flex-wrap:wrap;
     }
     .example-card {
         max-width: 400px;
@@ -19,6 +20,7 @@ import { environment } from '@env/environment';
 
 export class PaymentComponent implements OnInit, AfterViewInit {
     protected baseUrl = environment.backend['baseUrl'];
+    amount: number;
 
     constructor(private http: HttpClient) { }
 
@@ -82,11 +84,8 @@ export class PaymentComponent implements OnInit, AfterViewInit {
         });
     }
 
-
     private chargeCard(token: any) {
-        let amount = 555;
-
-        this.http.post(this.baseUrl + 'stripe', { token, amount })
+        this.http.post(this.baseUrl + 'stripe', { token, amount: this.amount })
             .subscribe(resp => {
                 console.log(resp);
             })

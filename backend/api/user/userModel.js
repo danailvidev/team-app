@@ -23,6 +23,10 @@ var userSchema = mongoose.Schema({
         type: Date,
         required: true,
         default: new Date()
+    },
+    stripeCustomerId: {
+        type: String,
+        default: null
     }
 })
 
