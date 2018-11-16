@@ -26,7 +26,7 @@ const createOrder = async (req, res, next) => {
         } else {
             customer = await stripe.customers.retrieve(user.stripeCustomerId)
         }
-        
+
         let source = await stripe.customers.createSource(customer.id, { source: token })
         let charge = await stripe.charges.create({ amount: amount, currency: 'eur', customer: source.customer })
 
@@ -43,8 +43,23 @@ const createOrder = async (req, res, next) => {
 
 }
 
+const createOrderRecurring = async (req, res, next) => {
+    // stripe.subscriptions.create({
+    //     customer: customer.id,
+    //     items: [
+    //         {
+    //             plan: "plan_Dz5oVBjktStfFD",
+    //         },
+    //     ]
+    // }, function (err, subscription) {
+    //     console.log(subscription)
+    //     return res.status(200)
+    // });
+}
+
 let stripeController = {
-    createOrder
+    createOrder,
+    createOrderRecurring
 }
 
 module.exports = stripeController
