@@ -30,6 +30,7 @@ import 'hammerjs';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 import { NgSubscribeDirective } from './directives';
 import { CapsDirective } from './directives';
+import { CanAccessDirective } from './directives/can-access.directive';
 
 @NgModule({
     imports: [
@@ -65,6 +66,7 @@ import { CapsDirective } from './directives';
         // components
         LoadingSpinnerComponent,
         CapsDirective,
+        CanAccessDirective,
 
         // Material
         MatButtonModule,
@@ -88,7 +90,8 @@ import { CapsDirective } from './directives';
     declarations: [
         LoadingSpinnerComponent,
         NgSubscribeDirective,
-        CapsDirective
+        CapsDirective,
+        CanAccessDirective
     ]
 })
 export class SharedModule { }

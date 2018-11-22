@@ -38,5 +38,15 @@ export const environment = {
           loggerLocation: 'logs',
           isActive: false
         }
-      ]
+      ],
+      workflow: {
+          "tasks": {
+              "getTasks": {"permittedRoles": ["ADMIN", "USER", "GUEST"]},
+              "addTask": { "permittedRoles": ["ADMIN", "USER"] },
+              "deleteTask": {"permittedRoles": ["ADMIN"] }
+          },
+          "posts": {
+              "addRequirement": { "permittedRoles": ["SELLER", "CLIENT"] }
+          },
+      }
 };

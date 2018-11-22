@@ -15,7 +15,7 @@
 
         <!-- right side -->
         <div *ngIf="!isSmallScreen" class="right-side">
-            <button mat-button>
+            <button mat-button *appCanAccess="['tasks', 'getTasks']">
                 <mat-slide-toggle matTooltip="Change theme" matdTooltipPosition="before" (change)="switchTheme($event)">
                     Theme
                 </mat-slide-toggle>

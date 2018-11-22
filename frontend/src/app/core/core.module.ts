@@ -12,6 +12,7 @@ import { LoggingService } from './logging/loggin.service';
 import { LogPublisherService } from './logging/log-publishers.service';
 import { SocketIOService, SocketService } from './web-sockets';
 import { ScreenSizeService } from './screen-size.service';
+import { WorkflowEventsService } from './workflow-events.service';
 
 // Guards
 import { AuthGuard } from '../auth/auth.guard';
@@ -36,6 +37,7 @@ import { ShowOnDirtyErrorStateMatcher } from '@angular/material';
         LoggingService,
         LogPublisherService,
         ScreenSizeService,
+        WorkflowEventsService,
         { provide: SocketService, useClass: SocketIOService },
         AuthGuard,
         { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

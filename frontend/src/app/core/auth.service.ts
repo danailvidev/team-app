@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Response, RequestOptions } from '@angular/http';
 import { Observable, of } from 'rxjs';
 import { environment } from '@env/environment';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
@@ -42,6 +41,7 @@ export class AuthService {
         return this.http.post<any>(this.baseAuthUrl + 'login', userData).pipe(map(res => {
             this.userData = res.userData;
             this.logger.info(JSON.stringify(res.userData.email) + ' has been logged in');
+            res.userData.roles = [{name:'USER'}];
             this.saveUserData(res.userData);
             this.saveToken(res.token);
             this.notifyService.notify('You have been successfully logged in', null, {
@@ -81,6 +81,7 @@ export class AuthService {
         return this.http.post<any>(this.baseAuthUrl + 'register', body, options).pipe(map(res => {
             this.logger.info(JSON.stringify(userData.email) + ' registered');
             this.saveToken(res.token);
+            res.userData.roles = [{name:'USER'}];
             this.saveUserData(res.userData);
             this.notifyService.notify(`Email has been sent to ${userData.email}`, null, {
                 duration: 4000,
