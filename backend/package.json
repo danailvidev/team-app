@@ -3,7 +3,7 @@
     "version": "1.0.1",
     "author": "danail videv",
     "description": "",
-    "homepage": "https://webadventure.org/team-app",
+    "homepage": "https://teamapp.phyre.dev",
     "main": "server.js",
     "repository": {
         "type": "git",
