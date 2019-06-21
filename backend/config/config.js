@@ -7,6 +7,7 @@ var config = {
     port: process.env.PORT || 3000,
     bcryptSecret: process.env.CRYPT_SECRET,
     stripeSecret: process.env.STRIPE_SECRET_KEY,
+    whitelist: ['http://localhost:4200', 'https://teamapp.phyre.dev', 'htts://phyre.dev'],
     smtp: {
         host: 'smtp.gmail.com',
         port: 587,

@@ -5,7 +5,13 @@ const config = require('../config/config')
 module.exports = function (app) {
     app.use(cors({
         credentials: true,
-        origin: config.cors == undefined ? 'http://localhost:4200' : config.cors.headers
+        origin: function (origin, callback) {
+            if (config.whitelist.indexOf(origin) !== -1) {
+              callback(null, true)
+            } else {
+              callback(new Error('Not allowed by CORS'))
+            }
+          }
     }));
 
     app.use(bodyParser.json())
