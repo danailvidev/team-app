@@ -31,6 +31,7 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
 import { NgSubscribeDirective } from './directives';
 import { CapsDirective } from './directives';
 import { CanAccessDirective } from './directives/can-access.directive';
+import { ShowInfoDirective } from './directives/show-info.directive';
 
 @NgModule({
     imports: [
@@ -91,7 +92,8 @@ import { CanAccessDirective } from './directives/can-access.directive';
         LoadingSpinnerComponent,
         NgSubscribeDirective,
         CapsDirective,
-        CanAccessDirective
+        CanAccessDirective,
+        ShowInfoDirective
     ]
 })
 export class SharedModule { }

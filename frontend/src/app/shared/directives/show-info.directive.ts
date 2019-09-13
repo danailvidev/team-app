@@ -1,10 +1,10 @@
-import { Directive, OnInit, OnDestroy, EventEmitter, ElementRef, Renderer2, NgZone } from "@angular/core";
+import { Directive, OnInit, OnDestroy, EventEmitter, ElementRef, Renderer2, NgZone } from '@angular/core';
 
 @Directive({
     selector: "[e-showInfo]",
-    inputs: ["duration", "infoData"],
-    outputs: ["showInfoEvents: showInfo"],
-    exportAs: "showInforRef"
+    inputs: ['duration', 'infoData'],
+    outputs: ['showInfoEvents: showInfo'],
+    exportAs: 'showInforRef'
 })
 export class ShowInfoDirective implements OnInit, OnDestroy {
 
@@ -39,7 +39,7 @@ export class ShowInfoDirective implements OnInit, OnDestroy {
         this.cancel();
 
         if (this.unlisteners) {
-            for (var unlistener of this.unlisteners) {
+            for (let unlistener of this.unlisteners) {
                 unlistener();
             }
         }
@@ -49,10 +49,10 @@ export class ShowInfoDirective implements OnInit, OnDestroy {
         this.zone.runOutsideAngular(
             () => {
                 this.unlisteners = [
-                    this.renderer.listen(this.elementRef.nativeElement, "mouseenter", this.handleEnter),
-                    this.renderer.listen(this.elementRef.nativeElement, "focusin", this.handleEnter),
-                    this.renderer.listen(this.elementRef.nativeElement, "mouseleave", this.handleLeave),
-                    this.renderer.listen(this.elementRef.nativeElement, "focusout", this.handleLeave)
+                    this.renderer.listen(this.elementRef.nativeElement, 'mouseenter', this.handleEnter),
+                    this.renderer.listen(this.elementRef.nativeElement, 'focusin', this.handleEnter),
+                    this.renderer.listen(this.elementRef.nativeElement, 'mouseleave', this.handleLeave),
+                    this.renderer.listen(this.elementRef.nativeElement, 'focusout', this.handleLeave)
                 ];
             }
         );
@@ -60,11 +60,11 @@ export class ShowInfoDirective implements OnInit, OnDestroy {
 
     private handleEnter = (event: FocusEvent | MouseEvent): void => {
         this.timer = setTimeout(this.handleTimerThreshold, this.duration, this.data);
-    };
+    }
 
     private handleLeave = (event: MouseEvent | FocusEvent): void => {
         this.cancel();
-    };
+    }
 
     private handleTimerThreshold = (data: any): void => {
         this.zone.runGuarded(
