@@ -20,6 +20,7 @@ const routes: Routes = [
     { path: 'team', canActivate: [AuthGuard], loadChildren: 'app/features/team/team.module#TeamModule' },
     { path: 'github', canActivate: [AuthGuard], loadChildren: 'app/features/github/github.module#GithubModule' },
     { path: 'payment', canActivate: [AuthGuard], loadChildren: 'app/features/payment/payment.module#PaymentModule' },
+    { path: 'dashboard', canActivate: [AuthGuard], loadChildren: 'app/features/dashboard/dashboard.module#DashboardModule' },
     { path: '**', pathMatch: 'full', redirectTo: 'login' }
 ];
 
