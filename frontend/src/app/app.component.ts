@@ -1,10 +1,12 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { OverlayContainer } from '@angular/cdk/overlay';
-import { AuthService } from './core/auth.service';
+
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
+
 import { IosInstallComponent } from './shared/components/ios-pwa-install/ios-install.component';
 import { ScreenSizeService } from './core/screen-size.service';
+import { AuthService } from './core/auth.service';
 
 @Component({
     selector: 'app-root',
@@ -13,6 +15,7 @@ import { ScreenSizeService } from './core/screen-size.service';
 })
 export class AppComponent implements OnInit {
     navigation = [
+        { link: 'dashboard', label: 'Dashboard', color: '', icon: 'view_quilt' },
         { link: 'payment', label: 'Payment', color: '', icon: 'payment' },
         { link: 'github', label: 'GitHub Issues', color: '', icon: 'code' },
         { link: 'team', label: 'Team Service', color: '', icon: 'share' },
@@ -35,7 +38,7 @@ export class AppComponent implements OnInit {
         this.setTheme(this.theme);
         this.isBelowSmallScreen();
 
-        // Detects if device is on iOS 
+        // Detects if device is on iOS
         const isIos = () => {
             const userAgent = window.navigator.userAgent.toLowerCase();
             return /iphone|ipad|ipod/.test(userAgent);

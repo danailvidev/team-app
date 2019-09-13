@@ -26,7 +26,7 @@ import { IosInstallComponent } from './shared/components/ios-pwa-install/ios-ins
 @NgModule({
   declarations: [
     AppComponent,
-    AppRoutingModule.components,
+    AppRoutingModule.components
   ],
   imports: [
     BrowserModule,
